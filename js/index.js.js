@@ -77,9 +77,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
   });
 
   /*
-   *BOTON LAPIZ
+   *BOTON LAPIZ Y GOMA
    */
   let lapiz = document.querySelector("#lapiz");
+  let goma = document.querySelector("#goma");
   let click = false;
   let dibujando = false;
   let borrado = false;
@@ -108,12 +109,21 @@ document.addEventListener("DOMContentLoaded", function (e) {
     );
   });
 
-  /**
+  /*
    * LAPIZ
    */
   lapiz.addEventListener("click", (e) => {
     dibujando = true;
     borrado = false;
+    dibujarLinea();
+  });
+
+  /*
+   * GOMA
+   */
+  goma.addEventListener("click", (e) => {
+    dibujando = false;
+    borrado = true;
     dibujarLinea();
   });
 
@@ -157,6 +167,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let anchoLapiz = document.getElementById("rango").value;
         ctxEditable.strokeStyle = color;
         ctxEditable.lineWidth = anchoLapiz;
+      }else if (borrado) {
+        ctxEditable.strokeStyle = "#FFFFFF";
       }
       if (click) {
         ctxEditable.lineTo(x, y);
