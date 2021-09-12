@@ -84,6 +84,22 @@ document.addEventListener("DOMContentLoaded", function (e) {
   let click = false;
   let dibujando = false;
   let borrado = false;
+
+  /*
+   * BOTON NEGATIVO
+   */
+  document.querySelector("#btnNegativo").addEventListener("click", (e) => {
+    let imagenEditada = obtenerNegativo();
+    ctxEditable.putImageData(imagenEditada, 0, 0);
+  });
+
+  /*
+   * BOTON SEPIA
+   */
+  document.querySelector("#btnSepia").addEventListener("click", (e) => {
+    let imagenEditada = obtenerSepia();
+    ctxEditable.putImageData(imagenEditada, 0, 0);
+  });
   //--------------------------------------------------------------------------------------------//
 
   //---------------------------------------EVENTOS--------------------------------------------
@@ -182,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   //------------------------------------FUNCION COLORES-------------------------------------------
   /*
-   *FUNCION PARA COLOR GRIS
+   *FUNCION PARA ESCALA DE GRISES
    */
   function obtenerGrises() {
     let matriz = ctx.getImageData(0, 0, width, height);
@@ -194,6 +210,39 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let r = tamanio;
         let g = tamanio;
         let b = tamanio;
+        let a = 255;
+        editarPixel(matriz, i, j, r, g, b, a);
+      }
+    }
+    return matriz;
+  }
+
+  /*
+   *FUNCION PARA IMAGEN EN NEGATIVO
+   */
+  function obtenerNegativo() {
+    let matriz = ctx.getImageData(0, 0, width, height);
+    for (let i = 0; i < width; i++) {
+      for (let j = 0; j < height; j++) {
+        let pixel = obtenerPixel(matriz, i, j);
+        let r = 255-pixel[0];
+        let g = 255-pixel[1];
+        let b = 255-pixel[2];
+        let a = 255;
+        editarPixel(matriz, i, j, r, g, b, a);
+      }
+    }
+    return matriz;
+  }
+
+  function obtenerSepia() {
+    let matriz = obtenerGrises();
+    for (let i = 0; i < width; i++) {
+      for (let j = 0; j < height; j++) {
+        let pixel = obtenerPixel(matriz, i, j);
+        let r = pixel[0]*(0.98823529411764705882352941176471); // (252/255)
+        let g = pixel[1]*(0.58431372549019607843137254901961); // (149/255)
+        let b = pixel[2]*(0.17647058823529411764705882352941); // (45/255)
         let a = 255;
         editarPixel(matriz, i, j, r, g, b, a);
       }
