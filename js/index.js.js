@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
   let imagenSecundaria = limpiar(matrizEditable);
   ctxEditable.putImageData(imagenSecundaria, 0, 0);
 
-  
   //--------------------------------------------------------------------------------------------//
 
   //------------------------------------> FUNCION LIMPIAR <-------------------------------------
@@ -109,8 +108,18 @@ document.addEventListener("DOMContentLoaded", function (e) {
    * BOTON NUEVO LIENZO
    */
   document.querySelector("#newCanvas").addEventListener("click", (e) => {
-    let imagenEditada = limpiar(matrizEditable);  
+    let imagenEditada = limpiar(matrizEditable);
     ctxEditable.putImageData(imagenEditada, 0, 0);
+  });
+
+
+  /*
+   * BOTON DESCARGAR IMAGEN
+   */
+  let descargar = document.querySelector("#descargarCanvas");
+  descargar.addEventListener("click", (e) => {
+    let ubicacion = canvasEditable.toDataURL("image/jpg");
+    descargar.href = ubicacion;
   });
   //--------------------------------------------------------------------------------------------//
 
@@ -135,7 +144,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
       },
       false
     );
-
   });
 
   /*
@@ -197,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let anchoLapiz = document.getElementById("rango").value;
         ctxEditable.strokeStyle = color;
         ctxEditable.lineWidth = anchoLapiz;
-      }else if (borrado) {
+      } else if (borrado) {
         ctxEditable.strokeStyle = "#FFFFFF";
       }
       if (click) {
@@ -208,18 +216,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
   }
   //-------------------------------------------------------------------------------------------//
 
-
-
   //------------------------------------FUNCION COLORES-------------------------------------------
   /*
    *FUNCION PARA ESCALA DE GRISES
    */
   function obtenerGrises() {
     let matriz;
-    if(!editado)
-      matriz = ctx.getImageData(0, 0, width, height);
-    else
-      matriz = ctxEditable.getImageData(0, 0, width, height);
+    if (!editado) matriz = ctx.getImageData(0, 0, width, height);
+    else matriz = ctxEditable.getImageData(0, 0, width, height);
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
@@ -241,16 +245,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
   function obtenerNegativo() {
     let matriz = null;
-    if(!editado && imagenSubida)
+    if (!editado && imagenSubida)
       matriz = ctx.getImageData(0, 0, width, height);
-    else
-      matriz = ctxEditable.getImageData(0, 0, width, height);
+    else matriz = ctxEditable.getImageData(0, 0, width, height);
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
-        let r = 255-pixel[0];
-        let g = 255-pixel[1];
-        let b = 255-pixel[2];
+        let r = 255 - pixel[0];
+        let g = 255 - pixel[1];
+        let b = 255 - pixel[2];
         let a = 255;
         editarPixel(matriz, i, j, r, g, b, a);
       }
@@ -266,9 +269,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
-        let r = pixel[0]*(0.98823529411764705882352941176471); // (252/255)
-        let g = pixel[1]*(0.58431372549019607843137254901961); // (149/255)
-        let b = pixel[2]*(0.17647058823529411764705882352941); // (45/255)
+        let r = pixel[0] * 0.98823529411764705882352941176471; // (252/255)
+        let g = pixel[1] * 0.58431372549019607843137254901961; // (149/255)
+        let b = pixel[2] * 0.17647058823529411764705882352941; // (45/255)
         let a = 255;
         editarPixel(matriz, i, j, r, g, b, a);
       }
@@ -277,9 +280,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   }
   //-------------------------------------------------------------------------------------------//
 
-
-
-   //-------------------------------------VERIFICAR TAMAÑO---------------------------------------
+  //-------------------------------------VERIFICAR TAMAÑO---------------------------------------
   function verificarTamanio(tamanio) {
     if (tamanio > 255) {
       tamanio = 255;
