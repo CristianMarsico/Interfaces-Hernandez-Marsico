@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   let ctx = canvasPricipal.getContext("2d"); //contexto para la superficie de dibujo
   let width = canvasPricipal.width;
   let height = canvasPricipal.height;
+  let editado = false;
 
   //dejo el canvas en blanco
   let matriz = ctx.getImageData(0, 0, width, height); //capturo la matriz
@@ -28,6 +29,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
   );
   let imagenSecundaria = limpiar(matrizEditable);
   ctxEditable.putImageData(imagenSecundaria, 0, 0);
+
+  
   //--------------------------------------------------------------------------------------------//
 
   //------------------------------------> FUNCION LIMPIAR <-------------------------------------
@@ -41,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         editarPixel(imagen, x, y, red, green, blue, alpha);
       }
     }
+    editado = false;
     return imagen;
   }
   //-------------------------------------------------------------------------------------------//
@@ -100,6 +104,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
     let imagenEditada = obtenerSepia();
     ctxEditable.putImageData(imagenEditada, 0, 0);
   });
+
+  /*
+   * BOTON NUEVO LIENZO
+   */
+  document.querySelector("#newCanvas").addEventListener("click", (e) => {
+    let imagenEditada = limpiar(matrizEditable);  
+    ctxEditable.putImageData(imagenEditada, 0, 0);
+  });
   //--------------------------------------------------------------------------------------------//
 
   //---------------------------------------EVENTOS--------------------------------------------
@@ -123,6 +135,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
       },
       false
     );
+
   });
 
   /*
@@ -175,6 +188,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
       let x = e.layerX;
       let y = e.layerY;
       trazarLinea(x, y);
+      editado = true;
     }
 
     function trazarLinea(x, y) {
@@ -201,7 +215,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION PARA ESCALA DE GRISES
    */
   function obtenerGrises() {
-    let matriz = ctx.getImageData(0, 0, width, height);
+    let matriz;
+    if(!editado)
+      matriz = ctx.getImageData(0, 0, width, height);
+    else
+      matriz = ctxEditable.getImageData(0, 0, width, height);
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
@@ -214,6 +232,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         editarPixel(matriz, i, j, r, g, b, a);
       }
     }
+    editado = true;
     return matriz;
   }
 
@@ -221,7 +240,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION PARA IMAGEN EN NEGATIVO
    */
   function obtenerNegativo() {
-    let matriz = ctx.getImageData(0, 0, width, height);
+    let matriz = null;
+    if(!editado && imagenSubida)
+      matriz = ctx.getImageData(0, 0, width, height);
+    else
+      matriz = ctxEditable.getImageData(0, 0, width, height);
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
@@ -235,6 +258,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
     return matriz;
   }
 
+  /*
+   *FUNCION PARA IMAGEN EN TONO SEPIA
+   */
   function obtenerSepia() {
     let matriz = obtenerGrises();
     for (let i = 0; i < width; i++) {
@@ -250,9 +276,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
     return matriz;
   }
   //-------------------------------------------------------------------------------------------//
-  
 
-  //-------------------------------------VERIFICAR TAMAÑO---------------------------------------
+
+
+   //-------------------------------------VERIFICAR TAMAÑO---------------------------------------
   function verificarTamanio(tamanio) {
     if (tamanio > 255) {
       tamanio = 255;
