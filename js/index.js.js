@@ -100,6 +100,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
   });
 
   /*
+   * BOTON BRILLO - RANGO
+   */
+  document.querySelector("#btnBrillo").addEventListener("click", (e) => {
+    let fuerzaBrillo = document.querySelector("#rangoBrillo").value;
+    let imagenEditada = obtenerBrillo(fuerzaBrillo);
+    ctxEditable.putImageData(imagenEditada, 0, 0);
+  });
+
+  /*
    * BOTON NUEVO LIENZO
    */
   document.querySelector("#newCanvas").addEventListener("click", (e) => {
@@ -278,6 +287,27 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }
     return matriz;
   }
+
+  /*
+   *FUNCION PARA BRILLO DE IMAGEN
+   */
+   function obtenerBrillo(fuerzaBrillo) {
+
+    let matriz = ctx.getImageData(0, 0, width, height);
+    let mas_menos_brillo = 255 * (fuerzaBrillo * 0.1);
+    for (let i = 0; i < width; i++) {
+      for (let j = 0; j < height; j++) {
+        let pixel = obtenerPixel(matriz, i, j);
+        let r = verificarTamanio ((pixel[0] + mas_menos_brillo));
+        let g = verificarTamanio ((pixel[1] + mas_menos_brillo));
+        let b = verificarTamanio ((pixel[2] + mas_menos_brillo));
+        let a = 255;
+        editarPixel(matriz, i, j, r, g, b, a);
+      }
+    }
+    return matriz;
+  }
+
   //-------------------------------------------------------------------------------------------//
 
 
