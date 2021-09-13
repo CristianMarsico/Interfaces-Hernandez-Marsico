@@ -100,11 +100,18 @@ document.addEventListener("DOMContentLoaded", function (e) {
   });
 
   /*
+<<<<<<< HEAD
    * BOTON BRILLO - RANGO
    */
   document.querySelector("#btnBrillo").addEventListener("click", (e) => {
     let fuerzaBrillo = document.querySelector("#rangoBrillo").value;
     let imagenEditada = obtenerBrillo(fuerzaBrillo);
+=======
+   * BOTON REESTABLECER
+   */
+  document.querySelector("#btnReestablecer").addEventListener("click", (e) => {
+    let imagenEditada = obtenerOriginal();
+>>>>>>> cae4aa8f7e5051e3878fb61360f7f0b8a973891b
     ctxEditable.putImageData(imagenEditada, 0, 0);
   });
 
@@ -289,6 +296,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   }
 
   /*
+<<<<<<< HEAD
    *FUNCION PARA BRILLO DE IMAGEN
    */
    function obtenerBrillo(fuerzaBrillo) {
@@ -308,6 +316,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
     return matriz;
   }
 
+=======
+   *FUNCION PARA RESETEAR LA IMAGEN
+   */
+   function obtenerOriginal() {
+    return ctx.getImageData(0, 0, width, height);
+  }
+>>>>>>> cae4aa8f7e5051e3878fb61360f7f0b8a973891b
   //-------------------------------------------------------------------------------------------//
 
 
