@@ -100,6 +100,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
   });
 
   /*
+   * BOTON REESTABLECER
+   */
+  document.querySelector("#btnReestablecer").addEventListener("click", (e) => {
+    let imagenEditada = obtenerOriginal();
+    ctxEditable.putImageData(imagenEditada, 0, 0);
+  });
+
+  /*
    * BOTON NUEVO LIENZO
    */
   document.querySelector("#newCanvas").addEventListener("click", (e) => {
@@ -277,6 +285,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
       }
     }
     return matriz;
+  }
+
+  /*
+   *FUNCION PARA RESETEAR LA IMAGEN
+   */
+   function obtenerOriginal() {
+    return ctx.getImageData(0, 0, width, height);
   }
   //-------------------------------------------------------------------------------------------//
 
