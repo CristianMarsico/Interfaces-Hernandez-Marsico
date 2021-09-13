@@ -21,12 +21,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   let heightEditable = canvasEditable.height;
 
   //dejo el canvas en blanco
-  let matrizEditable = ctxEditable.getImageData(
-    0,
-    0,
-    widthEditable,
-    heightEditable
-  );
+  let matrizEditable = ctxEditable.getImageData(0, 0, widthEditable, heightEditable);
   let imagenSecundaria = limpiar(matrizEditable);
   ctxEditable.putImageData(imagenSecundaria, 0, 0);
 
@@ -123,21 +118,23 @@ document.addEventListener("DOMContentLoaded", function (e) {
   });
   //--------------------------------------------------------------------------------------------//
 
+
+  
   //---------------------------------------EVENTOS--------------------------------------------
   /*
    *CARGAR IMAGEN DESDE ORDENADOR
    */
   document.querySelector("#inputFile").addEventListener("change", (e) => {
-    const ARCHIVO = document.querySelector("#inputFile").files[0];
-    const OBJETO = new FileReader();
-    if (ARCHIVO) {
-      OBJETO.readAsDataURL(ARCHIVO);
+    let cargarImagen = document.querySelector("#inputFile").files[0];
+    let leerArchivo = new FileReader();
+    if (cargarImagen) {
+      leerArchivo.readAsDataURL(cargarImagen);
     }
-    OBJETO.addEventListener(
+    leerArchivo.addEventListener(
       "load",
       (e) => {
         let imagen = new Image();
-        imagen.src = OBJETO.result;
+        imagen.src = leerArchivo.result;
         imagen.onload = function () {
           myDrawImageMethod(imagen);
         };
@@ -166,11 +163,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   //-------------------------------------------------------------------------------------------//
 
-  //--------------------------------------DIBUJAR----------------------------------------------
+
+
+
+  //--------------------------------------CARGAR IMAGEN PRICIPAL----------------------------------
   function myDrawImageMethod(imagen) {
     ctx.drawImage(imagen, 0, 0, width, height);
   }
   //-------------------------------------------------------------------------------------------//
+
+
+
 
   //---------------------------------------EVENTOS MOUSE----------------------------------------
   function dibujarLinea() {
@@ -196,7 +199,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
       let x = e.layerX;
       let y = e.layerY;
       trazarLinea(x, y);
-      editado = true;
     }
 
     function trazarLinea(x, y) {
@@ -244,10 +246,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION PARA IMAGEN EN NEGATIVO
    */
   function obtenerNegativo() {
-    let matriz = null;
-    if (!editado && imagenSubida)
-      matriz = ctx.getImageData(0, 0, width, height);
-    else matriz = ctxEditable.getImageData(0, 0, width, height);
+    
+    let matriz = ctx.getImageData(0, 0, width, height);
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
@@ -279,6 +279,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
     return matriz;
   }
   //-------------------------------------------------------------------------------------------//
+
+
 
   //-------------------------------------VERIFICAR TAMAÑO---------------------------------------
   function verificarTamanio(tamanio) {
