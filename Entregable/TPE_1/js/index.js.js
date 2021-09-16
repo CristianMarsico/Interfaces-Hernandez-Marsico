@@ -21,7 +21,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
   let heightEditable = canvasEditable.height;
 
   //dejo el canvas en blanco
-  let matrizEditable = ctxEditable.getImageData(0, 0, widthEditable, heightEditable);
+  let matrizEditable = ctxEditable.getImageData(
+    0,
+    0,
+    widthEditable,
+    heightEditable
+  );
   let imagenSecundaria = limpiar(matrizEditable);
   ctxEditable.putImageData(imagenSecundaria, 0, 0);
 
@@ -124,6 +129,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
     ctxEditable.putImageData(imagenEditada, 0, 0);
   });
 
+  /*
+   * BOTON BLUR
+   */
+
+  document.querySelector("#btnBlur").addEventListener("click", (e) => {
+    let imagenPrincipal = ctx.getImageData(0, 0, width, height);
+    let imagenEditada = blur(imagenPrincipal);
+    ctxEditable.putImageData(imagenEditada, 0, 0);
+  });
 
   /*
    * BOTON DESCARGAR IMAGEN
@@ -135,8 +149,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
   });
   //--------------------------------------------------------------------------------------------//
 
-
-  
   //---------------------------------------EVENTOS--------------------------------------------
   /*
    *CARGAR IMAGEN DESDE ORDENADOR
@@ -180,17 +192,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   //-------------------------------------------------------------------------------------------//
 
-
-
-
   //--------------------------------------CARGAR IMAGEN PRICIPAL----------------------------------
   function myDrawImageMethod(imagen) {
     ctx.drawImage(imagen, 0, 0, width, height);
   }
   //-------------------------------------------------------------------------------------------//
-
-
-
 
   //---------------------------------------EVENTOS MOUSE----------------------------------------
   function dibujarLinea() {
@@ -263,8 +269,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION PARA IMAGEN EN NEGATIVO
    */
   function obtenerNegativo() {
-    
-    let matriz = ctx.getImageData(0, 0, width, height);
+    let matriz;
+    if (!editado) matriz = ctx.getImageData(0, 0, width, height);
+    else matriz = ctxEditable.getImageData(0, 0, width, height);
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
@@ -299,16 +306,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
   /*
    *FUNCION PARA BRILLO DE IMAGEN
    */
-   function obtenerBrillo(fuerzaBrillo) {
-
+  function obtenerBrillo(fuerzaBrillo) {
     let matriz = ctx.getImageData(0, 0, width, height);
     let mas_menos_brillo = 255 * (fuerzaBrillo * 0.1);
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
-        let r = verificarTamanio ((pixel[0] + mas_menos_brillo));
-        let g = verificarTamanio ((pixel[1] + mas_menos_brillo));
-        let b = verificarTamanio ((pixel[2] + mas_menos_brillo));
+        let r = verificarTamanio(pixel[0] + mas_menos_brillo);
+        let g = verificarTamanio(pixel[1] + mas_menos_brillo);
+        let b = verificarTamanio(pixel[2] + mas_menos_brillo);
         let a = 255;
         editarPixel(matriz, i, j, r, g, b, a);
       }
@@ -319,14 +325,82 @@ document.addEventListener("DOMContentLoaded", function (e) {
   /*
    *FUNCION PARA RESETEAR LA IMAGEN
    */
-   function obtenerOriginal() {
+  function obtenerOriginal() {
     return ctx.getImageData(0, 0, width, height);
   }
 
+  /*
+   *FUNCION BLUR
+   */
+  function blur(img) {
+    let cant = 9;
+    let matriz = [
+      [1, 1, 1],
+      [1, 1, 1],
+      [1, 1, 1],
+    ];
+    return obtenerBlur(matriz, cant, img);
+  }
   //-------------------------------------------------------------------------------------------//
 
+  function obtenerBlur(ma, cant, imagen) {
+    for (let x = 0; x < width; x++) {
+      for (let y = 0; y < height; y++) {
+        let parteSupIzq = obtenerPixel(imagen, x, y);
+        let parteSupCentro = obtenerPixel(imagen, x, y + 1);
+        let parteSupDer = obtenerPixel(imagen, x, y + 2);
+        let centroIzq = obtenerPixel(imagen, x + 1, y);
+        let centroCentro = obtenerPixel(imagen, x + 1, y + 1);
+        let centroDer = obtenerPixel(imagen, x + 1, y + 2);
+        let parteInfIzq = obtenerPixel(imagen, x + 2, y);
+        let parteInfCentro = obtenerPixel(imagen, x + 2, y + 1);
+        let parteInfDer = obtenerPixel(imagen, x + 2, y + 2);
 
+        let r = Math.floor(
+          (parteSupIzq[0] * ma[0][0] +
+            parteSupCentro[0] * ma[0][1] +
+            parteSupDer[0] * ma[0][2] +
+            centroIzq[0] * ma[1][0] +
+            centroCentro[0] * ma[1][1] +
+            centroDer[0] * ma[1][2] +
+            parteInfIzq[0] * ma[2][0] +
+            parteInfCentro[0] * ma[2][1] +
+            parteInfDer[0] * ma[2][2]) /
+            cant
+        );
+        let g = Math.floor(
+          (parteSupIzq[1] * ma[0][0] +
+            parteSupCentro[1] * ma[0][1] +
+            parteSupDer[1] * ma[0][2] +
+            centroIzq[1] * ma[1][0] +
+            centroCentro[1] * ma[1][1] +
+            centroDer[1] * ma[1][2] +
+            parteInfIzq[1] * ma[2][0] +
+            parteInfCentro[1] * ma[2][1] +
+            parteInfDer[1] * ma[2][2]) /
+            cant
+        );
+        let b = Math.floor(
+          (parteSupIzq[2] * ma[0][0] +
+            parteSupCentro[2] * ma[0][1] +
+            parteSupDer[2] * ma[0][2] +
+            centroIzq[2] * ma[1][0] +
+            centroCentro[2] * ma[1][1] +
+            centroDer[2] * ma[1][2] +
+            parteInfIzq[2] * ma[2][0] +
+            parteInfCentro[2] * ma[2][1] +
+            parteInfDer[2] * ma[2][2]) /
+            cant
+        );
 
+        let a = 255;
+
+        editarPixel(imagen, x, y, r, g, b, a);
+      }
+    }
+    ctxEditable.putImageData(imagen, 0, 0);
+    return imagen;
+  }
   //-------------------------------------VERIFICAR TAMAÑO---------------------------------------
   function verificarTamanio(tamanio) {
     if (tamanio > 255) {
