@@ -247,8 +247,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
   function obtenerGrises() {
     let matriz;
-    if (!editado) matriz = ctx.getImageData(0, 0, width, height);
-    else matriz = ctxEditable.getImageData(0, 0, width, height);
+      if (!editado) {
+        matriz = ctx.getImageData(0, 0, width, height);
+      } else {
+        matriz = ctxEditable.getImageData(0, 0, width, height);
+      }
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
@@ -270,8 +273,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
   function obtenerNegativo() {
     let matriz;
-    if (!editado) matriz = ctx.getImageData(0, 0, width, height);
-    else matriz = ctxEditable.getImageData(0, 0, width, height);
+    if (!editado) {
+      matriz = ctx.getImageData(0, 0, width, height);
+    } else {
+      matriz = ctxEditable.getImageData(0, 0, width, height);
+    }
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
@@ -282,6 +288,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         editarPixel(matriz, i, j, r, g, b, a);
       }
     }
+    editado = true;
     return matriz;
   }
 
@@ -289,7 +296,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION PARA IMAGEN EN TONO SEPIA
    */
   function obtenerSepia() {
-    let matriz = obtenerGrises();
+    let matriz;
+    if (!editado) {
+      matriz = ctx.getImageData(0, 0, width, height);
+    } else {
+      matriz = ctxEditable.getImageData(0, 0, width, height);
+    }
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
@@ -300,6 +312,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         editarPixel(matriz, i, j, r, g, b, a);
       }
     }
+    editado = true;
     return matriz;
   }
 
@@ -307,7 +320,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION PARA BRILLO DE IMAGEN
    */
   function obtenerBrillo(fuerzaBrillo) {
-    let matriz = ctx.getImageData(0, 0, width, height);
+    let matriz;
+    if (!editado) {
+      matriz = ctx.getImageData(0, 0, width, height);
+    } else {
+      matriz = ctxEditable.getImageData(0, 0, width, height);
+    }
     let mas_menos_brillo = 255 * (fuerzaBrillo * 0.1);
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
@@ -333,6 +351,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION BLUR
    */
   function blur(img) {
+    
+    if (!editado) {
+      img = ctx.getImageData(0, 0, width, height);
+    } else {
+      img = ctxEditable.getImageData(0, 0, width, height);
+    }
     let cant = 9;
     let matriz = [
       [1, 1, 1],
@@ -394,7 +418,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
         );
 
         let a = 255;
-
         editarPixel(imagen, x, y, r, g, b, a);
       }
     }

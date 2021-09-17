@@ -9,9 +9,9 @@
   </head>
   <body>
     <div class="row">
-      <div class="col-sm-8 text-center border border-danger">
-        <div class="col-12 border border-danger">
-          <div class="col-6 custom-file border border-dark">
+      <div class="col-sm-6 text-center">
+        <div class="col-12">
+          <div class="col-7 custom-file">
             <!--seleccion archivos-->
             <input
               type="file"
@@ -27,15 +27,12 @@
       </div>
     </div>
 
-    <div class="container-fluid" style="border: 3px solid black">
+    <div class="container" style="border: 1px solid black">
       <!--Contenedor general-->
-      <div class="row mt-2" style="border: 3px solid red">
-        <!--borde hacia abajo-->
-        <div class="col-md-5 border border-dark">
-          CANVAS 1
-          <div class="card text-center">
-            CANVAS 1
-            <div class="card-body canvasContainer border border-yellow">
+      <div class="row">
+        <div class="col-md-5">
+          <div>
+            <div class="card-body canvasContainer">
               <canvas
                 class="border border-dark"
                 id="canvasPrincipal"
@@ -46,65 +43,64 @@
           </div>
         </div>
 
-        <div class="col-md-2 border border-danger">
-          DIV FILTROS<!--ancho de filtros-->
-          <div class="row border border-primary">
-            <div class="col-md-12 mt-2">
+        <div class="col-md-2">
+          <div class="row">
+            <div class="col-12">
               <input type="color" id="colores" value="#457da1" />
               <input id="rango" type="range" min="1" max="5" value="0" />
-              <button id="lapiz" class="btn btn-block btn-success mt-2">
+              <button id="lapiz" class="btn btn-block btn-success mt-1">
                 <i class="fas fa-pencil-alt text-success"></i>Lapiz
               </button>
             </div>
-            <div class="col-md-12 mt-2">
+            <div class="col-md-12 mt-1">
               <button id="goma" class="btn btn-block btn-danger">
                 <i class="fa fa-eraser"></i> Goma
               </button>
             </div>
-            <div class="col-md-12 mt-2">
+            <div class="col-md-12 mt-1">
               <button class="btn btn-block btn-outline-success" id="newCanvas">
                 <i class="fa fa-plus"></i> Nuevo Lienzo
               </button>
             </div>
           </div>
-          <div class="border-top row mt-2">
-            <div class="col-md-12 mt-2 text-center border border-danger">
+          <div class="row mt-1">
+            <div class="col-md-12  text-center">
               <h5>Filtros</h5>
             </div>
           </div>
-          <div class="row mt-1" id="thumbnailContainer">
-            <div class="col-md-12 mt-2">
+          <div class="row" id="thumbnailContainer">
+            <div class="col-md-12">
               <button id="btnGris" class="btn btn-block btn-dark">
                 <i class="fas fa-broom"></i>
                 Grises
               </button>
             </div>
-            <div class="col-md-12 mt-2">
+            <div class="col-md-12 mt-1">
               <button id="btnNegativo" class="btn btn-block btn-info">
                 <i class="fas fa-broom"></i>
                 Negativo
               </button>
             </div>
-            <div class="col-md-12 mt-2">
+            <div class="col-md-12 mt-1">
               <button id="btnSepia" class="btn btn-block btn-warning">
                 <i class="fas fa-broom"></i>
                 Sepia
               </button>
             </div>
-            <div class="col-md-12 mt-4">
-              <h3>-<input id="rangoBrillo" type="range" min="1" max="10" />+</h3>
+            <div class="col-md-12 mt-2">
+              <input id="rangoBrillo" type="range" min="1" max="10" />
               <button id="btnBrillo" class="btn btn-block btn-warning">
                 <i class="fas fa-broom"></i>
                 Brillo
               </button>
             </div>
-            <div class="col-md-12 mt-2">
+            <div class="col-md-12 mt-1">
               <button id="btnBlur" class="btn btn-block btn-warning">
                 <i class="fas fa-broom"></i>
                 Blur
               </button>
             </div>
-            <div class="col-md-12 mt-2">
+            <div class="col-md-12 mt-1">
               <button id="btnReestablecer" class="btn btn-block btn-success">
                 <i class="fas fa-undo"></i>
                 Reestablecer
@@ -113,11 +109,10 @@
           </div>
         </div>
 
-        <div class="col-md-5 border border-dark">
-          CANVAS 2
-          <div class="card text-center">
-            CANVAS 2
-            <div class="card-body canvasContainer border border-yellow">
+        <div class="col-md-5">
+         
+          <div>  
+            <div class="card-body canvasContainer">
               <canvas
                 class="border border-dark"
                 id="canvasEditable"
@@ -125,7 +120,7 @@
                 width="400"
               ></canvas>
             </div>
-            <div class="card-footer text-muted border border-dark">
+            <div class="">
               <span class="text-success" id="selectedTool"></span>
               <a href="#" id="descargarCanvas" download="imagen-download.jpg">
                 <button
