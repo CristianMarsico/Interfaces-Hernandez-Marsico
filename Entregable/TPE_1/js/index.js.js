@@ -1,7 +1,9 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", function (e) {
+  //----------------------------------------------------------------------------------------------
   //-------------------------------CANVAS PRINCIPAL (LADO IZQ)------------------------------------
+  //----------------------------------------------------------------------------------------------
   let canvasPricipal = document.querySelector("#canvasPrincipal");
   let ctx = canvasPricipal.getContext("2d"); //contexto para la superficie de dibujo
   let width = canvasPricipal.width;
@@ -10,14 +12,16 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   //dejo el canvas en blanco
   let matriz = ctx.getImageData(0, 0, width, height); //capturo la matriz
+  let copia =  ctx.getImageData(0, 0, width, width);;
   let imagenPrincipal = limpiar(matriz);
+  let imagCopia = limpiar(copia, width, height);
   ctx.putImageData(imagenPrincipal, 0, 0);
-  //--------------------------------------------------------------------------------------------//
+  ctx.putImageData(imagCopia, 0, 0);
 
   //----------------------------------------------------------------------------------------------
   //-------------------------------CANVAS EDITABLE (LADO DER)-------------------------------------
   //----------------------------------------------------------------------------------------------
-  let canvasEditable = document.querySelector("#canvasEditable");
+  /*let canvasEditable = document.querySelector("#canvasEditable");
   let ctxEditable = canvasEditable.getContext("2d"); //contexto para la superficie de dibujo
   let widthEditable = canvasEditable.width;
   let heightEditable = canvasEditable.height;
@@ -30,9 +34,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
     heightEditable
   );
   let imagenSecundaria = limpiar(matrizEditable);
-  ctxEditable.putImageData(imagenSecundaria, 0, 0);
+  ctxEditable.putImageData(imagenSecundaria, 0, 0);*/
 
-  //--------------------------------------------------------------------------------------------//
+
 
   //----------------------------------------------------------------------------------------------
   //---------------------------------------FUNCION LIMPIAR----------------------------------------
@@ -47,10 +51,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
         editarPixel(imagen, x, y, red, green, blue, alpha);
       }
     }
-    editado = false;
+   // editado = false;
     return imagen;
   }
-  //-------------------------------------------------------------------------------------------//
 
 
   
@@ -90,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
   document.querySelector("#btnGris").addEventListener("click", (e) => {
     let imagenEditada = obtenerGrises();
-    ctxEditable.putImageData(imagenEditada, 0, 0);
+    ctx.putImageData(imagenEditada, 0, 0);
   });
 
   /*
@@ -107,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
   document.querySelector("#btnNegativo").addEventListener("click", (e) => {
     let imagenEditada = obtenerNegativo();
-    ctxEditable.putImageData(imagenEditada, 0, 0);
+    ctx.putImageData(imagenEditada, 0, 0);
   });
 
   /*
@@ -115,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
   document.querySelector("#btnSepia").addEventListener("click", (e) => {
     let imagenEditada = obtenerSepia();
-    ctxEditable.putImageData(imagenEditada, 0, 0);
+    ctx.putImageData(imagenEditada, 0, 0);
   });
 
   /*
@@ -131,8 +134,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
    * BOTON REESTABLECER
    */
   document.querySelector("#btnReestablecer").addEventListener("click", (e) => {
-    let imagenEditada = obtenerOriginal();
-    ctxEditable.putImageData(imagenEditada, 0, 0);
+    if(copia)//capturo del CONTEXTO ORIGINAL
+      ctx.putImageData(copia, 0, 0);
   });
 
   /*
@@ -145,14 +148,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   ///////////////////////////////////////////////
   /*
-   *ESPECIALES
+   * ESPECIALES
    * BOTON BLUR
    */
 
   document.querySelector("#btnBlur").addEventListener("click", (e) => {
     let imagenPrincipal = ctx.getImageData(0, 0, width, height);
-    let imagenEditada = blur(imagenPrincipal);
-    ctxEditable.putImageData(imagenEditada, 0, 0);
+    let imagenEditada = obtenerBlur(imagenPrincipal);
+    ctx.putImageData(imagenEditada, 0, 0);
   });
 
   /*
@@ -161,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   document.querySelector("#btnSatur").addEventListener("click", (e) => {
     let mas_menos = document.querySelector("#rangoSat").value;
     let imagenEditada = obtenerSaturacion(mas_menos * 0.1);
-    ctxEditable.putImageData(imagenEditada, 0, 0);
+    ctx.putImageData(imagenEditada, 0, 0);
   });
 
   /*
@@ -169,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
   let descargar = document.querySelector("#descargarCanvas");
   descargar.addEventListener("click", (e) => {
-    let ubicacion = canvasEditable.toDataURL("image/jpg");
+    let ubicacion = canvasPricipal.toDataURL("image/jpg");
     descargar.href = ubicacion;
   });
 
@@ -224,6 +227,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   //----------------------------------------------------------------------------------------------
   function myDrawImageMethod(imagen) {
     ctx.drawImage(imagen, 0, 0, width, height);
+    copia = ctx.getImageData(0, 0, width, height);
   }
 
 
@@ -232,21 +236,21 @@ document.addEventListener("DOMContentLoaded", function (e) {
   //----------------------------------------------------------------------------------------------
   function dibujarLinea() {
     if (!click) {
-      canvasEditable.addEventListener("mousedown", (e) => {
-        ctxEditable.beginPath(); //INICIA EL CAMINO O DIBUJO MIENTRAS EL CLICK ESTE PRECIONADO
+      canvasPricipal.addEventListener("mousedown", (e) => {
+        ctx.beginPath(); //INICIA EL CAMINO O DIBUJO MIENTRAS EL CLICK ESTE PRECIONADO
         click = true;
       });
     }
 
-    canvasEditable.addEventListener("mousemove", (e) => {
+    canvasPricipal.addEventListener("mousemove", (e) => {
       if (click) {
         dibujar(e);
       }
     });
 
-    canvasEditable.addEventListener("mouseup", (e) => {
+    canvasPricipal.addEventListener("mouseup", (e) => {
       click = false;
-      ctxEditable.closePath(); //FINALIZO EL CAMINO O DIBUJO CUANDO SUELTO EL CLICK
+      ctx.closePath(); //FINALIZO EL CAMINO O DIBUJO CUANDO SUELTO EL CLICK
     });
 
     function dibujar(e) {
@@ -259,14 +263,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
       if (dibujando) {
         let color = document.getElementById("colores").value;
         let anchoLapiz = document.getElementById("rango").value;
-        ctxEditable.strokeStyle = color;
-        ctxEditable.lineWidth = anchoLapiz;
+        ctx.strokeStyle = color;
+        ctx.lineWidth = anchoLapiz;
       } else if (borrado) {
-        ctxEditable.strokeStyle = "#FFFFFF";
+        ctx.strokeStyle = "#FFFFFF";
       }
       if (click) {
-        ctxEditable.lineTo(x, y);
-        ctxEditable.stroke();
+        ctx.lineTo(x, y);
+        ctx.stroke();
       }
     }
   }
@@ -279,12 +283,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION PARA ESCALA DE GRISES
    */
   function obtenerGrises() {
-    let matriz;
+  /*  let matriz;
     if (!editado) {
       matriz = ctx.getImageData(0, 0, width, height);
     } else {
       matriz = ctxEditable.getImageData(0, 0, width, height);
-    }
+    }*/
+
+    matriz = ctx.getImageData(0, 0, width, height);
+
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
@@ -297,7 +304,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         editarPixel(matriz, i, j, r, g, b, a);
       }
     }
-    editado = true;
+   // editado = true;
     return matriz;
   }
 
@@ -305,12 +312,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION PARA IMAGEN EN NEGATIVO
    */
   function obtenerNegativo() {
-    let matriz;
+   /* let matriz;
     if (!editado) {
       matriz = ctx.getImageData(0, 0, width, height);
     } else {
       matriz = ctxEditable.getImageData(0, 0, width, height);
-    }
+    }*/
+    matriz = ctx.getImageData(0, 0, width, height);
+
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
@@ -321,7 +330,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         editarPixel(matriz, i, j, r, g, b, a);
       }
     }
-    editado = true;
+    //editado = true;
     return matriz;
   }
 
@@ -329,12 +338,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION PARA IMAGEN EN TONO SEPIA
    */
   function obtenerSepia() {
-    let matriz;
+    /*let matriz;
     if (!editado) {
       matriz = ctx.getImageData(0, 0, width, height);
     } else {
       matriz = ctxEditable.getImageData(0, 0, width, height);
-    }
+    }*/
+    matriz = ctx.getImageData(0, 0, width, height);
+
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
@@ -345,7 +356,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         editarPixel(matriz, i, j, r, g, b, a);
       }
     }
-    editado = true;
+   // editado = true;
     return matriz;
   }
 
@@ -383,22 +394,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
   /*
    *FUNCION BLUR
    */
-  function blur(img) {
-    if (!editado) {
-      img = ctx.getImageData(0, 0, width, height);
+  function obtenerBlur(imagen) {
+  /*  if (!editado) {
+      imagen = ctx.getImageData(0, 0, width, height);
     } else {
-      img = ctxEditable.getImageData(0, 0, width, height);
-    }
-    let cant = 9;
-    let matriz = [
-      [1, 1, 1],
-      [1, 1, 1],
-      [1, 1, 1],
-    ];
-    return obtenerBlur(matriz, cant, img);
-  }
+      imagen = ctxEditable.getImageData(0, 0, width, height);
+    }*/
 
-  function obtenerBlur(ma, cant, imagen) {
+    imagen = ctx.getImageData(0, 0, width, height);
+
     for (let x = 0; x < width; x++) {
       for (let y = 0; y < height; y++) {
         let parteSupIzq = obtenerPixel(imagen, x, y);
@@ -412,47 +416,47 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let parteInfDer = obtenerPixel(imagen, x + 2, y + 2);
 
         let r = Math.floor(
-          (parteSupIzq[0] * ma[0][0] +
-            parteSupCentro[0] * ma[0][1] +
-            parteSupDer[0] * ma[0][2] +
-            centroIzq[0] * ma[1][0] +
-            centroCentro[0] * ma[1][1] +
-            centroDer[0] * ma[1][2] +
-            parteInfIzq[0] * ma[2][0] +
-            parteInfCentro[0] * ma[2][1] +
-            parteInfDer[0] * ma[2][2]) /
-            cant
+          (parteSupIzq[0]  +
+            parteSupCentro[0] +
+            parteSupDer[0]  +
+            centroIzq[0] +
+            centroCentro[0]  +
+            centroDer[0] +
+            parteInfIzq[0] +
+            parteInfCentro[0] +
+            parteInfDer[0] ) /
+            9
         );
         let g = Math.floor(
-          (parteSupIzq[1] * ma[0][0] +
-            parteSupCentro[1] * ma[0][1] +
-            parteSupDer[1] * ma[0][2] +
-            centroIzq[1] * ma[1][0] +
-            centroCentro[1] * ma[1][1] +
-            centroDer[1] * ma[1][2] +
-            parteInfIzq[1] * ma[2][0] +
-            parteInfCentro[1] * ma[2][1] +
-            parteInfDer[1] * ma[2][2]) /
-            cant
+          (parteSupIzq[1] +
+            parteSupCentro[1] +
+            parteSupDer[1]  +
+            centroIzq[1]  +
+            centroCentro[1]  +
+            centroDer[1] +
+            parteInfIzq[1]  +
+            parteInfCentro[1]  +
+            parteInfDer[1] ) /
+            9
         );
         let b = Math.floor(
-          (parteSupIzq[2] * ma[0][0] +
-            parteSupCentro[2] * ma[0][1] +
-            parteSupDer[2] * ma[0][2] +
-            centroIzq[2] * ma[1][0] +
-            centroCentro[2] * ma[1][1] +
-            centroDer[2] * ma[1][2] +
-            parteInfIzq[2] * ma[2][0] +
-            parteInfCentro[2] * ma[2][1] +
-            parteInfDer[2] * ma[2][2]) /
-            cant
+          (parteSupIzq[2] +
+            parteSupCentro[2] +
+            parteSupDer[2] +
+            centroIzq[2]  +
+            centroCentro[2]+
+            centroDer[2]+
+            parteInfIzq[2]  +
+            parteInfCentro[2]  +
+            parteInfDer[2] ) /
+            9
         );
 
         let a = 255;
         editarPixel(imagen, x, y, r, g, b, a);
       }
     }
-    ctxEditable.putImageData(imagen, 0, 0);
+    ctx.putImageData(imagen, 0, 0);
     return imagen;
   }
 
@@ -460,7 +464,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION SATURACION
    */
   function obtenerSaturacion(saturacion) {
+
     let matriz = ctx.getImageData(0, 0, width, height);
+
     for (let x = 0; x < width; x++) {
       for (let y = 0; y < height; y++) {
         let pixelRGBA = obtenerPixel(matriz, x, y);

@@ -8,7 +8,7 @@
     <title>︁1er Entregable</title>
   </head>
   <body>
-    <div class="row">
+    <div class="container col-md-8">
       <div class="col-sm-6 text-center">
         <div class="col-12">
           <div class="col-7 custom-file">
@@ -27,10 +27,10 @@
       </div>
     </div>
 
-    <div class="container" style="border: 1px solid black">
+    <div class="container col-md-6" style="border: 1px solid black">
       <!--Contenedor general-->
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-8" >
           <div>
             <div class="card-body canvasContainer">
               <canvas
@@ -40,10 +40,22 @@
                 width="400"
               ></canvas>
             </div>
+            <div class="col-md-12">
+              <span class="text-success" id="selectedTool"></span>
+              <a href="#" id="descargarCanvas" download="imagen-download.jpg">
+                <button
+                  type="button"
+                  name="guardar"
+                  class="btn btn-block btn-outline-info"
+                >
+                  <span class="fa fa-download"></span> Descargar Canvas
+                </button>
+              </a>
+            </div>
           </div>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-4" style="border: 1px solid black">
           <div class="row">
             <div class="col-12">
               <input type="color" id="colores" value="#457da1" />
@@ -116,31 +128,7 @@
           </div>
         </div>
 
-        <div class="col-md-5">
-         
-          <div>  
-            <div class="card-body canvasContainer">
-              <canvas
-                class="border border-dark"
-                id="canvasEditable"
-                height="400"
-                width="400"
-              ></canvas>
-            </div>
-            <div class="">
-              <span class="text-success" id="selectedTool"></span>
-              <a href="#" id="descargarCanvas" download="imagen-download.jpg">
-                <button
-                  type="button"
-                  name="guardar"
-                  class="btn btn-block btn-outline-info"
-                >
-                  <span class="fa fa-download"></span> Descargar Canvas
-                </button>
-              </a>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
 
