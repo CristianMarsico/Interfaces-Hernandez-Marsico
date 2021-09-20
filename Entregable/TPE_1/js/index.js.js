@@ -196,7 +196,26 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let imagen = new Image();
         imagen.src = leerArchivo.result;
         imagen.onload = function () {
-          myDrawImageMethod(imagen);
+
+         let anchoImg = imagen.width;
+          let altoImg = imagen.height;
+          
+          if(anchoImg < altoImg){ // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene más alto que ancho
+              let proporcion = (height * 100) / altoImg;
+              anchoImg = anchoImg * (proporcion/100);
+              altoImg = altoImg * (proporcion/100);
+          } else if (anchoImg > altoImg){  // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene más ancho que alto
+              let proporcion = (width * 100) / anchoImg;
+              anchoImg = anchoImg * (proporcion/100);
+              altoImg = altoImg * (proporcion/100);
+          } else { // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene mismo alto que ancho
+              let proporcionAncho = (width * 100) / anchoImg;
+              let proporcionAlto = (height * 100) / altoImg;
+              anchoImg = anchoImg * (proporcionAncho/100);
+              altoImg = altoImg * (proporcionAlto/100);
+          }
+
+          myDrawImageMethod(imagen, anchoImg, altoImg );
         };
       },
       false
@@ -225,9 +244,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
   //----------------------------------------------------------------------------------------------
   //--------------------------------------CARGAR IMAGEN PRICIPAL----------------------------------
   //----------------------------------------------------------------------------------------------
-  function myDrawImageMethod(imagen) {
-    ctx.drawImage(imagen, 0, 0, width, height);
-    copia = ctx.getImageData(0, 0, width, height);
+  function myDrawImageMethod(imagen, anchoImg, altoImg) {
+    ctx.drawImage(imagen, 0, 0, anchoImg, altoImg);
+    copia = ctx.getImageData(0, 0, anchoImg, altoImg);
   }
 
 
@@ -349,9 +368,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
-        let r = pixel[0] * 0.98823529411764705882352941176471; // (252/255)
-        let g = pixel[1] * 0.58431372549019607843137254901961; // (149/255)
-        let b = pixel[2] * 0.17647058823529411764705882352941; // (45/255)
+        let r = 0.393 * pixel[0] + 0.769 * pixel[1] + 0.189 * pixel[2]; // (252/255)
+        let g =  0.349 * pixel[0] + 0.686 * pixel[1] + 0.168 * pixel[2]; // (149/255)
+        let b =  0.272 * pixel[0] + 0.534 * pixel[1] + 0.131 * pixel[2]; // (45/255)
         let a = 255;
         editarPixel(matriz, i, j, r, g, b, a);
       }
