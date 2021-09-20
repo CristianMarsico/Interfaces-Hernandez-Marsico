@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
         editarPixel(imagen, x, y, red, green, blue, alpha);
       }
     }
-   // editado = false;
     return imagen;
   }
 
@@ -114,6 +113,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
   });
 
   /*
+   * BOTÓN BINARIZACIÓN
+   */
+
+  document.querySelector("#btnBinarizacion").addEventListener("click", (e) => {
+    let imagenEditada = binarizacion();
+    ctx.putImageData(imagenEditada, 0, 0);
+  })
+
+  /*
    * BOTON SEPIA
    */
   document.querySelector("#btnSepia").addEventListener("click", (e) => {
@@ -142,8 +150,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    * BOTON NUEVO LIENZO
    */
   document.querySelector("#newCanvas").addEventListener("click", (e) => {
-    let imagenEditada = limpiar(imagenPrincipal);
-    ctx.putImageData(imagenEditada, 0, 0);
+    limpiarCanvas();
   });
 
   ///////////////////////////////////////////////
@@ -214,7 +221,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
               anchoImg = anchoImg * (proporcionAncho/100);
               altoImg = altoImg * (proporcionAlto/100);
           }
-
           myDrawImageMethod(imagen, anchoImg, altoImg );
         };
       },
@@ -245,6 +251,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   //--------------------------------------CARGAR IMAGEN PRICIPAL----------------------------------
   //----------------------------------------------------------------------------------------------
   function myDrawImageMethod(imagen, anchoImg, altoImg) {
+    limpiarCanvas();
     ctx.drawImage(imagen, 0, 0, anchoImg, altoImg);
     copia = ctx.getImageData(0, 0, anchoImg, altoImg);
   }
@@ -321,6 +328,25 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let b = tamanio;
         let a = 255;
         editarPixel(matriz, i, j, r, g, b, a);
+      }
+    }
+   // editado = true;
+    return matriz;
+  }
+
+  function binarizacion() {
+
+    matriz = ctx.getImageData(0, 0, width, height);
+
+    for (let i = 0; i < width; i++) {
+      for (let j = 0; j < height; j++) {
+        let pixel = obtenerPixel(matriz, i, j);
+        let color = 0;
+        let a = 255;
+        if((pixel[0]+pixel[1]+pixel[2])/3 > 127) {
+          color = 255;
+        }
+        editarPixel(matriz, i, j, color, color, color, a);
       }
     }
    // editado = true;
@@ -578,5 +604,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
       tamanio = 0;
     }
     return tamanio;
+  }
+
+  function limpiarCanvas() {
+    let imagenEditada = limpiar(imagenPrincipal);
+    ctx.putImageData(imagenEditada, 0, 0);
   }
 });
