@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
   document.querySelector("#btnReestablecer").addEventListener("click", (e) => {
     if(copia)//capturo del CONTEXTO ORIGINAL
-      ctx.putImageData(copia, 0, 0);
+      myDrawImageMethod(copia, copia.width, copia.height);
   });
 
   /*
@@ -204,24 +204,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
         imagen.src = leerArchivo.result;
         imagen.onload = function () {
 
-         let anchoImg = imagen.width;
-          let altoImg = imagen.height;
-          
-          if(anchoImg < altoImg){ // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene más alto que ancho
-              let proporcion = (height * 100) / altoImg;
-              anchoImg = anchoImg * (proporcion/100);
-              altoImg = altoImg * (proporcion/100);
-          } else if (anchoImg > altoImg){  // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene más ancho que alto
-              let proporcion = (width * 100) / anchoImg;
-              anchoImg = anchoImg * (proporcion/100);
-              altoImg = altoImg * (proporcion/100);
-          } else { // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene mismo alto que ancho
-              let proporcionAncho = (width * 100) / anchoImg;
-              let proporcionAlto = (height * 100) / altoImg;
-              anchoImg = anchoImg * (proporcionAncho/100);
-              altoImg = altoImg * (proporcionAlto/100);
-          }
-          myDrawImageMethod(imagen, anchoImg, altoImg );
+        let anchoImg = imagen.width;
+        let altoImg = imagen.height;
+        myDrawImageMethod(imagen, anchoImg, altoImg );
         };
       },
       false
@@ -251,9 +236,33 @@ document.addEventListener("DOMContentLoaded", function (e) {
   //--------------------------------------CARGAR IMAGEN PRICIPAL----------------------------------
   //----------------------------------------------------------------------------------------------
   function myDrawImageMethod(imagen, anchoImg, altoImg) {
+
     limpiarCanvas();
-    ctx.drawImage(imagen, 0, 0, anchoImg, altoImg);
-    copia = ctx.getImageData(0, 0, anchoImg, altoImg);
+
+    if(anchoImg < altoImg){ // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene más alto que ancho
+      let proporcion = (height * 100) / altoImg;
+      anchoImg = anchoImg * (proporcion/100);
+      altoImg = altoImg * (proporcion/100);
+    } else if (anchoImg > altoImg){  // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene más ancho que alto
+      let proporcion = (width * 100) / anchoImg;
+      anchoImg = anchoImg * (proporcion/100);
+      altoImg = altoImg * (proporcion/100);
+    } else { // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene mismo alto que ancho
+      let proporcionAncho = (width * 100) / anchoImg;
+      let proporcionAlto = (height * 100) / altoImg;
+      anchoImg = anchoImg * (proporcionAncho/100);
+      altoImg = altoImg * (proporcionAlto/100);
+    }
+
+    let origenAncho = 0;
+    let origenAlto = 0;
+    if (anchoImg < width)
+      origenAncho = (width-anchoImg) / 2;
+    else if (altoImg < height)
+      origenAlto = (height-altoImg) / 2;
+    ctx.drawImage(imagen, origenAncho, origenAlto, anchoImg, altoImg);
+    copia = imagen;
+
   }
 
 
@@ -323,11 +332,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let pixel = obtenerPixel(matriz, i, j);
         let valor = Math.floor((pixel[0] + pixel[1] + pixel[2]) / 3);
         let tamanio = verificarTamanio(valor);
-        let r = tamanio;
-        let g = tamanio;
-        let b = tamanio;
         let a = 255;
-        editarPixel(matriz, i, j, r, g, b, a);
+        editarPixel(matriz, i, j, tamanio, tamanio, tamanio, a);
       }
     }
    // editado = true;
@@ -452,7 +458,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     imagen = ctx.getImageData(0, 0, width, height);
 
     for (let x = 0; x < width; x++) {
-      for (let y = 0; y < height; y++) {
+      for (let y = 0; y < height-2; y++) {
         let parteSupIzq = obtenerPixel(imagen, x, y);
         let parteSupCentro = obtenerPixel(imagen, x, y + 1);
         let parteSupDer = obtenerPixel(imagen, x, y + 2);
@@ -501,7 +507,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         );
 
         let a = 255;
-        editarPixel(imagen, x, y, r, g, b, a);
+        editarPixel(imagen, x+1, y+1, r, g, b, a);
       }
     }
     ctx.putImageData(imagen, 0, 0);
