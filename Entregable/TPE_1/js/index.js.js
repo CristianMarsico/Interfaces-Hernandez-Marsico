@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   //dejo el canvas en blanco
   let matriz = ctx.getImageData(0, 0, width, height); //capturo la matriz
-  let copia =  ctx.getImageData(0, 0, width, width);;
+  let copia = ctx.getImageData(0, 0, width, width);
   let imagenPrincipal = limpiar(matriz);
   let imagCopia = limpiar(copia, width, height);
   ctx.putImageData(imagenPrincipal, 0, 0);
@@ -36,8 +36,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
   let imagenSecundaria = limpiar(matrizEditable);
   ctxEditable.putImageData(imagenSecundaria, 0, 0);*/
 
-
-
   //----------------------------------------------------------------------------------------------
   //---------------------------------------FUNCION LIMPIAR----------------------------------------
   //----------------------------------------------------------------------------------------------
@@ -54,8 +52,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
     return imagen;
   }
 
-
-  
   //----------------------------------------------------------------------------------------------
   //-------------------------------------EDITAR PIXELES DEL CANVAS--------------------------------
   //----------------------------------------------------------------------------------------------
@@ -66,8 +62,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
     imageData.data[index + 2] = b;
     imageData.data[index + 3] = a;
   }
-
-
 
   //----------------------------------------------------------------------------------------------
   //-----------------------------------OBTENER PIXELES DEL CANVAS---------------------------------
@@ -81,8 +75,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     return [r, g, b, a];
   }
-
-
 
   //----------------------------------------------------------------------------------------------
   //------------------------------------------BOTONES---------------------------------------------
@@ -119,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   document.querySelector("#btnBinarizacion").addEventListener("click", (e) => {
     let imagenEditada = binarizacion();
     ctx.putImageData(imagenEditada, 0, 0);
-  })
+  });
 
   /*
    * BOTON SEPIA
@@ -142,7 +134,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
    * BOTON REESTABLECER
    */
   document.querySelector("#btnReestablecer").addEventListener("click", (e) => {
-    if(copia)//capturo del CONTEXTO ORIGINAL
+    if (copia)
+      //capturo del CONTEXTO ORIGINAL
       myDrawImageMethod(copia, copia.width, copia.height);
   });
 
@@ -166,6 +159,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
   });
 
   /*
+   * BOTON SOBEL
+   */
+  document.querySelector("#btnSobel").addEventListener("click", (e) => {
+    let imagenOriginal = ctx.getImageData(0, 0, width, height);
+    let img = Sobel(imagenOriginal);
+    ctx.putImageData(img, 0, 0);
+  });
+
+  /*
    * BOTON SATURACION - RANGO
    */
   document.querySelector("#btnSatur").addEventListener("click", (e) => {
@@ -182,8 +184,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
     let ubicacion = canvasPricipal.toDataURL("image/jpg");
     descargar.href = ubicacion;
   });
-
-
 
   //----------------------------------------------------------------------------------------------
   //---------------------------------------EVENTOS------------------------------------------------
@@ -203,10 +203,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let imagen = new Image();
         imagen.src = leerArchivo.result;
         imagen.onload = function () {
-
-        let anchoImg = imagen.width;
-        let altoImg = imagen.height;
-        myDrawImageMethod(imagen, anchoImg, altoImg );
+          let anchoImg = imagen.width;
+          let altoImg = imagen.height;
+          myDrawImageMethod(imagen, anchoImg, altoImg);
         };
       },
       false
@@ -231,40 +230,37 @@ document.addEventListener("DOMContentLoaded", function (e) {
     dibujarLinea();
   });
 
-
   //----------------------------------------------------------------------------------------------
   //--------------------------------------CARGAR IMAGEN PRICIPAL----------------------------------
   //----------------------------------------------------------------------------------------------
   function myDrawImageMethod(imagen, anchoImg, altoImg) {
-
     limpiarCanvas();
 
-    if(anchoImg < altoImg){ // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene más alto que ancho
+    if (anchoImg < altoImg) {
+      // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene más alto que ancho
       let proporcion = (height * 100) / altoImg;
-      anchoImg = anchoImg * (proporcion/100);
-      altoImg = altoImg * (proporcion/100);
-    } else if (anchoImg > altoImg){  // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene más ancho que alto
+      anchoImg = anchoImg * (proporcion / 100);
+      altoImg = altoImg * (proporcion / 100);
+    } else if (anchoImg > altoImg) {
+      // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene más ancho que alto
       let proporcion = (width * 100) / anchoImg;
-      anchoImg = anchoImg * (proporcion/100);
-      altoImg = altoImg * (proporcion/100);
-    } else { // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene mismo alto que ancho
+      anchoImg = anchoImg * (proporcion / 100);
+      altoImg = altoImg * (proporcion / 100);
+    } else {
+      // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene mismo alto que ancho
       let proporcionAncho = (width * 100) / anchoImg;
       let proporcionAlto = (height * 100) / altoImg;
-      anchoImg = anchoImg * (proporcionAncho/100);
-      altoImg = altoImg * (proporcionAlto/100);
+      anchoImg = anchoImg * (proporcionAncho / 100);
+      altoImg = altoImg * (proporcionAlto / 100);
     }
 
     let origenAncho = 0;
     let origenAlto = 0;
-    if (anchoImg < width)
-      origenAncho = (width-anchoImg) / 2;
-    else if (altoImg < height)
-      origenAlto = (height-altoImg) / 2;
+    if (anchoImg < width) origenAncho = (width - anchoImg) / 2;
+    else if (altoImg < height) origenAlto = (height - altoImg) / 2;
     ctx.drawImage(imagen, origenAncho, origenAlto, anchoImg, altoImg);
     copia = imagen;
-
   }
-
 
   //----------------------------------------------------------------------------------------------
   //---------------------------------------EVENTOS MOUSE------------------------------------------
@@ -310,7 +306,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }
   }
 
-
   //----------------------------------------------------------------------------------------------
   //------------------------------------FUNCION COLORES-------------------------------------------
   //----------------------------------------------------------------------------------------------
@@ -318,7 +313,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION PARA ESCALA DE GRISES
    */
   function obtenerGrises() {
-  /*  let matriz;
+    /*  let matriz;
     if (!editado) {
       matriz = ctx.getImageData(0, 0, width, height);
     } else {
@@ -336,12 +331,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
         editarPixel(matriz, i, j, tamanio, tamanio, tamanio, a);
       }
     }
-   // editado = true;
+    // editado = true;
     return matriz;
   }
 
   function binarizacion() {
-
     matriz = ctx.getImageData(0, 0, width, height);
 
     for (let i = 0; i < width; i++) {
@@ -349,13 +343,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let pixel = obtenerPixel(matriz, i, j);
         let color = 0;
         let a = 255;
-        if((pixel[0]+pixel[1]+pixel[2])/3 > 127) {
+        if ((pixel[0] + pixel[1] + pixel[2]) / 3 > 127) {
           color = 255;
         }
         editarPixel(matriz, i, j, color, color, color, a);
       }
     }
-   // editado = true;
+    // editado = true;
     return matriz;
   }
 
@@ -363,7 +357,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION PARA IMAGEN EN NEGATIVO
    */
   function obtenerNegativo() {
-   /* let matriz;
+    /* let matriz;
     if (!editado) {
       matriz = ctx.getImageData(0, 0, width, height);
     } else {
@@ -401,13 +395,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
         let r = 0.393 * pixel[0] + 0.769 * pixel[1] + 0.189 * pixel[2]; // (252/255)
-        let g =  0.349 * pixel[0] + 0.686 * pixel[1] + 0.168 * pixel[2]; // (149/255)
-        let b =  0.272 * pixel[0] + 0.534 * pixel[1] + 0.131 * pixel[2]; // (45/255)
+        let g = 0.349 * pixel[0] + 0.686 * pixel[1] + 0.168 * pixel[2]; // (149/255)
+        let b = 0.272 * pixel[0] + 0.534 * pixel[1] + 0.131 * pixel[2]; // (45/255)
         let a = 255;
         editarPixel(matriz, i, j, r, g, b, a);
       }
     }
-   // editado = true;
+    // editado = true;
     return matriz;
   }
 
@@ -415,7 +409,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION PARA BRILLO DE IMAGEN
    */
   function obtenerBrillo(fuerzaBrillo) {
-   /* let matriz;
+    /* let matriz;
     if (!editado) {
       matriz = ctx.getImageData(0, 0, width, height);
     } else {
@@ -449,7 +443,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION BLUR
    */
   function obtenerBlur(imagen) {
-  /*  if (!editado) {
+    /*  if (!editado) {
       imagen = ctx.getImageData(0, 0, width, height);
     } else {
       imagen = ctxEditable.getImageData(0, 0, width, height);
@@ -458,7 +452,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     imagen = ctx.getImageData(0, 0, width, height);
 
     for (let x = 0; x < width; x++) {
-      for (let y = 0; y < height-2; y++) {
+      for (let y = 0; y < height - 2; y++) {
         let parteSupIzq = obtenerPixel(imagen, x, y);
         let parteSupCentro = obtenerPixel(imagen, x, y + 1);
         let parteSupDer = obtenerPixel(imagen, x, y + 2);
@@ -470,44 +464,44 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let parteInfDer = obtenerPixel(imagen, x + 2, y + 2);
 
         let r = Math.floor(
-          (parteSupIzq[0]  +
+          (parteSupIzq[0] +
             parteSupCentro[0] +
-            parteSupDer[0]  +
+            parteSupDer[0] +
             centroIzq[0] +
-            centroCentro[0]  +
+            centroCentro[0] +
             centroDer[0] +
             parteInfIzq[0] +
             parteInfCentro[0] +
-            parteInfDer[0] ) /
+            parteInfDer[0]) /
             9
         );
         let g = Math.floor(
           (parteSupIzq[1] +
             parteSupCentro[1] +
-            parteSupDer[1]  +
-            centroIzq[1]  +
-            centroCentro[1]  +
+            parteSupDer[1] +
+            centroIzq[1] +
+            centroCentro[1] +
             centroDer[1] +
-            parteInfIzq[1]  +
-            parteInfCentro[1]  +
-            parteInfDer[1] ) /
+            parteInfIzq[1] +
+            parteInfCentro[1] +
+            parteInfDer[1]) /
             9
         );
         let b = Math.floor(
           (parteSupIzq[2] +
             parteSupCentro[2] +
             parteSupDer[2] +
-            centroIzq[2]  +
-            centroCentro[2]+
-            centroDer[2]+
-            parteInfIzq[2]  +
-            parteInfCentro[2]  +
-            parteInfDer[2] ) /
+            centroIzq[2] +
+            centroCentro[2] +
+            centroDer[2] +
+            parteInfIzq[2] +
+            parteInfCentro[2] +
+            parteInfDer[2]) /
             9
         );
 
         let a = 255;
-        editarPixel(imagen, x+1, y+1, r, g, b, a);
+        editarPixel(imagen, x + 1, y + 1, r, g, b, a);
       }
     }
     ctx.putImageData(imagen, 0, 0);
@@ -515,10 +509,71 @@ document.addEventListener("DOMContentLoaded", function (e) {
   }
 
   /*
+   * FUNCION SOBEL
+   */
+  function Sobel(img) {
+
+    //obtenemos la imagen
+    let imagenPrincipal = ctx.getImageData(0, 0, width, height);
+
+    for (let x = 0; x < width; x++) {
+      //la recorremos pixel a pixel obteniendo los valores de alrededor
+      //Nos posicionamos en el centro de la matriz
+      for (let y = 0; y < height; y++) {
+        let parteSupIzq = obtenerPromedio( obtenerPixel(img, x -1 , y - 1));
+        let parteSupCentro = obtenerPromedio( obtenerPixel(img, x - 1, y));
+        let parteSupDer = obtenerPromedio( obtenerPixel(img, x - 1, y + 1));
+        
+        let centroIzq = obtenerPromedio( obtenerPixel(img, x, y - 1));
+        //let centroCentro = obtenerPromedio( obtenerPixel(img, x + 1, y + 1));
+        let centroDer = obtenerPromedio( obtenerPixel(img, x, y + 1));
+
+        let parteInfIzq = obtenerPromedio( obtenerPixel(img, x + 1, y - 1 ));
+        let parteInfCentro = obtenerPromedio( obtenerPixel(img, x + 1  , y ));
+        let parteInfDer = obtenerPromedio( obtenerPixel(img, x + 1, y + 1 ));
+
+        //multiplicamos las matrices con los valores obtenido
+        /*
+          MatrizY = [
+            [-1,0,1],
+            [-2,0,2],
+            [-1,0,1]
+          ]
+        */
+       //salteamos multiplicar los valores en cero
+       //recorremos las X
+        let matrizGx = ((parteSupIzq * -1) + (parteSupDer * 1)+ (centroIzq * -2) + 
+                       (centroDer * 2)+ ( parteInfIzq * -1) +(parteInfDer * 1)   
+                        );
+
+        //recorremos las Y
+        let matrizGy = ((parteSupIzq * -1) + (centroIzq * -2) + (parteInfIzq * -1) + 
+                        (parteSupDer * 1) + (centroDer * 2) + (parteInfDer * 1) );
+
+        //Lo siguiente aplicar la formula
+        let formula = Math.sqrt((Math.pow(matrizGx, 2) + Math.pow(matrizGy, 2) ));
+        let pixel = verificarTamanio(formula);
+        editarPixel(imagenPrincipal, x, y, pixel,pixel,pixel, 255);
+      }
+    }
+    return imagenPrincipal;
+  }
+
+  /**
+   * FUNCION PARA OBTENER EL PROMEDIO DEL PIXELES
+   */
+  function obtenerPromedio(p){
+    let contador = 0;
+    for (let i = 0; i < p.length - 1; i++) {
+      contador += p[i];
+    }
+    return contador / p.length - 1;
+  }
+
+  /*
    *FUNCION SATURACION
    */
   function obtenerSaturacion(saturacion) {
-
     let matriz = ctx.getImageData(0, 0, width, height);
 
     for (let x = 0; x < width; x++) {
@@ -595,8 +650,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }
     return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
   }
-
-
 
   //----------------------------------------------------------------------------------------------
   //-------------------------------------VERIFICAR TAMAÑO-----------------------------------------
