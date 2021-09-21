@@ -8,8 +8,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   let ctx = canvasPricipal.getContext("2d"); //contexto para la superficie de dibujo
   let width = canvasPricipal.width;
   let height = canvasPricipal.height;
-  let editado = false;
-
+  
   //dejo el canvas en blanco
   let matriz = ctx.getImageData(0, 0, width, height); //capturo la matriz
   let copia = ctx.getImageData(0, 0, width, width);
@@ -17,24 +16,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
   let imagCopia = limpiar(copia, width, height);
   ctx.putImageData(imagenPrincipal, 0, 0);
   ctx.putImageData(imagCopia, 0, 0);
-
-  //----------------------------------------------------------------------------------------------
-  //-------------------------------CANVAS EDITABLE (LADO DER)-------------------------------------
-  //----------------------------------------------------------------------------------------------
-  /*let canvasEditable = document.querySelector("#canvasEditable");
-  let ctxEditable = canvasEditable.getContext("2d"); //contexto para la superficie de dibujo
-  let widthEditable = canvasEditable.width;
-  let heightEditable = canvasEditable.height;
-
-  //dejo el canvas en blanco
-  let matrizEditable = ctxEditable.getImageData(
-    0,
-    0,
-    widthEditable,
-    heightEditable
-  );
-  let imagenSecundaria = limpiar(matrizEditable);
-  ctxEditable.putImageData(imagenSecundaria, 0, 0);*/
 
   //----------------------------------------------------------------------------------------------
   //---------------------------------------FUNCION LIMPIAR----------------------------------------
@@ -46,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let green = 255;
         let blue = 255;
         let alpha = 255;
+        //setea todos los valores en blanco
         editarPixel(imagen, x, y, red, green, blue, alpha);
       }
     }
@@ -57,6 +39,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
   //----------------------------------------------------------------------------------------------
   function editarPixel(imageData, x, y, r, g, b, a) {
     let index = (x + y * imageData.height) * 4; //convierto la matriz en un array
+    
+    //cambio los valores de los pixeles por los que vienen por parametro
     imageData.data[index] = r;
     imageData.data[index + 1] = g;
     imageData.data[index + 2] = b;
@@ -84,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
   document.querySelector("#btnGris").addEventListener("click", (e) => {
     let imagenEditada = obtenerGrises();
-    ctx.putImageData(imagenEditada, 0, 0);
+    ctx.putImageData(imagenEditada, 0, 0);//dibuja la nueva imagen en el contexto
   });
 
   /*
@@ -101,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
   document.querySelector("#btnNegativo").addEventListener("click", (e) => {
     let imagenEditada = obtenerNegativo();
-    ctx.putImageData(imagenEditada, 0, 0);
+    ctx.putImageData(imagenEditada, 0, 0);//dibuja la nueva imagen en el contexto
   });
 
   /*
@@ -110,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   document.querySelector("#btnBinarizacion").addEventListener("click", (e) => {
     let imagenEditada = binarizacion();
-    ctx.putImageData(imagenEditada, 0, 0);
+    ctx.putImageData(imagenEditada, 0, 0);//dibuja la nueva imagen en el contexto
   });
 
   /*
@@ -118,16 +102,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
   document.querySelector("#btnSepia").addEventListener("click", (e) => {
     let imagenEditada = obtenerSepia();
-    ctx.putImageData(imagenEditada, 0, 0);
+    ctx.putImageData(imagenEditada, 0, 0);//dibuja la nueva imagen en el contexto
   });
 
   /*
    * BOTON BRILLO - RANGO
    */
   document.querySelector("#btnBrillo").addEventListener("click", (e) => {
-    let fuerzaBrillo = document.querySelector("#rangoBrillo").value;
-    let imagenEditada = obtenerBrillo(fuerzaBrillo);
-    ctx.putImageData(imagenEditada, 0, 0);
+    let fuerzaBrillo = document.querySelector("#rangoBrillo").value;//obtengo el valor del brillo
+    
+    let imagenEditada = obtenerBrillo(fuerzaBrillo);//paso por parametro el valor del brillo
+    ctx.putImageData(imagenEditada, 0, 0);//dibuja la nueva imagen en el contexto
   });
 
   /*
@@ -153,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
 
   document.querySelector("#btnBlur").addEventListener("click", (e) => {
-    let imagenPrincipal = ctx.getImageData(0, 0, width, height);
+    let imagenPrincipal = ctx.getImageData(0, 0, width, height);// trae la imagen del contexto
     let imagenEditada = obtenerBlur(imagenPrincipal);
     ctx.putImageData(imagenEditada, 0, 0);
   });
@@ -162,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    * BOTON SOBEL
    */
   document.querySelector("#btnSobel").addEventListener("click", (e) => {
-    let imagenOriginal = ctx.getImageData(0, 0, width, height);
+    let imagenOriginal = ctx.getImageData(0, 0, width, height);// trae la imagen del contexto
     let img = Sobel(imagenOriginal);
     ctx.putImageData(img, 0, 0);
   });
@@ -216,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    * LAPIZ
    */
   lapiz.addEventListener("click", (e) => {
-    dibujando = true;
+    dibujando = true;//cambio la variable global
     borrado = false;
     dibujarLinea();
   });
@@ -226,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
   goma.addEventListener("click", (e) => {
     dibujando = false;
-    borrado = true;
+    borrado = true;//cambio la variable global
     dibujarLinea();
   });
 
@@ -236,18 +221,18 @@ document.addEventListener("DOMContentLoaded", function (e) {
   function myDrawImageMethod(imagen, anchoImg, altoImg) {
     limpiarCanvas();
 
+    // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene más alto que ancho
     if (anchoImg < altoImg) {
-      // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene más alto que ancho
       let proporcion = (height * 100) / altoImg;
       anchoImg = anchoImg * (proporcion / 100);
       altoImg = altoImg * (proporcion / 100);
-    } else if (anchoImg > altoImg) {
       // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene más ancho que alto
+    } else if (anchoImg > altoImg) {
       let proporcion = (width * 100) / anchoImg;
       anchoImg = anchoImg * (proporcion / 100);
       altoImg = altoImg * (proporcion / 100);
-    } else {
       // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene mismo alto que ancho
+    } else {
       let proporcionAncho = (width * 100) / anchoImg;
       let proporcionAlto = (height * 100) / altoImg;
       anchoImg = anchoImg * (proporcionAncho / 100);
@@ -269,23 +254,23 @@ document.addEventListener("DOMContentLoaded", function (e) {
     if (!click) {
       canvasPricipal.addEventListener("mousedown", (e) => {
         ctx.beginPath(); //INICIA EL CAMINO O DIBUJO MIENTRAS EL CLICK ESTE PRECIONADO
-        click = true;
+        click = true;//cambio la variable global
       });
     }
 
     canvasPricipal.addEventListener("mousemove", (e) => {
       if (click) {
-        dibujar(e);
+        dibujar(e);//mientras el click esté precionado y se mueva llama a dicha funcion
       }
     });
 
     canvasPricipal.addEventListener("mouseup", (e) => {
-      click = false;
+      click = false; //cuando suelto el click cambio la variable global a false
       ctx.closePath(); //FINALIZO EL CAMINO O DIBUJO CUANDO SUELTO EL CLICK
     });
 
-    function dibujar(e) {
-      let x = e.layerX;
+    function dibujar(e) { //el evento me da coordenadas
+      let x = e.layerX; 
       let y = e.layerY;
       trazarLinea(x, y);
     }
@@ -297,11 +282,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
         ctx.strokeStyle = color;
         ctx.lineWidth = anchoLapiz;
       } else if (borrado) {
-        ctx.strokeStyle = "#FFFFFF";
+        ctx.strokeStyle = "#FFFFFF";//color de la goma
       }
       if (click) {
-        ctx.lineTo(x, y);
-        ctx.stroke();
+        ctx.lineTo(x, y);//agrega un punto y crea una línea HASTA ese punto DESDE el último punto, sin dibujar
+        ctx.stroke();//dibuja la linea definida
       }
     }
   }
@@ -313,37 +298,30 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION PARA ESCALA DE GRISES
    */
   function obtenerGrises() {
-    /*  let matriz;
-    if (!editado) {
-      matriz = ctx.getImageData(0, 0, width, height);
-    } else {
-      matriz = ctxEditable.getImageData(0, 0, width, height);
-    }*/
 
-    matriz = ctx.getImageData(0, 0, width, height);
+    matriz = ctx.getImageData(0, 0, width, height);// trae la imagen del contexto
 
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
-        let valor = Math.floor((pixel[0] + pixel[1] + pixel[2]) / 3);
-        let tamanio = verificarTamanio(valor);
+        let valor = Math.floor((pixel[0] + pixel[1] + pixel[2]) / 3);//saco un promedio de los pixels
+        let tamanio = verificarTamanio(valor);//chequeo el tamaño
         let a = 255;
         editarPixel(matriz, i, j, tamanio, tamanio, tamanio, a);
       }
     }
-    // editado = true;
     return matriz;
   }
 
   function binarizacion() {
-    matriz = ctx.getImageData(0, 0, width, height);
+    matriz = ctx.getImageData(0, 0, width, height);// trae la imagen del contexto
 
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
         let color = 0;
         let a = 255;
-        if ((pixel[0] + pixel[1] + pixel[2]) / 3 > 127) {
+        if ((pixel[0] + pixel[1] + pixel[2]) / 3 > 127) {//si es mayor a 127 es blanco
           color = 255;
         }
         editarPixel(matriz, i, j, color, color, color, a);
@@ -357,25 +335,19 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION PARA IMAGEN EN NEGATIVO
    */
   function obtenerNegativo() {
-    /* let matriz;
-    if (!editado) {
-      matriz = ctx.getImageData(0, 0, width, height);
-    } else {
-      matriz = ctxEditable.getImageData(0, 0, width, height);
-    }*/
-    matriz = ctx.getImageData(0, 0, width, height);
+    
+    matriz = ctx.getImageData(0, 0, width, height);// trae la imagen del contexto
 
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
-        let r = 255 - pixel[0];
+        let r = 255 - pixel[0]; //le resto la maximo los valores obtenidos
         let g = 255 - pixel[1];
         let b = 255 - pixel[2];
         let a = 255;
         editarPixel(matriz, i, j, r, g, b, a);
       }
     }
-    //editado = true;
     return matriz;
   }
 
@@ -383,17 +355,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION PARA IMAGEN EN TONO SEPIA
    */
   function obtenerSepia() {
-    /*let matriz;
-    if (!editado) {
-      matriz = ctx.getImageData(0, 0, width, height);
-    } else {
-      matriz = ctxEditable.getImageData(0, 0, width, height);
-    }*/
+    
     matriz = ctx.getImageData(0, 0, width, height);
 
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
+        //se asigna valores a r[0] g[1] b[2] según valores obtenidos gracias a los profes
         let r = 0.393 * pixel[0] + 0.769 * pixel[1] + 0.189 * pixel[2]; // (252/255)
         let g = 0.349 * pixel[0] + 0.686 * pixel[1] + 0.168 * pixel[2]; // (149/255)
         let b = 0.272 * pixel[0] + 0.534 * pixel[1] + 0.131 * pixel[2]; // (45/255)
@@ -401,7 +369,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         editarPixel(matriz, i, j, r, g, b, a);
       }
     }
-    // editado = true;
+  
     return matriz;
   }
 
@@ -409,19 +377,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION PARA BRILLO DE IMAGEN
    */
   function obtenerBrillo(fuerzaBrillo) {
-    /* let matriz;
-    if (!editado) {
-      matriz = ctx.getImageData(0, 0, width, height);
-    } else {
-      matriz = ctxEditable.getImageData(0, 0, width, height);
-    }*/
 
     matriz = ctx.getImageData(0, 0, width, height);
 
     let mas_menos_brillo = 255 * (fuerzaBrillo * 0.1);
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
-        let pixel = obtenerPixel(matriz, i, j);
+        let pixel = obtenerPixel(matriz, i, j);//me devuelve un array con 4 valores
+        /**
+         * PIXEL[0] ROJO, PIXEL[1] VERDE, PIXEL[2] AZUL
+         * ALFA QUEDA EN 255 PREDETERMINADO
+         */
         let r = verificarTamanio(pixel[0] + mas_menos_brillo);
         let g = verificarTamanio(pixel[1] + mas_menos_brillo);
         let b = verificarTamanio(pixel[2] + mas_menos_brillo);
@@ -443,11 +409,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
    *FUNCION BLUR
    */
   function obtenerBlur(imagen) {
-    /*  if (!editado) {
-      imagen = ctx.getImageData(0, 0, width, height);
-    } else {
-      imagen = ctxEditable.getImageData(0, 0, width, height);
-    }*/
 
     imagen = ctx.getImageData(0, 0, width, height);
 
