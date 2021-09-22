@@ -5,34 +5,33 @@
     <title>Clase 1 - Template</title>
     <link rel="stylesheet" href="css/bootstrap-4.4.1/bootstrap.css" />
     <link rel="stylesheet" href="css/fontawesome-free-5.12.1-web/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>︁1er Entregable</title>
   </head>
   <body>
-    <div class="container col-md-8">
-      <div class="col-sm-6 text-center">
-        <div class="col-12">
-          <div class="col-7 custom-file">
-            <!--seleccion archivos-->
-            <input
-              type="file"
-              id="inputFile"
-              class="custom-file-input align-items: center"
-              lang="es"
-            />
-            <label class="custom-file-label" for="inputFile"
-              >Seleccionar Archivo</label
-            >
-          </div>
+    <div class="container col-4 p-1">
+      <div class="col-sm-12 text-center">
+        <div class="col-12 custom-file">
+          <!--seleccion archivos-->
+          <input
+            type="file"
+            id="inputFile"
+            class="custom-file-input align-items: center"
+            lang="es"
+          />
+          <label class="custom-file-label" for="inputFile"
+            >Seleccionar Archivo</label
+          >
         </div>
       </div>
     </div>
 
-    <div class="container col-md-6" style="border: 1px solid black">
+    <div class="container col-md-9 bg-white border border-dark rounded">
       <!--Contenedor general-->
       <div class="row">
-        <div class="col-md-8" style="padding: 0">
+        <div class="col-md-8 p-0">
           <div>
-            <div class="card-body canvasContainer">
+            <div class="card-body canvasContainer col-md-9 mx-auto">
               <canvas
                 class="border border-dark"
                 id="canvasPrincipal"
@@ -40,7 +39,7 @@
                 width="400"
               ></canvas>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 mb-2">
               <span class="text-success" id="selectedTool"></span>
               <a href="#" id="descargarCanvas" download="imagen-download.jpg">
                 <button
@@ -55,22 +54,30 @@
           </div>
         </div>
 
-        <div class="col-md-4" style="border: 1px solid black">
+        <div class="col-md-4 pt-2 bg-dark bg-gradient text-white">
+          <div class="row mt-2">
+            <div class="col-3">
+                <input type="color" id="colores" value="#000000">
+            </div>
+            <div class="col-6 mt-1">
+                <input id="rango" type="range" min="0" max="10" value="0"/> 
+            </div>
+          </div>
           <div class="row">
-            <div class="col-12">
-              <input type="color" id="colores" value="#457da1" />
-              <input id="rango" type="range" min="1" max="5" value="0" /> 
-              <button id="lapiz" class="btn btn-block  btn-outline-primary mt-1">
-                <i class="fas fa-pencil-alt text-success"></i>Lapiz
+            <div class="col-6">
+              <button id="lapiz" class="btn btn-sm btn-block  btn-outline-primary mt-1">
+                <i class="fas fa-pencil-alt text-success"></i> Lápiz
               </button>
             </div>
-            <div class="col-md-12 mt-1">
-              <button id="goma" class="btn btn-block btn-outline-danger">
+            <div class="col-md-6 mt-1">
+              <button id="goma" class="btn btn-sm btn-block btn-outline-danger">
                 <i class="fa fa-eraser"></i> Goma
               </button>
             </div>
+          </div>
+          <div class="row">
             <div class="col-md-12 mt-1">
-              <button class="btn btn-block btn-outline-success" id="newCanvas">
+              <button class="btn btn-sm btn-block btn-outline-success" id="newCanvas">
                 <i class="fa fa-plus"></i> Nuevo Lienzo
               </button>
             </div>
@@ -80,64 +87,81 @@
               <h5>Filtros</h5>
             </div>
           </div>
-          <div class="row" id="thumbnailContainer">
-            <div class="col-md-12">
-              <button id="btnBinarizacion" class="btn btn-block btn-dark">
-                <i class="fas fa-broom"></i>
-                Binarización
-              </button>
+          <div class="container p-2 background bg-secondary">
+            <div class="row" id="thumbnailContainer">
+              <div class="col-md-12">
+                <button id="btnBinarizacion" class="btn btn-sm btn-block btn-light">
+                  <i class="fas fa-broom"></i>
+                  Binarización
+                </button>
+              </div>
             </div>
-            <div class="col-md-12 mt-1">
-              <button id="btnGris" class="btn btn-block btn-dark">
-                <i class="fas fa-broom"></i>
-                Grises
-              </button>
+            <div class="row" id="thumbnailContainer">
+              <div class="col-md-12 mt-1">
+                <button id="btnGris" class="btn btn-sm btn-block btn-dark">
+                  <i class="fas fa-broom"></i>
+                  Grises
+                </button>
+              </div>
             </div>
-            <div class="col-md-12 mt-1">
-              <button id="btnNegativo" class="btn btn-block btn-info">
-                <i class="fas fa-broom"></i>
-                Negativo
-              </button>
+            <div class="row" id="thumbnailContainer">
+              <div class="col-md-12 mt-1">
+                <button id="btnNegativo" class="btn btn-sm btn-block btn-info">
+                  <i class="fas fa-broom"></i>
+                  Negativo
+                </button>
+              </div>
             </div>
-            <div class="col-md-12 mt-1">
-              <button id="btnSepia" class="btn btn-block btn-warning">
-                <i class="fas fa-broom"></i>
-                Sepia
-              </button>
+            <div class="row" id="thumbnailContainer">
+              <div class="col-md-12 mt-1">
+                <button id="btnSepia" class="btn btn-sm btn-block btn-warning">
+                  <i class="fas fa-broom"></i>
+                  Sepia
+                </button>
+              </div>
             </div>
-            <div class="col-md-12 mt-1">
-              <button id="btnBlur" class="btn btn-block btn-info">
-                <i class="fas fa-broom"></i>
-                Blur
-              </button>
+            <div class="row" id="thumbnailContainer">
+              <div class="col-md-12 mt-1">
+                <button id="btnBlur" class="btn btn-sm btn-block btn-primary">
+                  <i class="fas fa-broom"></i>
+                  Blur
+                </button>
+              </div>
             </div>
-            <div class="col-md-12 mt-1">
-              <button id="btnSobel" class="btn btn-block btn-info">
-                <i class="fas fa-broom"></i>
-                Sobel
-              </button>
+            <div class="row" id="thumbnailContainer">
+              <div class="col-md-12 mt-1">
+                <button id="btnSobel" class="btn btn-sm btn-block btn-dark">
+                  <i class="fas fa-broom"></i>
+                  Sobel
+                </button>
+              </div>
             </div>
-            <div class="col-md-12 mt-2">
+          </div>
+          <div class="row mt-2">
+            <div class="col-6">
               <input id="rangoBrillo" type="range" min="1" max="10" />
-              <button id="btnBrillo" class="btn btn-block btn-light">
-                <i class="fas fa-broom"></i>
-                Brillo
-              </button>
+                <button id="btnBrillo" class="btn btn-sm btn-block btn-light">
+                  <i class="fas fa-broom"></i>
+                  Brillo
+                </button>
             </div>
-            <div class="col-md-12 mt-1">
+            <div class="col-md-6">
               <input id="rangoSat" type="range" min="1" max="10"/>
-              <button id="btnSatur" class="btn btn-block btn-danger">
-                <i class="fas fa-broom"></i>
-                Saturación
-              </button>
+                <button id="btnSatur" class="btn btn-sm btn-block btn-danger">
+                  <i class="fas fa-broom"></i>
+                  Saturación
+                </button>
             </div>
-            <div class="col-md-12 mt-1">
-              <button id="btnReestablecer" class="btn btn-block btn-success">
+          </div>
+          <div class="row" id="thumbnailContainer">
+            <div class="col-md-12 mt-3">
+              <button id="btnReestablecer" class="btn btn-sm btn-block btn-success">
                 <i class="fas fa-undo"></i>
                 Reestablecer
               </button>
             </div>
           </div>
+
         </div>
 
         

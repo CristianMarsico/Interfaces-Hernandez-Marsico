@@ -1,0 +1,8 @@
+body {
+    background-image: url("../img/watercolour-texture-watercolor-abstract-preview.jpg");
+    background-size: cover;
+}
+
+.contenedorCanvas {
+    background-image: linear-gradient(to bottom rgb(127, 193, 255), rgb(229, 243, 255)) !important;
+}

@@ -276,13 +276,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }
 
     function trazarLinea(x, y) {
+      let anchoLapiz = document.getElementById("rango").value;
       if (dibujando) {
         let color = document.getElementById("colores").value;
-        let anchoLapiz = document.getElementById("rango").value;
         ctx.strokeStyle = color;
         ctx.lineWidth = anchoLapiz;
       } else if (borrado) {
         ctx.strokeStyle = "#FFFFFF";//color de la goma
+        ctx.lineWidth = anchoLapiz*2.5;
       }
       if (click) {
         ctx.lineTo(x, y);//agrega un punto y crea una línea HASTA ese punto DESDE el último punto, sin dibujar
