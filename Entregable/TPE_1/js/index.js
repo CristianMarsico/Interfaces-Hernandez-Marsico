@@ -252,20 +252,23 @@ document.addEventListener("DOMContentLoaded", function (e) {
   //----------------------------------------------------------------------------------------------
   function dibujarLinea() {
     if (!click) {
+      //evento del mouse, mientras el click esté precionado hace algo
       canvasPricipal.addEventListener("mousedown", (e) => {
         ctx.beginPath(); //INICIA EL CAMINO O DIBUJO MIENTRAS EL CLICK ESTE PRECIONADO
         click = true;//cambio la variable global
       });
     }
 
+    //evento del mouse, mientras el click esté precionado y en moviemiento
     canvasPricipal.addEventListener("mousemove", (e) => {
       if (click) {
-        dibujar(e);//mientras el click esté precionado y se mueva llama a dicha funcion
+        dibujar(e);//mientras el click esté precionado yse mueva hace una linea
       }
     });
 
+    //evento del mouse, mientras dejo de precionar el click
     canvasPricipal.addEventListener("mouseup", (e) => {
-      click = false; //cuando suelto el click cambio la variable global a false
+      click = false; //cuando suelto el click cambio la variable global a false y deja de dibujar
       ctx.closePath(); //FINALIZO EL CAMINO O DIBUJO CUANDO SUELTO EL CLICK
     });
 
@@ -283,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         ctx.lineWidth = anchoLapiz;
       } else if (borrado) {
         ctx.strokeStyle = "#FFFFFF";//color de la goma
-        ctx.lineWidth = anchoLapiz*2.5;
+        ctx.lineWidth = 40; //seteamos manualmente el tamaño de la goma
       }
       if (click) {
         ctx.lineTo(x, y);//agrega un punto y crea una línea HASTA ese punto DESDE el último punto, sin dibujar
@@ -322,13 +325,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let pixel = obtenerPixel(matriz, i, j);
         let color = 0;
         let a = 255;
-        if ((pixel[0] + pixel[1] + pixel[2]) / 3 > 127) {//si es mayor a 127 es blanco
+        if ((pixel[0] + pixel[1] + pixel[2]) / 3 > 127) {//si es mayor a 127 es blanco sino negro
           color = 255;
         }
         editarPixel(matriz, i, j, color, color, color, a);
       }
     }
-    // editado = true;
     return matriz;
   }
 
@@ -342,7 +344,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
-        let r = 255 - pixel[0]; //le resto la maximo los valores obtenidos
+        let r = 255 - pixel[0]; //le resto al maximo los valores obtenidos
         let g = 255 - pixel[1];
         let b = 255 - pixel[2];
         let a = 255;
@@ -357,7 +359,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
   function obtenerSepia() {
     
-    matriz = ctx.getImageData(0, 0, width, height);
+    matriz = ctx.getImageData(0, 0, width, height);// trae la imagen del contexto
 
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
@@ -381,7 +383,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     matriz = ctx.getImageData(0, 0, width, height);
 
-    let mas_menos_brillo = 255 * (fuerzaBrillo * 0.1);
+    let mas_menos_brillo = 255 * (fuerzaBrillo * 0.1);//aunmento del brillo
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);//me devuelve un array con 4 valores
@@ -389,7 +391,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
          * PIXEL[0] ROJO, PIXEL[1] VERDE, PIXEL[2] AZUL
          * ALFA QUEDA EN 255 PREDETERMINADO
          */
-        let r = verificarTamanio(pixel[0] + mas_menos_brillo);
+
+        //evitamos salirnos del rango, si es menor que cero lo seteamos a cero
+        //si es mayor que 255, le setamos 255 
+        let r = verificarTamanio(pixel[0] + mas_menos_brillo); 
         let g = verificarTamanio(pixel[1] + mas_menos_brillo);
         let b = verificarTamanio(pixel[2] + mas_menos_brillo);
         let a = 255;
@@ -483,15 +488,21 @@ document.addEventListener("DOMContentLoaded", function (e) {
       //Nos posicionamos en el centro de la matriz
       for (let y = 0; y < height; y++) {
         let parteSupIzq = obtenerPromedio( obtenerPixel(img, x -1 , y - 1));
-        let parteSupCentro = obtenerPromedio( obtenerPixel(img, x - 1, y));
+        
+        //No es necesario porque multiplica por cero
+        //let parteSupCentro = obtenerPromedio( obtenerPixel(img, x - 1, y));
         let parteSupDer = obtenerPromedio( obtenerPixel(img, x - 1, y + 1));
         
         let centroIzq = obtenerPromedio( obtenerPixel(img, x, y - 1));
+        
+        //No es necesario porque multiplica por cero
         //let centroCentro = obtenerPromedio( obtenerPixel(img, x + 1, y + 1));
         let centroDer = obtenerPromedio( obtenerPixel(img, x, y + 1));
 
         let parteInfIzq = obtenerPromedio( obtenerPixel(img, x + 1, y - 1 ));
-        let parteInfCentro = obtenerPromedio( obtenerPixel(img, x + 1  , y ));
+        
+        //No es necesario porque multiplica por cero
+        //let parteInfCentro = obtenerPromedio( obtenerPixel(img, x + 1  , y ));
         let parteInfDer = obtenerPromedio( obtenerPixel(img, x + 1, y + 1 ));
 
         //multiplicamos las matrices con los valores obtenido
@@ -540,9 +551,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     for (let x = 0; x < width; x++) {
       for (let y = 0; y < height; y++) {
-        let pixelRGBA = obtenerPixel(matriz, x, y);
-        let hsv = rgbToHsv(pixelRGBA[0], pixelRGBA[1], pixelRGBA[2], 255);
-        let rgb = HSVtoRGB(hsv[0], hsv[1] + saturacion, hsv[2]);
+        let pixeles = obtenerPixel(matriz, x, y);
+        let hsv = RGV_a_HSV(pixeles[0], pixeles[1], pixeles[2], 255);
+        let rgb = HSV_a_RGB(hsv[0], hsv[1] + saturacion, hsv[2]);
 
         editarPixel(matriz, x, y, rgb[0], rgb[1], rgb[2], 255);
       }
@@ -550,37 +561,62 @@ document.addEventListener("DOMContentLoaded", function (e) {
     return matriz;
   }
 
-  function rgbToHsv(r, g, b, a) {
-    let h, s, v;
+  function RGV_a_HSV(rojo, verde, azul, a) {
+
+    let matiz, saturac, valor;
+    
     if (arguments.length === 1) {
-      (g = r.g), (b = r.b), (r = r.r);
+      verde = rojo.verde;
+      azul = rojo.azul; 
+      rojo = rojo.rojo;
     }
-    let maxColor = Math.max(r, g, b);
-    let minColor = Math.min(r, g, b);
+    let maxColor = Math.max(rojo, verde, azul);//Obtengo el Maximo
+    let minColor = Math.min(rojo, verde, azul);//Obtengo el Minimo
+
+    //Para obtener Delta es la diferencia e/ Maximo y Minimo
     let delta = maxColor - minColor;
-    (s = maxColor === 0 ? 0 : delta / maxColor), (v = maxColor / a);
+
+    let valorMax;
+    if(maxColor === 0){
+      valorMax = 0;
+    }else{
+      valorMax = (delta / maxColor);
+    }
+    saturac = valorMax;
+    valor = maxColor / a;
+    //(s = maxColor === 0 ? 0 : delta / maxColor), (v = maxColor / a);
 
     switch (maxColor) {
       case minColor:
-        h = 0;
+        matiz = 0;
         break;
-      case r:
-        h = g - b + delta * (g < b ? 6 : 0);
-        h /= 6 * delta;
+
+      case rojo:
+        matiz = verde - azul;
+        let resultado;
+        if(verde < azul){
+          resultado = 6;
+        }else{
+          resultado = 0;
+        }
+        matiz + delta * resultado;
+        matiz = matiz / (6 * delta);
         break;
-      case g:
-        h = b - r + delta * 2;
-        h /= 6 * delta;
+
+      case verde:
+        matiz = azul - rojo + (delta * 2);
+        matiz = matiz / (6 * delta);
         break;
-      case b:
-        h = r - g + delta * 4;
-        h /= 6 * delta;
+
+      case azul:
+        matiz = rojo - verde + (delta * 4);
+        matiz = matiz / (6 * delta);
         break;
     }
-    return [h, s, v];
+    return [matiz, saturac, valor];
   }
 
-  function HSVtoRGB(h, s, v) {
+  function HSV_a_RGB(h, s, v) {
     let r, g, b, i, f, p, q, t;
     if (arguments.length === 1) {
       (s = h.s), (v = h.v), (h = h.h);
@@ -620,7 +656,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
     if (tamanio > 255) {
       tamanio = 255;
     }
-
     if (tamanio < 0) {
       tamanio = 0;
     }
