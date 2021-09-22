@@ -583,6 +583,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
       valorMax = (delta / maxColor);
     }
     saturac = valorMax;
+
+    //Los valores R , G , B se dividen por 255 para cambiar el rango de 0..255 a 0..1:
+    //En este caso tomo el Maximo
     valor = maxColor / a;
     //(s = maxColor === 0 ? 0 : delta / maxColor), (v = maxColor / a);
 
@@ -594,23 +597,25 @@ document.addEventListener("DOMContentLoaded", function (e) {
       case rojo:
         matiz = verde - azul;
         let resultado;
+        //si el tamaño del verde es menor que el azul al delta lo multiplico por 6 
+        //sino por cero
         if(verde < azul){
           resultado = 6;
         }else{
           resultado = 0;
         }
-        matiz + delta * resultado;
-        matiz = matiz / (6 * delta);
+        matiz = matiz + delta * resultado;
+        matiz = matiz / (6 * delta); //El 6 representa el modulo
         break;
 
       case verde:
         matiz = azul - rojo + (delta * 2);
-        matiz = matiz / (6 * delta);
+        matiz = matiz / (6 * delta);//El 6 representa el modulo
         break;
 
       case azul:
         matiz = rojo - verde + (delta * 4);
-        matiz = matiz / (6 * delta);
+        matiz = matiz / (6 * delta);//El 6 representa el modulo
         break;
     }
     return [matiz, saturac, valor];
