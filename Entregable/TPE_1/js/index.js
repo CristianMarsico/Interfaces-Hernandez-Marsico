@@ -9,11 +9,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
   let width = canvasPricipal.width;
   let height = canvasPricipal.height;
   
-  //dejo el canvas en blanco
-  let matriz = ctx.getImageData(0, 0, width, height); //capturo la matriz
+ 
+  let matriz = ctx.getImageData(0, 0, width, height); //capturo la imagen
   let copia = ctx.getImageData(0, 0, width, width);
+
+   //dejo el canvas en blanco
   let imagenPrincipal = limpiar(matriz);
   let imagCopia = limpiar(copia, width, height);
+
+  //el metodo putImageData se dibuja la informacion de pixeles en el canvas.
   ctx.putImageData(imagenPrincipal, 0, 0);
   ctx.putImageData(imagCopia, 0, 0);
 
@@ -85,6 +89,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
   document.querySelector("#btnNegativo").addEventListener("click", (e) => {
     let imagenEditada = obtenerNegativo();
+
+    //Y para finalizar con el retorno de la funcion, 
+    //el metodo putImageData se dibuja la informacion de pixeles en el canvas.
     ctx.putImageData(imagenEditada, 0, 0);//dibuja la nueva imagen en el contexto
   });
 
@@ -94,6 +101,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   document.querySelector("#btnBinarizacion").addEventListener("click", (e) => {
     let imagenEditada = binarizacion();
+
+    //Y para finalizar con el retorno de la funcion, 
+    //el metodo putImageData se dibuja la informacion de pixeles en el canvas.
     ctx.putImageData(imagenEditada, 0, 0);//dibuja la nueva imagen en el contexto
   });
 
@@ -102,6 +112,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
   document.querySelector("#btnSepia").addEventListener("click", (e) => {
     let imagenEditada = obtenerSepia();
+
+    //Y para finalizar con el retorno de la funcion, 
+    //el metodo putImageData se dibuja la informacion de pixeles en el canvas.
     ctx.putImageData(imagenEditada, 0, 0);//dibuja la nueva imagen en el contexto
   });
 
@@ -112,6 +125,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
     let fuerzaBrillo = document.querySelector("#rangoBrillo").value;//obtengo el valor del brillo
     
     let imagenEditada = obtenerBrillo(fuerzaBrillo);//paso por parametro el valor del brillo
+
+    //Y para finalizar con el retorno de la funcion, 
+    //el metodo putImageData se dibuja la informacion de pixeles en el canvas.
     ctx.putImageData(imagenEditada, 0, 0);//dibuja la nueva imagen en el contexto
   });
 
@@ -178,14 +194,18 @@ document.addEventListener("DOMContentLoaded", function (e) {
    */
   document.querySelector("#inputFile").addEventListener("change", (e) => {
     let cargarImagen = document.querySelector("#inputFile").files[0];
+
+     //obtenemos el path de la imagen
     let leerArchivo = new FileReader();
+
+    //si encontramos el archivo pasamos el source para empezar a dibujar
     if (cargarImagen) {
       leerArchivo.readAsDataURL(cargarImagen);
     }
     leerArchivo.addEventListener(
       "load",
       (e) => {
-        let imagen = new Image();
+        let imagen = new Image(); //creo una imagen
         imagen.src = leerArchivo.result;
         imagen.onload = function () {
           let anchoImg = imagen.width;
@@ -221,17 +241,21 @@ document.addEventListener("DOMContentLoaded", function (e) {
   function myDrawImageMethod(imagen, anchoImg, altoImg) {
     limpiarCanvas();
 
-    // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene más alto que ancho
+    //Los siguientes if son para mantener el aspecto de la imagen original
+    // si la imagen tiene más alto que ancho
+    //Sacamos una proporcion de la imagen en base a ancho y altura
     if (anchoImg < altoImg) {
       let proporcion = (height * 100) / altoImg;
       anchoImg = anchoImg * (proporcion / 100);
       altoImg = altoImg * (proporcion / 100);
-      // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene más ancho que alto
+
+      // si la imagen tiene más ancho que alto
     } else if (anchoImg > altoImg) {
       let proporcion = (width * 100) / anchoImg;
       anchoImg = anchoImg * (proporcion / 100);
       altoImg = altoImg * (proporcion / 100);
-      // ajusta,para mantener el aspecto de la imagen original, si la imagen tiene mismo alto que ancho
+      
+      // si la imagen tiene mismo alto que ancho
     } else {
       let proporcionAncho = (width * 100) / anchoImg;
       let proporcionAlto = (height * 100) / altoImg;
@@ -243,6 +267,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
     let origenAlto = 0;
     if (anchoImg < width) origenAncho = (width - anchoImg) / 2;
     else if (altoImg < height) origenAlto = (height - altoImg) / 2;
+
+    //Dibujo en el canvas a imagen seleccionada
     ctx.drawImage(imagen, origenAncho, origenAlto, anchoImg, altoImg);
     copia = imagen;
   }
@@ -300,6 +326,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
   //----------------------------------------------------------------------------------------------
   /*
    *FUNCION PARA ESCALA DE GRISES
+
+    Funcion que aplica filtro escala de grises a una imagen.
+    Se obtiene sumando los 3 colores del pixel y luego dividiendo en 3.
+    Los 3 colores deben ser iguales.
    */
   function obtenerGrises() {
 
@@ -317,6 +347,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
     return matriz;
   }
 
+  /*
+   * FUNCION BINARIZACION
+
+  
+  El binarizado de un color se obtiene obteniendo el promedio de los 3 colores de cada pixel.
+  Si el promedio es mayor a 127 este se aplica blanco, caso contrario de aplica negro
+  Con el metodo EditarPixel se setea en el arreglo los nuevos valores.
+   */
   function binarizacion() {
     matriz = ctx.getImageData(0, 0, width, height);// trae la imagen del contexto
 
@@ -356,6 +394,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   /*
    *FUNCION PARA IMAGEN EN TONO SEPIA
+
+   
+    Se obtiene mediante la formula de convercion a sepia
+    Primero se almacenan los pixeles de la imagen en un arreglo de enteros.
+    Luego se accede a cada color como si fuera una matriz doble for.
+    
    */
   function obtenerSepia() {
     
@@ -364,10 +408,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < height; j++) {
         let pixel = obtenerPixel(matriz, i, j);
+
         //se asigna valores a r[0] g[1] b[2] según valores obtenidos gracias a los profes
-        let r = 0.393 * pixel[0] + 0.769 * pixel[1] + 0.189 * pixel[2]; // (252/255)
-        let g = 0.349 * pixel[0] + 0.686 * pixel[1] + 0.168 * pixel[2]; // (149/255)
-        let b = 0.272 * pixel[0] + 0.534 * pixel[1] + 0.131 * pixel[2]; // (45/255)
+        let r = 0.393 * pixel[0] + 0.769 * pixel[1] + 0.189 * pixel[2]; 
+        let g = 0.349 * pixel[0] + 0.686 * pixel[1] + 0.168 * pixel[2]; 
+        let b = 0.272 * pixel[0] + 0.534 * pixel[1] + 0.131 * pixel[2];
         let a = 255;
         editarPixel(matriz, i, j, r, g, b, a);
       }
@@ -378,6 +423,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   /*
    *FUNCION PARA BRILLO DE IMAGEN
+    
+    El brillo de un color se obtiene multiplicando el max 255 por el porcentaje de brillo.
+    El rango de brillo va entre 1 y 10
    */
   function obtenerBrillo(fuerzaBrillo) {
 
@@ -405,14 +453,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
   }
 
   /*
-   *FUNCION PARA RESETEAR LA IMAGEN
-   */
-  function obtenerOriginal() {
-    return ctx.getImageData(0, 0, width, height);
-  }
-
-  /*
    *FUNCION BLUR
+
+    El blur de un color se obtiene mediante la suma de cada color de cada pixel 
+    dividio la cantidad de pixeles adyacentes.
    */
   function obtenerBlur(imagen) {
 
@@ -430,6 +474,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let parteInfCentro = obtenerPixel(imagen, x + 2, y + 1);
         let parteInfDer = obtenerPixel(imagen, x + 2, y + 2);
 
+        //Math.floor: que redondea un número dado hacia el número entero anterior.
+        //r[0], g[1], b[2]
+        //Obtengo los rojos de cada vecino y el centro
+        //Los sumo y los divido por el de total de los mismos
+        //Redondeo un valor
         let r = Math.floor(
           (parteSupIzq[0] +
             parteSupCentro[0] +
@@ -442,6 +491,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
             parteInfDer[0]) /
             9
         );
+        //Aca uso la pos [1] para el verde    
+        //Mismo procedimiento que lo anterior
         let g = Math.floor(
           (parteSupIzq[1] +
             parteSupCentro[1] +
@@ -454,6 +505,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
             parteInfDer[1]) /
             9
         );
+        //Aca uso la pos [2] para el azul    
+        //Mismo procedimiento que lo anterior
         let b = Math.floor(
           (parteSupIzq[2] +
             parteSupCentro[2] +
@@ -468,10 +521,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
         );
 
         let a = 255;
+
+        //edita desde el centro de la matriz
         editarPixel(imagen, x + 1, y + 1, r, g, b, a);
       }
     }
-    ctx.putImageData(imagen, 0, 0);
+   // ctx.putImageData(imagen, 0, 0);
     return imagen;
   }
 
@@ -524,6 +579,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                         (parteSupDer * 1) + (centroDer * 2) + (parteInfDer * 1) );
 
         //Lo siguiente aplicar la formula
+        //gx al cuadrado mas gy al cuadrado (Math.pow()) y a eso le aplico la raiz
         let formula = Math.sqrt((Math.pow(matrizGx, 2) + Math.pow(matrizGy, 2) ));
         let pixel = verificarTamanio(formula);
         editarPixel(imagenPrincipal, x, y, pixel,pixel,pixel, 255);
@@ -533,7 +589,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   }
 
   /**
-   * FUNCION PARA OBTENER EL PROMEDIO DEL PIXELES
+   * FUNCION PARA OBTENER EL PROMEDIO DE LOS PIXELES
    */
   function obtenerPromedio(p){
     let contador = 0;
@@ -553,7 +609,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
       for (let y = 0; y < height; y++) {
         let pixeles = obtenerPixel(matriz, x, y);
         let hsv = RGV_a_HSV(pixeles[0], pixeles[1], pixeles[2], 255);
-        let rgb = HSV_a_RGB(hsv[0], hsv[1] + saturacion, hsv[2]);
+        //hsv[1] seria saturacion
+        //Al mismo corresponde sumarle la saturacion que recibo por parametro
+        let rgb = HSV_a_RGB(hsv[0], hsv[1] + saturacion, hsv[2]); 
 
         editarPixel(matriz, x, y, rgb[0], rgb[1], rgb[2], 255);
       }
@@ -561,6 +619,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     return matriz;
   }
 
+  //Hacemos la conversion de rgb a hsv 
   function RGV_a_HSV(rojo, verde, azul, a) {
 
     let matiz, saturac, valor;
@@ -570,12 +629,19 @@ document.addEventListener("DOMContentLoaded", function (e) {
       azul = rojo.azul; 
       rojo = rojo.rojo;
     }
+    //De los rgb me quedo con el que posea el maximo valor
     let maxColor = Math.max(rojo, verde, azul);//Obtengo el Maximo
+
+    //De los rgb me quedo con el que posea el minimo valor
     let minColor = Math.min(rojo, verde, azul);//Obtengo el Minimo
 
     //Para obtener Delta es la diferencia e/ Maximo y Minimo
     let delta = maxColor - minColor;
 
+    //Preciso obtener el valor para asignarle a la saturacion
+    //Dependiendo del valor del maximo color, saturacion puede tener dos valores:
+    //si el maximo color es cero, le asigno cero a la saturacion
+    //si el maximo color es distinto a cero, le asigno el resultado de la division delta con el maximo
     let valorMax;
     if(maxColor === 0){
       valorMax = 0;
@@ -621,6 +687,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     return [matiz, saturac, valor];
   }
 
+   //Hacemos la conversion de hsv a rgb 
   function HSV_a_RGB(h, s, v) {
     let r, g, b, i, f, p, q, t;
     if (arguments.length === 1) {
@@ -657,6 +724,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   //----------------------------------------------------------------------------------------------
   //-------------------------------------VERIFICAR TAMAÑO-----------------------------------------
   //----------------------------------------------------------------------------------------------
+   //evita salir del rango, verifica el minimo y maximo de los valores de los pixels
   function verificarTamanio(tamanio) {
     if (tamanio > 255) {
       tamanio = 255;
@@ -668,7 +736,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   }
 
   function limpiarCanvas() {
-    let imagenEditada = limpiar(imagenPrincipal);
+    let imagenEditada = limpiar(imagenPrincipal); //aplica todos los valores del rgba a 255, lo deja en blanco
     ctx.putImageData(imagenEditada, 0, 0);
   }
 });
