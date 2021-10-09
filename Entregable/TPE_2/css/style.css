@@ -29,6 +29,8 @@ header {
     border-radius:5px;
     margin: 0px 0px 0px 0px;
     text-align:center;
+    font-family: "Montserrat";
+    font-size: 15px;
 }
 
 ul{
@@ -48,10 +50,11 @@ p{
 }
 
 .dimensiones{
-    padding: 10px 10px 10px 10px;
-    margin: 0px 0px 0px 45px;
-    border-radius: 6px;
+    padding: 5px 30px 5px 30px;
+    margin: 0px 0px 0px 36px;
+    border-radius: 10px;
     font-family: "Montserrat";
+    font-size: 15px;
 }
 
 i {
@@ -63,6 +66,10 @@ i {
     padding:0px;
     border-radius: 6px;
     background-color:black;
+    margin-left:81px;
+    margin-top: 5px;
+    margin-bottom:5px;
+   
 }
 
 
@@ -105,11 +112,12 @@ footer {
     background-color: white;
     color: #504B83;
     border: 1px solid #504B83;
-    border-radius: 6px;
+    border-radius: 10px;
     padding: 10px;
     font-family: "Montserrat";
     transition: 0.3s;
-    margin: 5px 0px 0px 20px;
+    margin: 5px 0px 0px 22px;
+    font-size: 15px;
 }
 
 .btn:hover {
@@ -118,6 +126,8 @@ footer {
 }
 
 #game {
+    width:221px;
+    height: 600px;
     display: flex;
 }
 
@@ -142,55 +152,51 @@ i {
     font-weight: 600;
 }
 
-#board-sizes p {
-    margin-bottom: 5px;
-    ;
+.textPlayer{
+    font-family: cursive;
+    margin:62px
+}
+p{
+    margin: 10px 0px 0px 0px;
+    padding: 0px 20px 0px 20px;
+    font-family: cursive;
+   
+    text-align:center;
 }
 
-#board-5:disabled, #board-6:disabled, #board-7:disabled, #board-8:disabled, #board-5:disabled:hover, #board-6:disabled:hover, #board-7:disabled:hover, #board-8:disabled:hover {
-    color: #b6b6b7;
-    border: 1px solid #b6b6b7;
-    background-color: white;
+.subrayado{
+    text-decoration: underline;
+    margin: 0px;
 }
+
+
 
 #tokens button {
     background-color: #fafafa;
     border: none;
-    margin: 10px 0px 0px 0px;
-    width: 75px;
-    height: 75px;
-    padding: 10px;
+    margin: 0px 10px 0px 14px;
+    width: 45px;
+    height: 45px;
+    padding: 0px;
     
 }
 
 #tokens img {
-    width: 55px;
-    height: 55px;;
+    width: 45px;
+    height: 45px;;
 }
 
 #tokens div {
     display: flex;
 }
 
-#ficha-2:disabled, #ficha-3:disabled, #ficha-4:disabled, #ficha-azul-2:disabled, #ficha-azul-3:disabled, #ficha-azul-4:disabled {
-    filter: grayscale(1);
-    opacity: 0.4;
-}
 
-#ficha-2, #ficha-3, #ficha-4, #ficha-azul-2, #ficha-azul-3, #ficha-azul-4 {
-    transition: all 300ms ease-out;
-}
-
-#ficha-2:hover, #ficha-3:hover, #ficha-4:hover, #ficha-azul-2:hover, #ficha-azul-3:hover, #ficha-azul-4:hover {
-    transform: scale(1.1);
+.fichines:hover {
+    transform: scale(1.4);
     transition: all 300ms ease-in;
+    
 }
 
 #timer-title {
     margin-bottom: 5px;
-}
-
-#help-text {
-    font-size: 13px;
-    color: #353535;
 }
