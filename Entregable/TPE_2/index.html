@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style2.css">
+    <script src="https://kit.fontawesome.com/13fdbc361b.js" crossorigin="anonymous"></script>
+    <title>Cuatro en Línea</title>
+</head>
+
+<body>
+    <header>
+        <img id="logo" src="image/fichas-de-casino.png" alt="Dos Fichas de poker">
+        <h1>X en Línea</h1>
+    </header>
+    <div></div>
+    <div id="game">
+      
+        <aside>
+            <!--<button id="play" class="btn"><i class="fas fa-play"></i>Jugar</button>-->
+            <input type="button" id="jugar" class="btn" value="Jugar !">
+            
+            <div id="reiniciar" class="js-restart restart-div hidden">
+                <img src="image/restart.ico" width="15px" height="30px">
+            </div>
+            
+           <!-- <button id="reset" class="btn"><i class="fas fa-undo-alt"></i>Reintentar</button>-->
+
+
+
+            <button id="help" class="btn"><i class="fas fa-question-circle"></i>Ayuda</button>
+            <p id="help-text"> </p>
+
+            <ul>
+                <div class="jugador"><i class="fas fa-angle-double-right" ></i> Jugador 1 
+                    <i class="fas fa-angle-double-left"></i>  </div>
+                <input type="text" id="jugador1" class="jugador1"  value="Jugador 1">
+              
+            </ul>
+            
+            <ul>
+                <div class="jugador"><i class="fas fa-angle-double-right"></i> Jugador 2 
+                    <i class="fas fa-angle-double-left"></i></div>
+                <input id="jugador2" class="jugador2" value="Jugador 2">
+            </ul>
+            <div id="board-sizes">
+                <p>Elegí tu tamaño de tablero:</p>
+               <!-- <button id="board-5" class="btn"><i class="fas fa-chess-board"></i>6 x 7</button>
+                <button id="board-6" class="btn"><i class="fas fa-chess-board"></i>7 x 8</button>
+                <button id="board-7" class="btn"><i class="fas fa-chess-board"></i>8 x 9</button>
+                <button id="board-8" class="btn"><i class="fas fa-chess-board"></i>9 x 10</button>-->
+                <select class="dimensiones-tablero js-dimensiones" class="btn">
+                    <option value="5x6">4 en linea</option>
+                    <option value="6x7">5 en linea</option>
+                    <option value="7x8">6 en linea</option>
+                    <option value="8x9">7 en linea</option>
+                </select>
+            </div>
+            
+            <div id="tokens">
+                <p>Personalizá las fichas:</p>
+                <p>Jugador 1</p>
+                <input type="color" id="colorJ1" value="#FF0000">
+                <div>
+                    
+                    <button id="ficha-2" value="1"><img src="image/ficha.png"></button>
+                    <button id="ficha-3" value="2"><img src="image/fichaAzul.png"></button>
+                    
+                </div>
+                <p>Jugador 2</p>
+                <input type="color" id="colorJ2" value="#00FF00">
+                <div>
+
+                    <button id="ficha-2" value="1"><img src="image/ficha.png"></button>
+                    <button id="ficha-3" value="2"><img src="image/fichaAzul.png"></button>
+                </div>
+            </div>
+            <p id="msj"></p>
+            <p id="timer-title"></p>
+            <p id="timer"> </p>
+        </aside>
+        <section> <canvas id="canvas" width="900" height="600" style="border: 1px solid black;" > </canvas> </section>
+    </div>
+
+    
+    <script src="js/main.js"></script>
+    <script src="js/Tablero.js"></script>
+    <script src="js/Figure.js"></script>
+    <script src="js/Ficha.js"></script>
+    <script src="js/Jugador.js"></script>
+    <script src="js/Circle.js"></script>
+</body>
+
+</html>
