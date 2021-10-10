@@ -8,7 +8,7 @@ class Tablero {
     this.jugador1 = jugador1;
     this.jugador2 = jugador2;
 
-    this.tamFicha = 50; 
+    this.tamFicha = 50;
     this.punto = "#862";
 
     this.img = new Image();
@@ -34,8 +34,9 @@ class Tablero {
   //-----------------------------------CREO EL TABLERO ------------------------------------------
   //---------------------------------------------------------------------------------------------
   crearTablero() {
-    let t = this;//Hago referencia a mí mismo como Objeto
-    this.img.onload = function () {//Cargo la imagen de la ficha
+    let t = this; //Hago referencia a mí mismo como Objeto
+    this.img.onload = function () {
+      //Cargo la imagen de la ficha
       t.redibujarTablero();
     };
   }
@@ -72,6 +73,34 @@ class Tablero {
     );
   }
 
+  //---------------------------------------------------------------------------------------------
+  //-----------------------------------CREO LOS NOMBRES  ------------------------------------------
+  //---------------------------------------------------------------------------------------------
+  nombreIndice(turn, j1, j2) {
+    if (turn == true) {
+      this.drawPlayer("PLAYER 1", j1, 10, 55);
+    } else {
+      this.drawPlayer("PLAYER 2", j2, 620, 55);
+    }
+  }
+
+  drawPlayer(player, name, x, y) {
+    //let ctx = this.canvas.getContext('2d');
+    /* Dibujando texto relleno y con contorno */
+    this.ctx.beginPath(); // Inicializamos una ruta
+    this.ctx.lineCap = "butt"; // Trazo sin terminaciones
+    this.ctx.lineWidth = 4; // Trazo de 1 pixeles de ancho
+    this.ctx.strokeStyle = "#000000"; // Azul
+    this.ctx.fillStyle = "#F3E00B"; // Amarillo
+    this.ctx.font = "45px Verdana"; // Establecemos la tipografía
+    this.ctx.strokeText(player, x, y);
+    this.ctx.fillText(player, x, y);
+    this.ctx.strokeText(name, x + 40, y + 50);
+    this.ctx.fillText(name, x + 40, y + 50);
+    this.ctx.closePath();
+}
+
+
   getFila() {
     return this.fila;
   }
@@ -79,15 +108,4 @@ class Tablero {
   getCol() {
     return this.col;
   }
-
-
-
-
-
-
-
-
-
-
-
 }

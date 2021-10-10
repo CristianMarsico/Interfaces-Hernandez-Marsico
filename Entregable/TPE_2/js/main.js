@@ -76,6 +76,7 @@ window.onload = function () {
 
     tablero = new Tablero(canvas, ctx, fila, col, jugador1, jugador2);
     tablero.crearTablero();
+    tablero.nombreIndice(j1_o_j2, jugador1, jugador2);
 
     crearFichasJ1(30, 340, colorJ1, cantFichas);
     crearFichasJ2(680, 340, colorJ2, cantFichas);
@@ -100,7 +101,7 @@ window.onload = function () {
   /**
    * Éste metodo de da un valor aleatorio entre 1 y 2
    * Si es 1 lo retorno como true sino false
-   * Uso este metodo para establecer turnos aleatorios a los juagadores
+   * Uso este metodo para establecer turnos aleatorios a los jugadores
    */
   function obtenerValor() {
     btnJugar.setAttribute("disabled", " "); //desactivo el boton de jugar
