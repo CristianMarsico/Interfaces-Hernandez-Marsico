@@ -27,7 +27,7 @@ header {
 .jugador1, .jugador2{
     padding: 5px 3px 5px 3px;
     border-radius:5px;
-    margin: 0px 0px 0px 0px;
+    margin: 5px 0px 5px 0px;
     text-align:center;
     font-family: "Montserrat";
     font-size: 15px;
@@ -41,6 +41,8 @@ ul{
 div.jugador{
     text-align:center;
     margin: 10px 0px 0px 0px;
+    font-family: cursive;  
+    text-align:center;
 }
 
 p{
@@ -51,14 +53,14 @@ p{
 
 .dimensiones{
     padding: 5px 30px 5px 30px;
-    margin: 0px 0px 0px 36px;
+    margin: 0px 0px 5px 36px;
     border-radius: 10px;
     font-family: "Montserrat";
     font-size: 15px;
 }
 
 i {
-    margin: 0px 20px 0px 20px;
+    margin: 0px 0px 0px 0px;
     color: red;
 }
 
@@ -66,9 +68,8 @@ i {
     padding:0px;
     border-radius: 6px;
     background-color:black;
-    margin-left:81px;
-    margin-top: 5px;
-    margin-bottom:5px;
+    
+    margin: 5px 30px 8px 81px;
    
 }
 
@@ -156,17 +157,17 @@ i {
     font-family: cursive;
     margin:62px
 }
+
 p{
     margin: 10px 0px 0px 0px;
     padding: 0px 20px 0px 20px;
-    font-family: cursive;
-   
+    font-family: cursive;  
     text-align:center;
 }
 
 .subrayado{
     text-decoration: underline;
-    margin: 0px;
+    margin: 0px 0px 5px 0px;
 }
 
 
