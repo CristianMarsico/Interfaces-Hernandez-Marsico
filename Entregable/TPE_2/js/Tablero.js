@@ -4,6 +4,7 @@ class Tablero {
     this.ctx = ctx;
     this.fila = fila;
     this.col = col;
+    this.enLinea = this.fila - 1;
 
     this.jugador1 = jugador1;
     this.jugador2 = jugador2;
@@ -13,6 +14,8 @@ class Tablero {
 
     this.img = new Image();
     this.img.src = "image/contenedor4.png";
+
+    this.posFicha = { f: 0, c: 0 };
 
     this.crearMatriz();
   }
@@ -74,12 +77,12 @@ class Tablero {
   }
 
   //---------------------------------------------------------------------------------------------
-  //-----------------------------------CREO LOS NOMBRES  ------------------------------------------
+  //-----------------------------------CREO LOS NOMBRES  ----------------------------------------
   //---------------------------------------------------------------------------------------------
- /**
-  *Me determina quien es el jugador que tiene el turno 
-  * Dependiendo la condicion es el valor que se imprime en el canvas
-  */
+  /**
+   *Me determina quien es el jugador que tiene el turno
+   * Dependiendo la condicion es el valor que se imprime en el canvas
+   */
   nombreIndice(turn, j1, j2) {
     if (turn == true) {
       this.drawPlayer("PLAYER 1", j1, 10, 55);
@@ -101,8 +104,143 @@ class Tablero {
     this.ctx.strokeText(name, x + 40, y + 50);
     this.ctx.fillText(name, x + 40, y + 50);
     this.ctx.closePath();
-}
+  }
 
+  mensajeGanador(clickedFigure, hayGanador) {
+    if (hayGanador == true) {
+      let msjGanador = document.querySelector("#win");
+      let c = clickedFigure.color;
+
+      msjGanador.style.display = "none";
+      let jugadorGanador = clickedFigure.jugador;
+      msjGanador.innerHTML = "EL GANADOR ES \n" + jugadorGanador + " !";
+      msjGanador.style = `background : ${c}`;
+      this.ctx.beginPath();
+      this.ctx.strokeStyle = "#fafafa";
+      this.ctx.fillStyle = "#fafafa";
+      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      //----------------------------------
+      this.ctx.fillStyle = `${c}`;
+      this.ctx.font = "20px Verdana";
+      this.ctx.textAlign = "center";
+      this.ctx.fillText(
+        "Hay Ganador!!!",
+        this.canvas.width / 2,
+        this.canvas.height / 5
+      );
+      this.ctx.fillText(
+        "FELICITACIONES " + jugadorGanador + "!!!",
+        this.canvas.width / 2,
+        this.canvas.height / 4
+      );
+      this.ctx.closePath();
+    }
+  }
+
+  //---------------------------------------------------------------------------------------------
+  //-------------------------VERIFICACION E INGRESO DE FICHAS------------------------------------
+  //---------------------------------------------------------------------------------------------
+
+  puedoIngresarFicha(clickedFigure) {
+    //console.log("puedo ingresar ficha")
+    //le paso una ficha
+    let ubicacionX = clickedFigure.posX + this.tamFicha / 2; //
+    let ubicacionY = clickedFigure.posY + this.tamFicha / 2; //
+
+    for (let i = 1; i <= this.col; i++) {
+      //recorro por la cantidad de puntos
+      //tengo que corroborar que el x coincida desde el centro, un poco mas
+      let x_delPunto = 250 + this.tamFicha * i;
+      let y_delPunto = 215;
+
+      let distancia = Math.sqrt(
+        (ubicacionX - x_delPunto) * (ubicacionX - x_delPunto) +
+          (ubicacionY - y_delPunto) * (ubicacionY - y_delPunto)
+      );
+      //console.log(distancia)
+      if (distancia < 30 && this.mat[0][i - 1] == null) {
+        // distancia al tamaño de mi punto
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  //El evento mouseup me genera estas funciones
+  //comprobamos si podemos ingresar una Ficha en la matriz
+  ingresarFicha(clickedFigure, colDeEstaFicha) {
+    //meterla en la fila de la matriz si no esta vacia //desde atras para adelante
+    this.posFicha.c = colDeEstaFicha;
+
+    let finalF = this.fila - 1; //Obtengo la ultima Pos de la FILA (el maximo)
+
+    //En 250 comienza el tablero
+    //La ficha mide 50 x 50px y lo multiplico por la COL que quiero colocar la ficha
+    //El resultado me da el extremo X
+    let x = 250 + this.tamFicha * colDeEstaFicha;
+    let y = 0;
+    for (let f = finalF; f >= 0; f--) {
+      //Recorro las Filas de abajo hacia arriba
+      //console.log(this.mat[filaDeEstaFicha][c])
+
+      if (this.mat[f][colDeEstaFicha - 1] == null) {
+        //Crequeo que la POS este vacia
+        //console.log("entro aca")
+        this.mat[f][colDeEstaFicha - 1] = clickedFigure; //Asigno la Ficha seleccionada a la matriz
+        this.posFicha.f = f;
+        //console.log(this.posFicha.f)
+
+        y = 250 + this.tamFicha * f;
+        clickedFigure.setPos(x, y);
+        break;
+      }
+    }
+    //console.log(this.mat)
+    //console.log(y)
+    //console.log(clickedFigure)
+  }
+
+  //---------------------------------------------------------------------------------------------
+  //-------------------------------- VERIFICACION DE GANADOR ------------------------------------
+  //---------------------------------------------------------------------------------------------
+
+  corroborarGanador() {
+    let f = this.posFicha.f;
+    let c = this.posFicha.c;
+    //para horizontal paso fila - vertical paso col - asc y desc fila y col
+    return this.posHorizontal(f);
+  }
+
+  posHorizontal(fila) {
+    let contador = 1;
+    let c = 0;
+    //console.log(ficha)
+    //tengo que recorrer la matriz
+    while (c < this.col - 1) {
+      console.log("entre a la horizontal");
+
+      if (this.mat[fila][c] != null && this.mat[fila][c + 1] != null) {
+        if (this.mat[fila][c].color == this.mat[fila][c + 1].color) {
+          contador++;
+
+          if (contador == this.enLinea) {
+            console.log(contador + "cuatrooo");
+            return true;
+          }
+        } else {
+          contador = 1;
+        }
+      } else {
+        contador = 1;
+      }
+      c++;
+    }
+    return false;
+  }
+
+  //---------------------------------------------------------------------------------------------
+  //------------------------------------ GETTERS/SETTER -----------------------------------------
+  //---------------------------------------------------------------------------------------------
 
   getFila() {
     return this.fila;

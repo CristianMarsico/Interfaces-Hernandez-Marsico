@@ -22,14 +22,14 @@ window.onload = function () {
   let fichasJ1 = [];
   let fichasJ2 = [];
   let j1_o_j2;
-  let clickedFigure = null;//variable que uso para saber si clickee en Ficha
+  let clickedFigure = null; //variable que uso para saber si clickee en Ficha
 
   //Variables que utilizo para obtener el color de las fichas
   let colorJ1;
   let colorJ2;
 
   /**
-   * Obtengo los valores de las fichas 
+   * Obtengo los valores de las fichas
    */
   document.querySelector("#ficha1").addEventListener("click", function () {
     btnFichaJ1 = "image/ficha.png";
@@ -51,7 +51,6 @@ window.onload = function () {
   document.querySelector("#ficha6").addEventListener("click", function () {
     btnFichaJ2 = "image/fichaRoja.png";
   });
-
 
   /**
    * Inicio el Juego
@@ -100,8 +99,8 @@ window.onload = function () {
     let value = select.value;
     let cant_filas = parseInt(value.charAt(0), 10); //tomo el valor 5 del ejemplo anterior
     let cant_col = parseInt(value.charAt(2), 10); //tomo el valor 6 del ejemplo anterior
-    dimensiones.push(cant_filas); //agrego al array 
-    dimensiones.push(cant_col); //agrego al array 
+    dimensiones.push(cant_filas); //agrego al array
+    dimensiones.push(cant_col); //agrego al array
     return dimensiones;
   }
 
@@ -120,7 +119,6 @@ window.onload = function () {
       return (turno = false);
     }
   }
-
 
   //---------------------------------------------------------------------------------------------
   //--------------------------------------- CREAR FICHAS ----------------------------------------
@@ -196,88 +194,148 @@ window.onload = function () {
     };
   }
 
-   /**
+  /**
    * Es éste metodo recorro todas las fichas y determino si hice....
    * Click en algunas de ellas. Si clickee dentro del radio de la misma
    */
-    function encontrarFichaClickeada(x, y) {
-      for (let r = 0; r < fichasJ1.length; r++) {
-        if (fichasJ1[r].hit(x, y)) { //recorro las fichas y si hice click dentro de la misma la retorno
-          return fichasJ1[r];
-        }
-      }
-  
-      for (let a = 0; a < fichasJ2.length; a++) {
-        if (fichasJ2[a].hit(x, y)) {
-          return fichasJ2[a];
-        }
+  function encontrarFichaClickeada(x, y) {
+    for (let r = 0; r < fichasJ1.length; r++) {
+      if (fichasJ1[r].hit(x, y)) {
+        //recorro las fichas y si hice click dentro de la misma la retorno
+        return fichasJ1[r];
       }
     }
 
-
-    /**
-     * A medida que se va moviendo la ficha se tiene que ir redibujando el tablero
-     */
-    function actualizarVista() {
-      if (hayGanador == false) {
-        ctx.fillStyle = "#fafafa";
-        ctx.fillRect(0, 0, width, height);
-      }
-      tablero.redibujarTablero();
-  
-      for (let j1 in fichasJ1) {
-        fichasJ1[j1].drawImage();
-      }
-      for (let j2 in fichasJ2) {
-        fichasJ2[j2].drawImage();
+    for (let a = 0; a < fichasJ2.length; a++) {
+      if (fichasJ2[a].hit(x, y)) {
+        return fichasJ2[a];
       }
     }
+  }
+
+  /**
+   * A medida que se va moviendo la ficha se tiene que ir redibujando el tablero
+   */
+  function actualizarVista() {
+    if (hayGanador == false) {
+      ctx.fillStyle = "#fafafa";
+      ctx.fillRect(0, 0, width, height);
+    }
+    tablero.redibujarTablero();
+
+    for (let j1 in fichasJ1) {
+      fichasJ1[j1].drawImage();
+    }
+    for (let j2 in fichasJ2) {
+      fichasJ2[j2].drawImage();
+    }
+  }
 
   //---------------------------------------------------------------------------------------------
   //------------------------------------ EVENTO MOUSEDOWN----------------------------------------
   //---------------------------------------------------------------------------------------------
 
-    canvas.addEventListener("mousedown", function (e) {
-      //CUANDO HAGO CLICK
-      //let clicked = findClicked(e.pageX - canvas.offsetLeft, e.pageY - this.offsetTop)
-      let eX = e.layerX;
-      let eY = e.layerY;
-      let hiceClick = encontrarFichaClickeada(eX, eY);
-      let turnoJugador = hiceClick.turnoJugador;
-  
-      if((hiceClick != null)&&(tieneTurno == turnoJugador)&&(hayGanador == false) ){
-        console.log(hiceClick.jugador)//me trae el jugador..interesantee...
-        clickedFigure = hiceClick;            
+  canvas.addEventListener("mousedown", function (e) {
+    //CUANDO HAGO CLICK
+    //let clicked = findClicked(e.pageX - canvas.offsetLeft, e.pageY - this.offsetTop)
+    let eX = e.layerX;
+    let eY = e.layerY;
+    let hiceClick = encontrarFichaClickeada(eX, eY);
+    let turnoJugador = hiceClick.turnoJugador;
+
+    if (
+      hiceClick != null &&
+      tieneTurno == turnoJugador &&
+      hayGanador == false
+    ) {
+      console.log(hiceClick.jugador); //me trae el jugador..interesantee...
+      clickedFigure = hiceClick;
     }
-    });
+  });
 
   //---------------------------------------------------------------------------------------------
-  //------------------------------------ EVENTO MOUSEMOVE----------------------------------------
+  //------------------------------------ EVENTO MOUSEMOVE ---------------------------------------
   //---------------------------------------------------------------------------------------------
 
-    canvas.addEventListener("mousemove", function (e) {
-      //ES PARA CUANDO MUEVO EL MOUSE
-      if (clickedFigure == null) {
-        return;
-      } 
-      clickedFigure.setPos(e.layerX, e.layerY); //le paso las coordenadas de inicio a donde estoy
-      actualizarVista();
-    });
-
+  canvas.addEventListener("mousemove", function (e) {
+    //ES PARA CUANDO MUEVO EL MOUSE
+    if (clickedFigure == null) {
+      return;
+    }
+    clickedFigure.setPos(e.layerX, e.layerY); //le paso las coordenadas de inicio a donde estoy
+    actualizarVista();
+  });
 
   //---------------------------------------------------------------------------------------------
-  //------------------------------------ EVENTO MOUSELEAVE---------------------------------------
+  //----------------------------------- EVENTO MOUSELEAVE ---------------------------------------
   //---------------------------------------------------------------------------------------------
 
-    canvas.addEventListener("mouseleave", function () {
-      //CUANDO EL PUNTERO DEL MOUSE DEJA EL ELEMENTO SELECCIONADO
-      clickedFigure = null;
-    });
+  canvas.addEventListener("mouseleave", function () {
+    //CUANDO EL PUNTERO DEL MOUSE DEJA EL ELEMENTO SELECCIONADO
+    clickedFigure = null;
+  });
+
+  //---------------------------------------------------------------------------------------------
+  //------------------------------------ EVENTO MOUSEUP -----------------------------------------
+  //---------------------------------------------------------------------------------------------
+
+  canvas.addEventListener("mouseup", function () {
+    if (clickedFigure != null) {
+      //aca deberia probar si puedo insertar en el tablero
+      let colDeEstaFicha = tablero.puedoIngresarFicha(clickedFigure); // me va a retornar la fila o -1
+      //console.log(colDeEstaFicha)
+
+      if (colDeEstaFicha != -1) {
+        tablero.ingresarFicha(clickedFigure, colDeEstaFicha); //poner en el tablero
+
+        if (hayGanador == false) {
+          if (tieneTurno == true) tieneTurno = false;
+          else tieneTurno = true;
+
+          //corroboro si alguien gano
+          hayGanador = tablero.corroborarGanador(); //aca deberia traer un boolean
+          if (hayGanador == true) {
+            tablero.mensajeGanador(clickedFigure, hayGanador);
+          } else {
+            //elimino las fichas ingresadas del arr de fichas
+            let totalFichasJ1 = fichasJ1.indexOf(clickedFigure); // busca si esa ficha esta en de ese arreglo -- me da el indice y sino -1
+            if (totalFichasJ1 != -1) {
+              fichasJ1.splice(totalFichasJ1, 1); //borro la ficha en ese indice
+            } else {
+              let totalFichasJ2 = fichasJ2.indexOf(clickedFigure); // busca si esa ficha esta en de ese arreglo -- me da el indice y sino -1
+              if (totalFichasJ2 != -1) {
+                fichasJ2.splice(totalFichasJ2, 1); //borro la ficha en ese indice
+              }
+            }
+          }
+        }
+
+        //  tablero.nombreIndice(turno, jugador1, jugador2);
+        actualizarVista(); //actualizo mi vista
+
+        if (hayGanador == false) {
+          //lo hago aca para ver mis carteles con el fondo
+          if (
+            fichasJ1 != null &&
+            fichasJ1.length == 0 &&
+            fichasJ2 != null &&
+            fichasJ2.length == 0
+          ) {
+            tablero.mensajeEmpate();
+          } else if (clickedFigure.jugador == jugador1) {
+            turno = !turno;
+            tablero.nombreIndice(turno, jugador1, jugador2);
+          } else {
+            turno = !turno;
+            tablero.nombreIndice(turno, jugador1, jugador2);
+          }
+        }
+      }
+    }
+
+    clickedFigure = null;
+  });
+
+
   
-
-
-
-
-
-
 };
