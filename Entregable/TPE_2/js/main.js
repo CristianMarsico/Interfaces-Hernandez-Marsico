@@ -7,9 +7,11 @@ window.onload = function () {
 
   let tablero;
 
+  //Variables que utilizo para obtener el valor de los jugadores
   let jugador1;
   let jugador2;
   let turno;
+  let tieneTurno = true;
 
   //Variables que utilizo para las fichas
   let btnFichaJ1;
@@ -19,7 +21,9 @@ window.onload = function () {
   let fichasJ1 = [];
   let fichasJ2 = [];
   let j1_o_j2;
+  let clickedFigure = null;//variable que uso para saber si clickee en Ficha
 
+  //Variables que utilizo para obtener el color de las fichas
   let colorJ1;
   let colorJ2;
 
@@ -85,16 +89,17 @@ window.onload = function () {
   /*
    *Éste metodo transformo los values del select del html
    *Parse c/ cadena de caracter lo convierto en entero
+   
    *ej value="5x6"
    */
   function getDimensiones() {
     let select = document.querySelector(".dimensiones");
     let dimensiones = [];
     let value = select.value;
-    let cant_filas = parseInt(value.charAt(0), 10); //tomo el valor 5
-    let cant_col = parseInt(value.charAt(2), 10); //tomo el valor 6
-    dimensiones.push(cant_filas); //agrego al array (linea 122)
-    dimensiones.push(cant_col); //agrego al array (linea 122)
+    let cant_filas = parseInt(value.charAt(0), 10); //tomo el valor 5 del ejemplo anterior
+    let cant_col = parseInt(value.charAt(2), 10); //tomo el valor 6 del ejemplo anterior
+    dimensiones.push(cant_filas); //agrego al array 
+    dimensiones.push(cant_col); //agrego al array 
     return dimensiones;
   }
 
@@ -113,6 +118,11 @@ window.onload = function () {
       return (turno = false);
     }
   }
+
+
+  //---------------------------------------------------------------------------------------------
+  //--------------------------------------- CREAR FICHAS ----------------------------------------
+  //---------------------------------------------------------------------------------------------
 
   /*
    * Creo 2 arreglos globales "fichasJ1" y "fichasJ2"
@@ -164,7 +174,7 @@ window.onload = function () {
     let img = new Image();
     img.src = btnFichaJ2;
     img.onload = function () {
-      //Fichas para el jugador 1
+      //Fichas para el jugador 2
       let decremetoX = 15;
       for (let i = 1; i <= cantFichas; i++) {
         fichasJ2[i - 1] = new Ficha(
@@ -183,6 +193,53 @@ window.onload = function () {
       }
     };
   }
+
+   /**
+   * Es éste metodo recorro todas las fichas y determino si hice....
+   * Click en algunas de ellas. Si clickee dentro del radio de la misma
+   */
+    function clickeeFigura(x, y) {
+      for (let r = 0; r < fichasJ1.length; r++) {
+        if (fichasJ1[r].hit(x, y)) { //recorro las fichas y si hice click dentro de la misma la retorno
+          return fichasJ1[r];
+        }
+      }
+  
+      for (let a = 0; a < fichasJ2.length; a++) {
+        if (fichasJ2[a].hit(x, y)) {
+          return fichasJ2[a];
+        }
+      }
+    }
+
+  //---------------------------------------------------------------------------------------------
+  //------------------------------------ EVENTO MOUSEDOWN----------------------------------------
+  //---------------------------------------------------------------------------------------------
+
+    canvas.addEventListener("mousedown", function (e) {
+      //CUANDO HAGO CLICK
+      //let clicked = findClicked(e.pageX - canvas.offsetLeft, e.pageY - this.offsetTop)
+      let eX = e.layerX;
+      let eY = e.layerY;
+      let hiceClick = clickeeFigura(eX, eY);
+      let turnoJugador = hiceClick.turnoJugador;
+  
+      if((hiceClick != null)&&(tieneTurno == turnoJugador)&&(hayGanador == false) ){
+        console.log(hiceClick.jugador)//me trae el jugador..interesantee...
+        clickedFigure = hiceClick;            
+    }
+    });
+
+
+  //---------------------------------------------------------------------------------------------
+  //------------------------------------ EVENTO MOUSEDOWN----------------------------------------
+  //---------------------------------------------------------------------------------------------
+
+    canvas.addEventListener("mouseleave", function () {
+      //CUANDO EL PUNTERO DEL MOUSE DEJA EL ELEMENTO SELECCIONADO
+      clickedFigure = null;
+    });
+  
 
 
 
