@@ -76,6 +76,10 @@ class Tablero {
   //---------------------------------------------------------------------------------------------
   //-----------------------------------CREO LOS NOMBRES  ------------------------------------------
   //---------------------------------------------------------------------------------------------
+ /**
+  *Me determina quien es el jugador que tiene el turno 
+  * Dependiendo la condicion es el valor que se imprime en el canvas
+  */
   nombreIndice(turn, j1, j2) {
     if (turn == true) {
       this.drawPlayer("PLAYER 1", j1, 10, 55);
@@ -85,7 +89,6 @@ class Tablero {
   }
 
   drawPlayer(player, name, x, y) {
-    //let ctx = this.canvas.getContext('2d');
     /* Dibujando texto relleno y con contorno */
     this.ctx.beginPath(); // Inicializamos una ruta
     this.ctx.lineCap = "butt"; // Trazo sin terminaciones

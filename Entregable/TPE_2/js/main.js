@@ -12,6 +12,7 @@ window.onload = function () {
   let jugador2;
   let turno;
   let tieneTurno = true;
+  let hayGanador = false;
 
   //Variables que utilizo para las fichas
   let btnFichaJ1;
@@ -61,6 +62,7 @@ window.onload = function () {
   });
 
   function iniciar() {
+    hayGanador = false;
     let tam = getDimensiones();
     let fila = tam[0];
     let col = tam[1];
@@ -198,7 +200,7 @@ window.onload = function () {
    * Es éste metodo recorro todas las fichas y determino si hice....
    * Click en algunas de ellas. Si clickee dentro del radio de la misma
    */
-    function clickeeFigura(x, y) {
+    function encontrarFichaClickeada(x, y) {
       for (let r = 0; r < fichasJ1.length; r++) {
         if (fichasJ1[r].hit(x, y)) { //recorro las fichas y si hice click dentro de la misma la retorno
           return fichasJ1[r];
@@ -212,6 +214,25 @@ window.onload = function () {
       }
     }
 
+
+    /**
+     * A medida que se va moviendo la ficha se tiene que ir redibujando el tablero
+     */
+    function actualizarVista() {
+      if (hayGanador == false) {
+        ctx.fillStyle = "#fafafa";
+        ctx.fillRect(0, 0, width, height);
+      }
+      tablero.redibujarTablero();
+  
+      for (let j1 in fichasJ1) {
+        fichasJ1[j1].drawImage();
+      }
+      for (let j2 in fichasJ2) {
+        fichasJ2[j2].drawImage();
+      }
+    }
+
   //---------------------------------------------------------------------------------------------
   //------------------------------------ EVENTO MOUSEDOWN----------------------------------------
   //---------------------------------------------------------------------------------------------
@@ -221,7 +242,7 @@ window.onload = function () {
       //let clicked = findClicked(e.pageX - canvas.offsetLeft, e.pageY - this.offsetTop)
       let eX = e.layerX;
       let eY = e.layerY;
-      let hiceClick = clickeeFigura(eX, eY);
+      let hiceClick = encontrarFichaClickeada(eX, eY);
       let turnoJugador = hiceClick.turnoJugador;
   
       if((hiceClick != null)&&(tieneTurno == turnoJugador)&&(hayGanador == false) ){
@@ -230,9 +251,22 @@ window.onload = function () {
     }
     });
 
+  //---------------------------------------------------------------------------------------------
+  //------------------------------------ EVENTO MOUSEMOVE----------------------------------------
+  //---------------------------------------------------------------------------------------------
+
+    canvas.addEventListener("mousemove", function (e) {
+      //ES PARA CUANDO MUEVO EL MOUSE
+      if (clickedFigure == null) {
+        return;
+      } 
+      clickedFigure.setPos(e.layerX, e.layerY); //le paso las coordenadas de inicio a donde estoy
+      actualizarVista();
+    });
+
 
   //---------------------------------------------------------------------------------------------
-  //------------------------------------ EVENTO MOUSEDOWN----------------------------------------
+  //------------------------------------ EVENTO MOUSELEAVE---------------------------------------
   //---------------------------------------------------------------------------------------------
 
     canvas.addEventListener("mouseleave", function () {
