@@ -208,23 +208,29 @@ class Tablero {
     let f = this.posFicha.f;
     let c = this.posFicha.c;
     //para horizontal paso fila - vertical paso col - asc y desc fila y col
-    return this.posHorizontal(f);
+    return this.posHorizontal(f) || this.posVertical(c);
   }
 
+  /**
+   * 
+   * Recorro la matriz en la mismas fila y voy aumentando las columnas
+   * Verifico que fila y col en pos y que fila y col+1...
+   *  sean distintas a null y si cumple la condicion...
+   * que el color de fila y col en pos sea igual al color de fila y col+1
+   */
   posHorizontal(fila) {
     let contador = 1;
     let c = 0;
     //console.log(ficha)
     //tengo que recorrer la matriz
     while (c < this.col - 1) {
-      console.log("entre a la horizontal");
-
+      
       if (this.mat[fila][c] != null && this.mat[fila][c + 1] != null) {
+       
         if (this.mat[fila][c].color == this.mat[fila][c + 1].color) {
           contador++;
 
           if (contador == this.enLinea) {
-            console.log(contador + "cuatrooo");
             return true;
           }
         } else {
@@ -234,6 +240,37 @@ class Tablero {
         contador = 1;
       }
       c++;
+    }
+    return false;
+  }
+
+  /**
+   * 
+   * Chequeo similar al anterior, la col en este caso es estatica y voy aumentando las...
+   * filas en 1.
+   * El que las fichas sean iguales lo determina si los colores de las mismas sean iguales.
+   */
+  posVertical(columna) {
+    let contador = 1;
+    let f = 0;
+    columna = columna-1;
+
+    while (f < this.fila - 1) {
+
+      if (this.mat[f][columna] != null && this.mat[f + 1][columna] != null) {
+        if (this.mat[f][columna].color == this.mat[f + 1][columna].color) {
+          contador++;
+          //console.log("aqui"+contador)
+          if (contador == this.enLinea) {
+            return true;
+          }
+        } else {
+          contador = 1;
+        }
+      } else {
+        contador = 1;
+      }
+      f++;
     }
     return false;
   }
