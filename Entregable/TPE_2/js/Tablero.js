@@ -208,11 +208,13 @@ class Tablero {
     let f = this.posFicha.f;
     let c = this.posFicha.c;
     //para horizontal paso fila - vertical paso col - asc y desc fila y col
-    return this.posHorizontal(f) || this.posVertical(c) || this.posDiagonalAsc(f,c) ;
+    return (
+      this.posHorizontal(f) || this.posVertical(c) || this.posDiagonalAsc(f, c) || this.posDiagonalDesc(f,c)
+    );
   }
 
   /**
-   * 
+   *
    * Recorro la matriz en la mismas fila y voy aumentando las columnas
    * Verifico que fila y col en pos y que fila y col+1...
    *  sean distintas a null y si cumple la condicion...
@@ -224,9 +226,7 @@ class Tablero {
     //console.log(ficha)
     //tengo que recorrer la matriz
     while (c < this.col - 1) {
-      
       if (this.mat[fila][c] != null && this.mat[fila][c + 1] != null) {
-       
         if (this.mat[fila][c].color == this.mat[fila][c + 1].color) {
           contador++;
 
@@ -245,7 +245,7 @@ class Tablero {
   }
 
   /**
-   * 
+   *
    * Chequeo similar al anterior, la col en este caso es estatica y voy aumentando las...
    * filas en 1.
    * El que las fichas sean iguales lo determina si los colores de las mismas sean iguales.
@@ -253,10 +253,9 @@ class Tablero {
   posVertical(columna) {
     let contador = 1;
     let f = 0;
-    columna = columna-1;
+    columna = columna - 1;
 
     while (f < this.fila - 1) {
-
       if (this.mat[f][columna] != null && this.mat[f + 1][columna] != null) {
         if (this.mat[f][columna].color == this.mat[f + 1][columna].color) {
           contador++;
@@ -277,15 +276,14 @@ class Tablero {
 
   posDiagonalAsc(f, c) {
     let contador = 1;
-    console.log("ascendenteeeee");
-    
-   c = c-1;
+    c = c - 1;
 
-    if(this.mat[f][c] == null){
+    if (this.mat[f][c] == null) {
       console.log("no");
     }
     while (
-      f > 0 && c < this.col - 1 &&
+      f > 0 &&
+      c < this.col - 1 &&
       this.mat[f][c] != null &&
       this.mat[f - 1][c + 1] != null &&
       this.mat[f][c].color == this.mat[f - 1][c + 1].color
@@ -294,7 +292,6 @@ class Tablero {
       c++;
     }
 
-    
     while (f < this.fila - 1 && c > 0) {
       if (this.mat[f][c] != null && this.mat[f + 1][c - 1] != null) {
         if (this.mat[f][c].color == this.mat[f + 1][c - 1].color) {
@@ -308,6 +305,38 @@ class Tablero {
       } else contador = 1;
       f++;
       c--;
+    }
+    return false;
+  }
+
+  posDiagonalDesc(f, c) {
+    let contador = 1;
+    c = c - 1;
+
+    while (
+      f > 0 &&
+      c > 0 &&
+      this.mat[f][c] != null &&
+      this.mat[f - 1][c - 1] != null &&
+      this.mat[f][c].color == this.mat[f - 1][c - 1].color
+    ) {
+      f--;
+      c--;
+    }
+
+    while (f < this.fila - 1 && c < this.col - 1) {
+      if (this.mat[f][c] != null && this.mat[f + 1][c + 1] != null) {
+        if (this.mat[f][c].color == this.mat[f + 1][c + 1].color) {
+          contador++;
+          //console.log(contador)
+          if (contador == this.enLinea) {
+            console.log(contador + "cuatrooo");
+            return true;
+          }
+        } else contador = 1;
+      } else contador = 1;
+      f++;
+      c++;
     }
     return false;
   }
