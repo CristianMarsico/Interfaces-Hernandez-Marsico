@@ -208,7 +208,7 @@ class Tablero {
     let f = this.posFicha.f;
     let c = this.posFicha.c;
     //para horizontal paso fila - vertical paso col - asc y desc fila y col
-    return this.posHorizontal(f) || this.posVertical(c);
+    return this.posHorizontal(f) || this.posVertical(c) || this.posDiagonalAsc(f,c) ;
   }
 
   /**
@@ -271,6 +271,43 @@ class Tablero {
         contador = 1;
       }
       f++;
+    }
+    return false;
+  }
+
+  posDiagonalAsc(f, c) {
+    let contador = 1;
+    console.log("ascendenteeeee");
+    
+   c = c-1;
+
+    if(this.mat[f][c] == null){
+      console.log("no");
+    }
+    while (
+      f > 0 && c < this.col - 1 &&
+      this.mat[f][c] != null &&
+      this.mat[f - 1][c + 1] != null &&
+      this.mat[f][c].color == this.mat[f - 1][c + 1].color
+    ) {
+      f--;
+      c++;
+    }
+
+    
+    while (f < this.fila - 1 && c > 0) {
+      if (this.mat[f][c] != null && this.mat[f + 1][c - 1] != null) {
+        if (this.mat[f][c].color == this.mat[f + 1][c - 1].color) {
+          contador++;
+
+          if (contador == this.enLinea) {
+            console.log(contador + "cuatrooo");
+            return true;
+          }
+        } else contador = 1;
+      } else contador = 1;
+      f++;
+      c--;
     }
     return false;
   }
