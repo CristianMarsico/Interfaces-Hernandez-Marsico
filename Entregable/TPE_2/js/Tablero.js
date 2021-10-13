@@ -137,6 +137,17 @@ class Tablero {
     }
   }
 
+  msjFinTiempo(){
+    this.ctx.beginPath(); 
+       this.ctx.strokeStyle = "#000000";
+       this.ctx.fillStyle="#000000";
+      this.ctx.font = "20px Verdana";
+       this.ctx.textAlign = "center";
+       this.ctx.fillText("Mala suerte...", this.canvas.width/2, this.canvas.height/5); 
+       this.ctx.fillText("Se agotó el tiempo !!!",this.canvas.width/2, this.canvas.height/4);
+       this.ctx.closePath();
+ }
+
   //---------------------------------------------------------------------------------------------
   //-------------------------VERIFICACION E INGRESO DE FICHAS------------------------------------
   //---------------------------------------------------------------------------------------------

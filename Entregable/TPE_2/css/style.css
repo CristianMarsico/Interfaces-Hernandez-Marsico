@@ -1,9 +1,20 @@
 body {
+   
     background-color: #fafafa;
     align-content: center;
     font-family: "Montserrat";
 }
+.tiempo{
+    font-family:cursive;
+    padding: 0px;
+    margin:0px 0px 0px 10px;
 
+}
+h4#timmer.text-center{
+    width:100%;
+    margin:0px 0px 0px 240px;
+    padding: 10px 0px 0px 0px
+}
 img#logo {
     padding: 0px;
     margin: 0px;
@@ -18,6 +29,9 @@ h1{
 }
 
 header {
+    width: 1200px;
+    height:45px;
+    
     margin: 0px 0px 0px 0px;
     text-align: center;
     display: flex;
@@ -62,6 +76,10 @@ p{
 i {
     margin: 0px 0px 0px 0px;
     color: red;
+}
+
+.mensajes{
+    margin: 0px 0px 0px 575px;
 }
 
 .colores{

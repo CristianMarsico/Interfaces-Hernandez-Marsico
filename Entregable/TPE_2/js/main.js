@@ -13,6 +13,7 @@ window.onload = function () {
   let turno;
   let tieneTurno = true;
   let hayGanador = false;
+  let startGame = false;
 
   //Variables que utilizo para las fichas
   let btnFichaJ1;
@@ -28,9 +29,16 @@ window.onload = function () {
   let colorJ1;
   let colorJ2;
 
+  //Variable para el reloj
+  let interval;
+  let totalTime;
+
   /**
    * Obtengo los valores de las fichas
    */
+
+  document.querySelector("#reiniciar").style.display = "none";
+
   document.querySelector("#ficha1").addEventListener("click", function () {
     btnFichaJ1 = "image/ficha.png";
   });
@@ -53,6 +61,13 @@ window.onload = function () {
   });
 
   /**
+   * Reiniciar
+   */
+  document.querySelector("#reiniciar").addEventListener("click", (e) => {
+    reiniciarJuego(); //esta
+  });
+
+  /**
    * Inicio el Juego
    */
   let btnJugar = document.querySelector("#jugar");
@@ -61,6 +76,12 @@ window.onload = function () {
   });
 
   function iniciar() {
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, width, height);
+
+    document.querySelector("#jugar").style.display = "none";
+    document.querySelector("#reiniciar").style.display = "initial";
+    startGame = true;
     hayGanador = false;
     let tam = getDimensiones();
     let fila = tam[0];
@@ -85,6 +106,37 @@ window.onload = function () {
 
     crearFichasJ1(30, 340, colorJ1, cantFichas);
     crearFichasJ2(680, 340, colorJ2, cantFichas);
+
+    totalTime = 25;
+    updateClock();
+  }
+
+  function reiniciarJuego() {
+    clearInterval(interval);
+    tieneTurno = true;
+    hayGanador = false;
+    fichasJ1 = [];
+    fichasJ2 = [];
+    iniciar();
+  }
+
+  function updateClock() {
+    document.querySelector("#countDown").innerHTML = totalTime;
+    interval = setTimeout(updateClock, 1000);
+
+    if (interval == null) {
+      clearInterval(interval);
+    }
+
+    if (totalTime == 0) {
+      startGame = false;
+      actualizarVista();
+      tablero.msjFinTiempo();
+      totalTime = 0;
+    } else {
+      totalTime -= 1;
+    }
+    interval;
   }
 
   /*
@@ -251,6 +303,11 @@ window.onload = function () {
       console.log(hiceClick.jugador); //me trae el jugador..interesantee...
       clickedFigure = hiceClick;
     }
+
+    if (totalTime == 0) {
+      startGame = false;
+      clickedFigure = null;
+    }
   });
 
   //---------------------------------------------------------------------------------------------
@@ -296,6 +353,8 @@ window.onload = function () {
           hayGanador = tablero.corroborarGanador(); //aca deberia traer un boolean
           if (hayGanador == true) {
             tablero.mensajeGanador(clickedFigure, hayGanador);
+            clearInterval(interval);
+            document.querySelector("#timmer").style.display = "none";
           } else {
             //elimino las fichas ingresadas del arr de fichas
             let totalFichasJ1 = fichasJ1.indexOf(clickedFigure); // busca si esa ficha esta en de ese arreglo -- me da el indice y sino -1
@@ -322,6 +381,8 @@ window.onload = function () {
             fichasJ2.length == 0
           ) {
             tablero.mensajeEmpate();
+            clearInterval(interval);
+            document.querySelector("#timmer").style.display = "none";
           } else if (clickedFigure.jugador == jugador1) {
             turno = !turno;
             tablero.nombreIndice(turno, jugador1, jugador2);
@@ -335,7 +396,4 @@ window.onload = function () {
 
     clickedFigure = null;
   });
-
-
-  
 };
