@@ -1,5 +1,5 @@
 class Tablero {
-  constructor(canvas, ctx, fila, col, jugadores) {
+  constructor(canvas, ctx, fila, col, jugador1, jugador2) {
     this.canvas = canvas;
     this.ctx = ctx;
     this.fila = fila;
@@ -85,9 +85,9 @@ class Tablero {
    */
   nombreIndice(turn, j1, j2) {
     if (turn == true) {
-      this.drawPlayer("PLAYER 1", j1, 10, 55);
+      this.drawPlayer("PLAYER 1", j1, 150, 50);
     } else {
-      this.drawPlayer("PLAYER 2", j2, 620, 55);
+      this.drawPlayer("PLAYER 2", j2, 550, 50);
     }
   }
 

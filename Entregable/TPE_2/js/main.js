@@ -5,7 +5,29 @@ window.onload = function () {
   let width = canvas.width;
   let height = canvas.height;
 
+  document.querySelector(".tiempo").style.display = "none";
+
   let tablero;
+  let tam = getDimensiones();
+    let fila = tam[0];
+    let col = tam[1];
+  tablero = new Tablero(canvas, ctx, fila, col);
+  tablero.crearTablero();
+
+  document.querySelector(".dimensiones").addEventListener("click", function(){
+    if(!startGame)
+      previsualizarTablero();
+  });
+
+  function previsualizarTablero() {
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, width, height);
+    tam = getDimensiones();
+    let fila = tam[0];
+    let col = tam[1];
+    tablero = new Tablero(canvas, ctx, fila, col);
+    tablero.crearTablero();
+  }
 
   //Variables que utilizo para obtener el valor de los jugadores
   let jugador1;
@@ -38,27 +60,62 @@ window.onload = function () {
    */
 
   document.querySelector("#reiniciar").style.display = "none";
+  document.querySelector("#jugar").style.display = "none";
 
   document.querySelector("#ficha1").addEventListener("click", function () {
     btnFichaJ1 = "image/ficha.png";
+    resaltarFichaJ1(document.querySelector("#ficha1"));
+    habilitarJuego();
   });
 
   document.querySelector("#ficha2").addEventListener("click", function () {
     btnFichaJ1 = "image/fichaAzul.png";
+    resaltarFichaJ1(document.querySelector("#ficha2"));
+    habilitarJuego();
   });
   document.querySelector("#ficha3").addEventListener("click", function () {
     btnFichaJ1 = "image/fichaRoja.png";
+    resaltarFichaJ1(document.querySelector("#ficha3"));
+    habilitarJuego();
   });
 
   document.querySelector("#ficha4").addEventListener("click", function () {
     btnFichaJ2 = "image/ficha.png";
+    resaltarFichaJ2(document.querySelector("#ficha4"));
+    habilitarJuego();
   });
   document.querySelector("#ficha5").addEventListener("click", function () {
     btnFichaJ2 = "image/fichaAzul.png";
+    resaltarFichaJ2(document.querySelector("#ficha5"));
+    habilitarJuego();
   });
   document.querySelector("#ficha6").addEventListener("click", function () {
     btnFichaJ2 = "image/fichaRoja.png";
+    resaltarFichaJ2(document.querySelector("#ficha6"));
+    habilitarJuego();
   });
+
+  function resaltarFichaJ1(ficha) {
+    document.querySelector("#ficha1").classList.remove('resaltarFichin');
+    document.querySelector("#ficha2").classList.remove('resaltarFichin');
+    document.querySelector("#ficha3").classList.remove('resaltarFichin');
+    ficha.classList.add('resaltarFichin');
+  }
+
+  function resaltarFichaJ2(ficha) {
+    document.querySelector("#ficha4").classList.remove('resaltarFichin');
+    document.querySelector("#ficha5").classList.remove('resaltarFichin');
+    document.querySelector("#ficha6").classList.remove('resaltarFichin');
+    ficha.classList.add('resaltarFichin');
+  }
+
+  function habilitarJuego() {
+    if(btnFichaJ1 !== undefined && btnFichaJ2 !== undefined) {
+      document.querySelector("#seleccionarFicha").style.display = "none";
+      if(document.querySelector("#reiniciar").style.display === "none")
+        document.querySelector("#jugar").style.display = "initial";
+    }
+  }
 
   /**
    * Reiniciar
@@ -70,12 +127,17 @@ window.onload = function () {
   /**
    * Inicio el Juego
    */
+
+
   let btnJugar = document.querySelector("#jugar");
   btnJugar.addEventListener("click", (e) => {
     iniciar();
   });
 
   function iniciar() {
+    document.querySelector(".tiempo").style.display = "initial";
+    document.querySelector("#win").style.display = "none";
+    document.querySelector("#timmer").style.display = "initial";
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, width, height);
 
@@ -107,7 +169,7 @@ window.onload = function () {
     crearFichasJ1(30, 340, colorJ1, cantFichas);
     crearFichasJ2(680, 340, colorJ2, cantFichas);
 
-    totalTime = 25;
+    totalTime = 50;
     updateClock();
   }
 

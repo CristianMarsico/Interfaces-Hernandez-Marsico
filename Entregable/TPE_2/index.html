@@ -5,10 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
-    <script
-      src="https://kit.fontawesome.com/13fdbc361b.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/13fdbc361b.js" crossorigin="anonymous"></script>
     <title>Cuatro en Línea</title>
   </head>
 
@@ -17,18 +14,18 @@
       <img id="logo" src="image/fichaAzul.png" alt="Four in Line" />
       <h1>Juego</h1>
       <div class="tiempo" >
-        <h4 id="timmer" class="text-center">Te quedán <span id="countDown"></span> segundos para colocar una ficha!</h4>
+        <h4 id="timmer" class="text-center">Te quedan <span id="countDown"></span> segundos para colocar una ficha!</h4>
 
       </div>
       <div class="mensajes">
         <ul>    
             <h1> <span id="win" style="display: none;"> </h1>
         </ul>
-    </div>    
+      </div>    
     </header>
 
     <div id="game">
-      <div style="border: 1px solid black">
+      <div class="panelJuego">
         <aside>
          
           <ul>
@@ -102,13 +99,16 @@
           <p id="msj"></p>
           <p id="timer-title"></p>
           <p id="timer"></p>
-           <!--<button id="play" class="btn"><i class="fas fa-play"></i>Jugar</button>-->
-           <input type="button" id="jugar" class="btn" value="Jugar !" />
+          <!--<button id="play" class="btn"><i class="fas fa-play"></i>Jugar</button>-->
+          <div class="botones">
+            <input type="button" id="seleccionarFicha" class="btnSolid btnStyle" value="Seleccione fichas">
 
-           <input type="button" id="reiniciar" class="btn" value="Reiniciar !" />
- 
-           <!-- <button id="reset" class="btn"><i class="fas fa-undo-alt"></i>Reintentar</button>-->
- 
+            <input type="button" id="jugar" class="btn btnStyle" value="Jugar !" />
+
+            <input type="button" id="reiniciar" class="btn btnStyle" value="Reiniciar !" />
+          </div>
+
+          <!-- <button id="reset" class="btn"><i class="fas fa-undo-alt"></i>Reintentar</button>-->
         </aside>
       </div>
       <div>

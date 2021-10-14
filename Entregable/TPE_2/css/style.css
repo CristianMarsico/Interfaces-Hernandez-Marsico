@@ -1,3 +1,5 @@
+@import url('http://fonts.cdnfonts.com/css/comfortaa-3');
+
 body {
    
     background-color: #fafafa;
@@ -5,7 +7,7 @@ body {
     font-family: "Montserrat";
 }
 .tiempo{
-    font-family:cursive;
+    font-family:"Comfortaa", sans-serif;
     padding: 0px;
     margin:0px 0px 0px 10px;
 
@@ -55,7 +57,7 @@ ul{
 div.jugador{
     text-align:center;
     margin: 10px 0px 0px 0px;
-    font-family: cursive;  
+    font-family: "Comfortaa", sans-serif;  
     text-align:center;
 }
 
@@ -79,7 +81,15 @@ i {
 }
 
 .mensajes{
-    margin: 0px 0px 0px 575px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* margin: 0px 0px 0px 575px; */
+}
+
+h1#win {
+    margin: 2px;
+    border-radius: 5px;
 }
 
 .colores{
@@ -130,6 +140,15 @@ footer {
 .btn {
     background-color: white;
     color: #504B83;
+}
+
+.btnSolid {
+    background-color: #746dbe;
+    color: white;
+    border: 2px inset !important;
+}
+
+.btnStyle {
     border: 1px solid #504B83;
     border-radius: 10px;
     padding: 10px;
@@ -172,14 +191,14 @@ i {
 }
 
 .textPlayer{
-    font-family: cursive;
+    font-family: "Comfortaa", sans-serif;
     margin:62px
 }
 
 p{
     margin: 10px 0px 0px 0px;
     padding: 0px 20px 0px 20px;
-    font-family: cursive;  
+    font-family: "Comfortaa", sans-serif;  
     text-align:center;
 }
 
@@ -193,6 +212,7 @@ p{
 #tokens button {
     background-color: #fafafa;
     border: none;
+    border-radius: 50%;
     margin: 0px 10px 0px 14px;
     width: 45px;
     height: 45px;
@@ -218,4 +238,22 @@ p{
 
 #timer-title {
     margin-bottom: 5px;
+}
+
+.botones {
+    text-align: center;
+    padding-right: 20px;
+}
+
+.resaltarFichin img {
+    outline: 5px inset orange;
+    border-radius: 50%;
+    z-index: 5;
+}
+
+.panelJuego {
+    border: 2px inset rgba(96,64,32,0.75);
+    border-radius: 2%;
+    background-image: url("../image/board-background.jfif");
+    /* overflow: hidden; */
 }
