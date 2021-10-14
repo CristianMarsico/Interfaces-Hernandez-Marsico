@@ -257,3 +257,9 @@ p{
     background-image: url("../image/board-background.jfif");
     /* overflow: hidden; */
 }
+
+.botonAudio {
+    border: 2px inset;
+    border-radius: 50%;
+    margin: 20px;
+}

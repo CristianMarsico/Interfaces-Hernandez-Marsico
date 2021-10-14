@@ -458,4 +458,19 @@ window.onload = function () {
 
     clickedFigure = null;
   });
+
+  // Música :P
+
+  let musica = new Audio("audio/musica.ogg");
+  musica.loop = true;
+  musica.volume = 0.10;
+  let botonMusica = document.querySelector("#botonMusica");
+  botonMusica.addEventListener("click", function() {
+    if(!musica.paused) {
+      musica.pause();
+      musica.currentTime = 0;
+    }
+    else
+      musica.play();
+  })
 };
