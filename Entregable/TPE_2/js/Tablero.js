@@ -9,13 +9,13 @@ class Tablero {
     this.jugador1 = jugador1;
     this.jugador2 = jugador2;
 
-    this.tamFicha = 50;
-    this.punto = "#862";
+    this.tamFicha = 50;//el radio del punto del centro del tablero
+    this.punto = "#862";//el color
 
-    this.img = new Image();
+    this.img = new Image(); //creo la imagen
     this.img.src = "image/contenedor4.png";
 
-    this.posFicha = { f: 0, c: 0 };
+    this.posFicha = { f: 0, c: 0 }; //guardo las variables X e Y
 
     this.crearMatriz();
   }
@@ -23,6 +23,10 @@ class Tablero {
   //---------------------------------------------------------------------------------------------
   //-----------------------------------CREO MATRIZ INICIAL---------------------------------------
   //---------------------------------------------------------------------------------------------
+  
+  /*
+  *Se crea con valores nulos
+  */
   crearMatriz() {
     this.mat = [this.getFila];
     for (let f = 0; f < this.getFila(); f++) {
@@ -56,6 +60,7 @@ class Tablero {
         }
       }
     }
+
     // hago los indicadores del tablero por cada filas (Los puntos de arriba)
     for (let i = 0; i < this.col; i++) {
       this.ctx.beginPath();
@@ -106,6 +111,9 @@ class Tablero {
     this.ctx.closePath();
   }
 
+  /*
+   * Imprime en el canvas al ganador 
+   */
   mensajeGanador(clickedFigure, hayGanador) {
     if (hayGanador == true) {
       let msjGanador = document.querySelector("#win");
@@ -137,6 +145,9 @@ class Tablero {
     }
   }
 
+  /**
+   * Metodo usado para indicar al usuario que el tiempo de juego ha culminado
+   */
   msjFinTiempo(){
     this.ctx.beginPath(); 
        this.ctx.strokeStyle = "#000000";
@@ -152,6 +163,9 @@ class Tablero {
   //-------------------------VERIFICACION E INGRESO DE FICHAS------------------------------------
   //---------------------------------------------------------------------------------------------
 
+  /**
+   *Controlo la posicion donde hice click con la posicion de los puntos del tablero 
+   */
   puedoIngresarFicha(clickedFigure) {
     //console.log("puedo ingresar ficha")
     //le paso una ficha
@@ -285,6 +299,9 @@ class Tablero {
     return false;
   }
 
+  /**
+   * Varifico las diagonal 
+   */
   posDiagonalAsc(f, c) {
     let contador = 1;
     c = c - 1;
@@ -356,10 +373,12 @@ class Tablero {
   //------------------------------------ GETTERS/SETTER -----------------------------------------
   //---------------------------------------------------------------------------------------------
 
+  //Retorna la fila
   getFila() {
     return this.fila;
   }
 
+  //retorna la columna
   getCol() {
     return this.col;
   }

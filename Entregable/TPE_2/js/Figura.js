@@ -1,3 +1,7 @@
+/**
+ * Clase padre Ficha
+ */
+
 class Figura {
     constructor(posX, posY, color, canvas) {
         this.posX = posX;

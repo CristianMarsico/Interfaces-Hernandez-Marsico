@@ -8,14 +8,21 @@ window.onload = function () {
   document.querySelector(".tiempo").style.display = "none";
 
   let tablero;
+ 
+  /**
+   * Me retorna en valor de la fila y columna
+   */
   let tam = getDimensiones();
     let fila = tam[0];
     let col = tam[1];
+  
+   //Creo un tablero en blanco
   tablero = new Tablero(canvas, ctx, fila, col);
   tablero.crearTablero();
 
   document.querySelector(".dimensiones").addEventListener("click", function(){
     if(!startGame)
+    //Lo muesto al tablero sin cargar las fichas
       previsualizarTablero();
   });
 
@@ -95,6 +102,9 @@ window.onload = function () {
     habilitarJuego();
   });
 
+  /**
+   * Creo el resaltado de las fichas
+   */
   function resaltarFichaJ1(ficha) {
     document.querySelector("#ficha1").classList.remove('resaltarFichin');
     document.querySelector("#ficha2").classList.remove('resaltarFichin');
@@ -109,6 +119,7 @@ window.onload = function () {
     ficha.classList.add('resaltarFichin');
   }
 
+  //Verifico que las fichas esten clickeadas y ahi habilito el boton jugar
   function habilitarJuego() {
     if(btnFichaJ1 !== undefined && btnFichaJ2 !== undefined) {
       document.querySelector("#seleccionarFicha").style.display = "none";
@@ -138,16 +149,20 @@ window.onload = function () {
     document.querySelector(".tiempo").style.display = "initial";
     document.querySelector("#win").style.display = "none";
     document.querySelector("#timmer").style.display = "initial";
+    
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, width, height);
 
     document.querySelector("#jugar").style.display = "none";
     document.querySelector("#reiniciar").style.display = "initial";
+
     startGame = true;
     hayGanador = false;
+   
     let tam = getDimensiones();
     let fila = tam[0];
     let col = tam[1];
+    
     fichasJ1 = [];
     fichasJ2 = [];
     cantFichas = (fila * col) / 2;
@@ -167,14 +182,15 @@ window.onload = function () {
     tablero.nombreIndice(j1_o_j2, jugador1, jugador2);
 
     crearFichasJ1(30, 340, colorJ1, cantFichas);
-    crearFichasJ2(680, 340, colorJ2, cantFichas);
+    crearFichasJ2(730, 340, colorJ2, cantFichas);
 
     totalTime = 50;
     updateClock();
   }
 
+  //Reicinia el Juego
   function reiniciarJuego() {
-    clearInterval(interval);
+    clearInterval(interval);//limpiamos el contador
     tieneTurno = true;
     hayGanador = false;
     fichasJ1 = [];
@@ -182,6 +198,7 @@ window.onload = function () {
     iniciar();
   }
 
+  //Funcion que muestra los segundos de tiempo
   function updateClock() {
     document.querySelector("#countDown").innerHTML = totalTime;
     interval = setTimeout(updateClock, 1000);
@@ -259,7 +276,7 @@ window.onload = function () {
       let decremetoX = 15;
       for (let i = 1; i <= cantFichas; i++) {
         fichasJ1[i - 1] = new Ficha(
-          x + Math.floor(Math.random() * 200 + 1), //creo una pos aletatoria de X con una max de 195px.
+          x + Math.floor(Math.random() * 150 + 1), //creo una pos aletatoria de X con una max de 195px.
           y + decremetoX, // la pos Y va a ir decrementano en 15px.
           color,
           canvas,
@@ -292,7 +309,7 @@ window.onload = function () {
       let decremetoX = 15;
       for (let i = 1; i <= cantFichas; i++) {
         fichasJ2[i - 1] = new Ficha(
-          x + Math.floor(Math.random() * 200 + 1),
+          x + Math.floor(Math.random() * 150 + 1),
           y + decremetoX,
           color,
           canvas,

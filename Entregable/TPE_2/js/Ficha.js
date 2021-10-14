@@ -7,7 +7,7 @@ class Ficha extends Figura {
   }
 
   cargarImg() {
-    let t = this; // no entiendo porque si no le doy valor this a una variable no me lo toma
+    let t = this; 
     this.img.onload = function () {
       t.drawImage();
     };
