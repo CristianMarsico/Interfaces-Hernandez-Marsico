@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: rgb(55, 50, 65);
+}
+
+
+
+
+
+/* Layers */
+
+/*layer es el de los arboles*/
+.contenedorBackground {
+    position: relative;
+    margin: 0 auto; /*queda centrado*/
+    margin-top: 10px;
+
+    /*ancho y alto de la imagen de los arboles*/
+    width: 1024px;
+    height: 576px;
+}
+
+.capaUno {
+    background: url(../images/background/hl5.png);
+    background-size: 100%;
+    z-index: -1; /*hago que la imagen quede atras del muñeco*/
+    animation: parallax 5s linear infinite;
+}
+
+.capaSeis {
+    background: url(../images/background/estrellas.png);
+    background-size: cover;
+    z-index: -6;
+    animation: parallax 180s linear infinite;
+}
+
+.capaSiete {
+    background: url(../images/background/Luna-del-Cazado.jpg);
+    background-size: cover;
+    z-index: -7;
+    animation: parallax 360s linear infinite;
+    box-shadow: 0px 0px 45px 0px rgba(0,0,0,1);
+}
+
+.capaTres {
+    background: url(../images/background/a.png);
+    background-size: cover;
+    z-index: -1;
+    animation: parallax 100s linear infinite;
+}
+
+.capaDos {
+    background: url(../images/background/dos.png);
+    background-size: cover;
+    z-index: -2;
+    animation: parallax 25s linear infinite;
+}
+
+@keyframes parallax {
+    100% {background-position-x: -1024px;}
+}
+
