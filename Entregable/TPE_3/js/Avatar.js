@@ -11,25 +11,7 @@ class Avatar extends Personaje {
     this.div.style.bottom = '5px';
   }
 
-  /* Obtengo la posicion del div del avatar y la comparo con la posicion del obtaculo */
-  checkCollision(element) {
-    this.updatePosition();
-    element.updatePosition();
-    
 
-        console.log("yo "+ this.position.left);
-        console.log("araña "+ element.position.left);
-
-
-
-    if (this.position.left  < element.position.left + element.width  &&
-      this.position.left + this.width > element.position.left &&
-      this.position.top < element.position.top + element.height &&
-      this.position.top + this.height > element.position.top) {
-      return true;
-    }
-    return false;
-  }
   move(key) {
     this.updatePosition();
     switch (key) {
@@ -45,23 +27,5 @@ class Avatar extends Personaje {
         break;
     }
   }
-  jump() {
-    this.div.classList.add('jump');
-    setTimeout(() => {
-      this.div.classList.remove('jump');
-    }, 700);
-  }
-  die() {
-    /*AUDIO*/
-    //this.dieAudio.play();
-    this.div.classList.add('die');
-    setTimeout(() => {
-      this.div.classList.remove('die');
-    }, 1200);
-  }
-  stop() {
-    this.div.style.left = '100px';
-    this.div.style.bottom = '100px';
-    this.div.classList.remove('run');
-  }
+ 
 }
