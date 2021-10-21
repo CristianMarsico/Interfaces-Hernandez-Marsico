@@ -181,10 +181,10 @@ window.onload = function () {
     tablero.crearTablero();
     tablero.nombreIndice(j1_o_j2, jugador1, jugador2);
 
-    crearFichasJ1(30, 340, colorJ1, cantFichas);
+    crearFichasJ1(30, 340, colorJ1, cantFichas); 
     crearFichasJ2(730, 340, colorJ2, cantFichas);
 
-    totalTime = 50;
+    totalTime = 150;
     updateClock();
   }
 
