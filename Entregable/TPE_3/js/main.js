@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
  
   let loop = false;
   const avatar = new Avatar('avatar'); //Instancio el avatar
- 
+  const cuervo = new Crow('cuervo'); //Instancio los obtaculos
 
  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////// FUNCION QUE ME DETECTA LA TECLA PRESIONADA ////////////////////////////
@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   function start() {
     avatar.init();
-    
+    cuervo.init();
     loop = true;
     
    

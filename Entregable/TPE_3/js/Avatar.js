@@ -35,5 +35,8 @@ class Avatar extends Personaje {
         break;
     }
   }
+
+
+
  
 }
