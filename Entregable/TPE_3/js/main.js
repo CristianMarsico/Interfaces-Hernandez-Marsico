@@ -14,6 +14,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   function pushKey(event) {
     event.preventDefault();
+
+     /*si preciono la tecla y la tecla es el 38(flecha arriba) el muñeco salta */
+     if (event.type == 'keydown' && event.keyCode == 38) {
+      avatar.jump();
+    }
     
      /*si preciono la tecla y la tecla es 37(flecha izq) o es la 39(fecla derecha)
      el muñeco va hacia atras o adelante*/

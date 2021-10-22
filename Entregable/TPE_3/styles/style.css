@@ -28,6 +28,27 @@ body {
 }
 
 
+/*Animacion de salto*/
+.jump {
+    background-size: 953px 143px !important;
+    margin:auto; 
+    background: url(../images/jump_ninja.png)  ;
+    animation: jump 0.8s steps(10) infinite;
+    position:relative;
+    
+}
+
+
+@keyframes jump {
+   
+    /* El tamaño total de ancho del sprite. Es negativo para que no "camine" hacia atrás */
+    100% { background-position:-953px }
+    0% {transform: translate(0px,0px);}
+    25% {transform: translate(0px,-180px);}
+    50% {transform: translate(0px,-260px);}
+    75% {transform: translate(0px,-180px);}
+    100% {transform: translate(0px,0px);}
+}
 
 
 /* Layers */

@@ -11,6 +11,14 @@ class Avatar extends Personaje {
     this.div.style.bottom = '5px';
   }
 
+  /*Metodo de salto
+  Activo y dsactivo la clase en un lapso de tiempo */
+  jump() {
+    this.div.classList.add('jump');
+    setTimeout(() => {
+      this.div.classList.remove('jump');
+    }, 700);
+  }
 
   move(key) {
     this.updatePosition();
