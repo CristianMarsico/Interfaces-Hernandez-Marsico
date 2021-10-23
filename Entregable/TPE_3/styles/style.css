@@ -55,6 +55,27 @@ body {
   }
 }
 
+.die {
+  background-size: 1152px 92px !important;
+  background: url(../images/death_ninja.png) left center;
+  height: 90px !important;
+  width: 92px;
+  animation: death 1.5s steps(12);
+}
+
+@keyframes death {
+  from {
+    background-position: 0;
+  }
+
+  to {
+    background-position: -1152px;
+  }
+}
+
+
+
+
 /* Cuervo */
 
 #cuervo {

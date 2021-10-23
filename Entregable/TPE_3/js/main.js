@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   function gameLoop() {
     if (avatar.checkCollision(cuervo)) {
       loop = false;
-     
+      avatar.die();
       gameOver();
     }
     if (loop) {

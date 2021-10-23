@@ -64,6 +64,13 @@ class Avatar extends Personaje {
       this.div.classList.remove('run');
     }
 
+    die() {
+      this.div.classList.add('die');
+      setTimeout(() => {
+        this.div.classList.remove('die');
+      }, 2500);
+    }
+
 
 
  
