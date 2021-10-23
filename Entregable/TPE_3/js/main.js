@@ -4,6 +4,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
   
   window.addEventListener('keydown', pushKey);
  
+  const menu = document.getElementById("menu");
+ 
+  const empezarButton = document.getElementById("empezar");
+  empezarButton.onclick = function () {
+    start();
+  };
+
   let loop = false;
   const avatar = new Avatar('avatar'); //Instancio el avatar
   const cuervo = new Crow('cuervo'); //Instancio los obtaculos
@@ -47,6 +54,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   }
 
   function start() {
+    menu.style.display = "none"; //del menu
     avatar.init();
     cuervo.init();
     moneda.init();
@@ -62,14 +70,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
     cuervo.stop();
    
     setTimeout(() => {
-     
+      menu.style.display = "block"; 
       avatar.stop();
       moneda.stop();
     }, 1200);
   }
 
   
-    start();
+    
   
   
   

@@ -3,6 +3,7 @@ class Avatar extends Personaje {
     super(domId);
   }
   
+  
   init() {
     this.div.classList.remove('die');
     this.div.classList.add('run');
