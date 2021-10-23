@@ -17,6 +17,8 @@ window.onload = function (event) {
   let avatar = new Avatar("avatar"); //Instancio el avatar
   const cuervo = new Crow("cuervo"); //Instancio los obtaculos
   const moneda = new Moneda("moneda");
+  const pinche = new Pinche("pinche");
+
 
   const menu = document.getElementById("menu");
   const empezarButton = document.getElementById("empezar");
@@ -53,6 +55,7 @@ window.onload = function (event) {
   function pushKey(event) {
     event.preventDefault();
 
+    console.log(event.keyCode);
     /*si preciono la tecla y la tecla es el 38(flecha arriba) el muñeco salta */
     if (event.type == "keydown" && event.keyCode == 38) {
       avatar.jump();
@@ -65,6 +68,21 @@ window.onload = function (event) {
       event.keyCode == 39
     ) {
       avatar.move(event.keyCode);
+    }
+    /*tecla P*/
+    if (
+      (event.type == "keydown" && event.keyCode == 80) ||
+      event.keyCode == 80
+    ) {
+      pauseGame();
+    }
+
+    /*tecla ENTER*/
+    if (
+      (event.type == "keydown" && event.keyCode == 13) ||
+      event.keyCode == 13
+    ) {
+      resumeGame();
     }
   }
 
@@ -82,7 +100,7 @@ window.onload = function (event) {
       puntaje.innerHTML = "Monedas: 0" + puntos;
     }
 
-    if (avatar.checkCollision(cuervo)) {
+    if (avatar.checkCollision(cuervo)|| avatar.checkCollision(pinche)) {
       loop = false;
       avatar.die();
       gameOver();
@@ -101,6 +119,7 @@ window.onload = function (event) {
     avatar.init();
     cuervo.init();
     moneda.init();
+    pinche.init();
     loop = true;
     requestAnimationFrame(gameLoop);
   }
@@ -108,12 +127,12 @@ window.onload = function (event) {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////// TERMINA EL JUEGO ////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  
+
   function gameOver() {
     scoreMtrs = 0;
     clearInterval(distanceMtrs);
     cuervo.stop();
-
+    pinche.stop();
     setTimeout(() => {
       menu.style.display = "block";
       avatar.stop();

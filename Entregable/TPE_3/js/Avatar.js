@@ -18,7 +18,7 @@ class Avatar extends Personaje {
     this.div.classList.add('jump');
     setTimeout(() => {
       this.div.classList.remove('jump');
-    }, 700);
+    }, 1200);
   }
 
   move(key) {
@@ -45,9 +45,9 @@ class Avatar extends Personaje {
       
       //console.log(element.position.right);
           //console.log("yo "+ this.position.left);
-          console.log("cuevo "+ element.position.left);
+         // console.log("cuevo "+ element.position.left);
   
-          element.position.left + 55; 
+          //element.position.left + 55; 
   
       if (this.position.left  < element.position.left + element.width  &&
         this.position.left + this.width > element.position.left &&

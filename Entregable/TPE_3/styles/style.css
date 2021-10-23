@@ -39,26 +39,35 @@ body {
 
 /*Animacion de salto*/
 .jump {
-  background-size: 953px 143px !important;
-  margin: auto;
-  background: url(../images/jump_ninja.png);
-  animation: jump 0.8s steps(10) infinite;
-  position: relative;
+  
+    background-size: 953px 143px !important; 
+    background: url(../images/jump_ninja.png)left center no-repeat ;
+    animation: jump 1.2s steps(10) forwards;
+   
 }
 
 @keyframes jump {
-  /* El tamaño total de ancho del sprite. Es negativo para que no "camine" hacia atrás */
-  35% {
-    bottom: 50%;
-  }
-  50% {
-    bottom: 50%;
-  }
-
-  100% {
-    bottom: 15%;
-    background-position: -960px;
-  }
+    /* El tamaño total de ancho del sprite. Es negativo para que no "camine" hacia atrás */
+    0% {
+      bottom: 0%;
+    }
+    25% {
+      bottom: 25%;
+    }
+    
+    50% {
+      bottom:50%;    
+    }
+    
+   75% {
+      bottom: 25%;  
+    }
+  
+    100% {
+      bottom: 0%;
+      background-position: -953px;
+    }
+  
 }
 /*Animacion de explotar*/
 .die {
@@ -85,7 +94,35 @@ body {
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////// OBSTACULOS //////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#pinche {
+  position: absolute;
+  border: 1px salmon solid;
 
+  bottom: 600px;
+  left: 50px;
+  width: 162px;
+  height: 701px;
+  background: url(../images/pinches.png);
+  z-index: 1;
+}
+.pdrop {
+  /*transición con velocidad variable de principio a fin*/
+  animation: sdrop 10s cubic-bezier(0.2, 0.4, 0.6, 0.8) infinite;
+}
+@keyframes sdrop {
+  0% {
+    bottom: 800px;
+  }
+  30% {
+    bottom: 5px;
+  }
+  60% {
+    bottom: 600px;
+  }
+  100% {
+    bottom: 600px;
+  }
+}
 
 /* Cuervo */
 
@@ -130,7 +167,7 @@ body {
   }
 }
 
-
+/* moneda */
 .moneda {
   background: url(../images/moneda.png);
   position: absolute;
@@ -139,7 +176,7 @@ body {
   bottom: 50%;
   right: 100px;
   background-size: 50px 50px;
-  animation: mover 10s linear infinite;
+  animation: mover 7s linear infinite;
 }
 
 /*Al no ser un sprite-sheet le genero una rotacion por defecto*/
