@@ -1,15 +1,20 @@
 "use strict";
 
-window.addEventListener("DOMContentLoaded", (event) => {
+window.onload = function (event) {
   window.addEventListener("keydown", pushKey);
 
+  let distanceMtrs = 0;
+  let scoreMtrs = 0;
   let puntos = 0;
+
   let puntaje = document.getElementById("puntaje"); //puntaje
-  //puntaje.innerHTML = "Score: 0"+ this.puntos;     //puntaje al actualizar el juego
-  puntaje.innerHTML = "Score: 0";
+  let recorrido = document.getElementById("score"); //puntaje
+
+  recorrido.innerText = "Recorrido ";
+  puntaje.innerHTML = "Monedas: 0";
   let loop = false;
 
-  const avatar = new Avatar("avatar"); //Instancio el avatar
+  let avatar = new Avatar("avatar"); //Instancio el avatar
   const cuervo = new Crow("cuervo"); //Instancio los obtaculos
   const moneda = new Moneda("moneda");
 
@@ -18,6 +23,28 @@ window.addEventListener("DOMContentLoaded", (event) => {
   empezarButton.onclick = function () {
     start();
   };
+
+  const buttonPlayStop = document.getElementById("buttonPlayStop");
+
+  buttonPlayStop.addEventListener("click", () => {
+    if (buttonPlayStop.classList.contains("play")) {
+      resumeGame();
+    } else {
+      pauseGame();
+    }
+    buttonPlayStop.classList.toggle("play");
+  });
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////// FUNCION QUE ME DETECTA DISTANCIA RECORRIDA ////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  function distance() {
+    distanceMtrs = setInterval(() => {
+      scoreMtrs++;
+      recorrido.innerText = "Recorrido " + scoreMtrs + "mtrs";
+    }, 1000);
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////// FUNCION QUE ME DETECTA LA TECLA PRESIONADA ////////////////////////////
@@ -42,16 +69,17 @@ window.addEventListener("DOMContentLoaded", (event) => {
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////// FUNCION QUE ME DETECTA LA LA COLISION //// ////////////////////////////
+  ///////////////////////////////////// FUNCION QUE ME DETECTA LA LA COLISION /////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   /*Controlo la pos de avatar con la de los obtaculos */
   function gameLoop() {
     moneda.init();
     if (avatar.checkCollision(moneda)) {
+      //El avatar se encarga de saber si choca o colisiona con algun obstaculo
       moneda.stop();
       puntos++;
-      puntaje.innerHTML = "Score: 0" + puntos;
+      puntaje.innerHTML = "Monedas: 0" + puntos;
     }
 
     if (avatar.checkCollision(cuervo)) {
@@ -65,9 +93,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
   }
 
   function start() {
+    scoreMtrs = 0;
     puntos = 0;
-    menu.style.display = "none"; 
-    puntaje.innerHTML = "Score: 0";
+    puntaje.innerHTML = "Monedas: 0";
+    distance();
+    menu.style.display = "none";
     avatar.init();
     cuervo.init();
     moneda.init();
@@ -78,7 +108,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////// TERMINA EL JUEGO ////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
   function gameOver() {
+    scoreMtrs = 0;
+    clearInterval(distanceMtrs);
     cuervo.stop();
 
     setTimeout(() => {
@@ -87,4 +120,32 @@ window.addEventListener("DOMContentLoaded", (event) => {
       moneda.stop();
     }, 1200);
   }
-});
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////// FUNCIONES PLAY-PAUSA ////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  function resumeGame() {
+    avatar.playAnimation();
+    cuervo.playAnimation();
+    moneda.playAnimation();
+    distance();
+    document.getElementById("capauno").style.animationPlayState = "running";
+    document.getElementById("capados").style.animationPlayState = "running";
+    document.getElementById("capatres").style.animationPlayState = "running";
+    document.getElementById("capaseis").style.animationPlayState = "running";
+    document.getElementById("capasiete").style.animationPlayState = "running";
+  }
+
+  function pauseGame() {
+    avatar.stopAnimation();
+    cuervo.stopAnimation();
+    moneda.stopAnimation();
+    clearInterval(distanceMtrs);
+    document.getElementById("capauno").style.animationPlayState = "paused";
+    document.getElementById("capados").style.animationPlayState = "paused";
+    document.getElementById("capatres").style.animationPlayState = "paused";
+    document.getElementById("capaseis").style.animationPlayState = "paused";
+    document.getElementById("capasiete").style.animationPlayState = "paused";
+  }
+};

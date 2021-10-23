@@ -1,6 +1,6 @@
 class Avatar extends Personaje {
-  constructor(domId) {
-    super(domId);
+  constructor(personaje) {
+    super(personaje);
   }
   
   
@@ -43,11 +43,11 @@ class Avatar extends Personaje {
       this.updatePosition();
       element.updatePosition();
       
+      //console.log(element.position.right);
+          //console.log("yo "+ this.position.left);
+          console.log("cuevo "+ element.position.left);
   
-          console.log("yo "+ this.position.left);
-          console.log("araña "+ element.position.left);
-  
-  
+          element.position.left + 55; 
   
       if (this.position.left  < element.position.left + element.width  &&
         this.position.left + this.width > element.position.left &&
@@ -72,6 +72,13 @@ class Avatar extends Personaje {
       }, 2500);
     }
 
+    stopAnimation(){
+      this.div.style.animationPlayState = 'paused';
+    }
+
+    playAnimation(){
+      this.div.style.animationPlayState = 'running';
+    }
 
 
  

@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script src="https://kit.fontawesome.com/13fdbc361b.js" crossorigin="anonymous"></script>
+    <title>Ninja Runner</title>
   </head>
   <body>
     <head>
@@ -12,29 +14,35 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
       <link
-        href="https://fonts.googleapis.com/css?family=Nosifer&display=swap"
+
         rel="stylesheet"
       />
       <link rel="stylesheet" href="./styles/style.css" />
-      <title>Game</title>
+      <title>Ninja Runner</title>
     </head>
+
+    
 
     <div class="popup" id="menu">
       <div class="popup-content">
-        <h1>Ninja Game</h1>
+        <h1>Ninja Runner</h1>
         <p>Utilizá las flechas para evitar los obstaculos</p>
         <p></p>
         <a id="empezar" class="button">Empezar</a>
       </div>
     </div>
-
-    <div class="contenedorBackground capaSiete">
-      <div class="contenedorBackground capaSeis">
-        <div class="contenedorBackground capaTres">
-          <div class="contenedorBackground capaDos">
-            <div class="contenedorBackground capaUno">
+    <div class="menus">
+      <button id="buttonPlayStop" class="button2 "></button>
+    </div>
+    <div id = "capasiete" class="contenedorBackground capaSiete">
+      <div id = "capaseis" class="contenedorBackground capaSeis">
+        <div id = "capatres" class="contenedorBackground capaTres">
+          <div id = "capados" class="contenedorBackground capaDos">
+            <div id = "capauno" class="contenedorBackground capaUno">
               <div id="moneda" class=""></div>
+              
               <div id="puntaje"></div>
+              <div id="scoreContainer"><samp id="score"></samp></div>
               <div id="avatar"></div>
               <div id="cuervo"></div>
             </div>
@@ -42,6 +50,9 @@
         </div>
       </div>
     </div>
+
+   
+
 
     <script src="./js/Personaje.js"></script>
     <script src="./js/Avatar.js"></script>

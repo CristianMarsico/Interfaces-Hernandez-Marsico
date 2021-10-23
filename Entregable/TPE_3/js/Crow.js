@@ -1,6 +1,6 @@
 class Crow extends Personaje {
-  constructor(domId) {
-    super(domId);
+  constructor(cuervo) {
+    super(cuervo);
     //this.init();
   }
 
@@ -13,4 +13,17 @@ class Crow extends Personaje {
     //Cuando el avatar pierde quito la clase
     this.div.classList.remove("crowMove");
   }
+
+  getNombre(){
+    return "cuervo";
+  }
+
+  stopAnimation(){
+    this.div.style.animationPlayState = 'paused';
+  }
+
+  playAnimation(){
+    this.div.style.animationPlayState = 'running';
+  }
+
 }
