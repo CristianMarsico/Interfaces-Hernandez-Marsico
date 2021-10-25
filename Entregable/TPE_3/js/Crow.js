@@ -18,12 +18,6 @@ class Crow extends Personaje {
     return "cuervo";
   }
 
-  stopAnimation(){
-    this.div.style.animationPlayState = 'paused';
-  }
-
-  playAnimation(){
-    this.div.style.animationPlayState = 'running';
-  }
+ 
 
 }

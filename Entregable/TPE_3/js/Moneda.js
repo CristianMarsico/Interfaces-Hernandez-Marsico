@@ -16,12 +16,6 @@ class Moneda extends Personaje {
         this.div.classList.remove('moneda');//Cuando el avatar pierde quito la clase
       }
 
-      stopAnimation(){
-        this.div.style.animationPlayState = 'paused';
-      }
-
-      playAnimation(){
-        this.div.style.animationPlayState = 'running';
-      }
+     
   
   }

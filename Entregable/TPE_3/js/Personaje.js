@@ -12,4 +12,14 @@ class Personaje {
     this.position.left = this.div.offsetLeft;
     this.position.right = this.div.getBoundingClientRect().right;
   }
+  
+  
+  stopAnimation(){
+    this.div.style.animationPlayState = 'paused';
+  }
+  
+  playAnimation(){
+    this.div.style.animationPlayState = 'running';
+  }
+  
 }

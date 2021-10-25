@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/style.css" />
-    <script src="https://kit.fontawesome.com/13fdbc361b.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/13fdbc361b.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Ninja Runner</title>
   </head>
   <body>
@@ -13,53 +16,68 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-      <link
-
-        rel="stylesheet"
-      />
+      <link rel="stylesheet" />
       <link rel="stylesheet" href="./styles/style.css" />
       <title>Ninja Runner</title>
     </head>
-
-    
 
     <div class="popup" id="menu">
       <div class="popup-content">
         <h1>Ninja Runner</h1>
         <p>Utilizá las flechas para evitar los obstaculos</p>
-        <p></p>
+        <div class="escena">
+          <a id="j2" class="buttone">Escenario 1</a>
+          <a id="j1" class="buttone">Escenario 2</a>
+        </div>
+
         <a id="empezar" class="button">Empezar</a>
       </div>
     </div>
+
     <div class="menus">
-      <button id="buttonPlayStop" class="button2 "></button>
+      <button id="buttonPlayStop" class="button2"></button>
     </div>
-    <div id = "capasiete" class="contenedorBackground capaSiete">
-      <div id = "capaseis" class="contenedorBackground capaSeis">
-        <div id = "capatres" class="contenedorBackground capaTres">
-          <div id = "capados" class="contenedorBackground capaDos">
-            <div id = "capauno" class="contenedorBackground capaUno">
-              <div id="moneda" class=""></div>
-              
-              <div id="puntaje"></div>
-              <div id="scoreContainer"><samp id="score"></samp></div>
-              <div id="avatar"></div>
-              <div id="cuervo"></div>
-              <div id="pinche"></div>
+    <div id="capasiete" class="contenedorBackground capaSiete">
+      <div id="capasietedos" class="contenedorBackground capaSiete_2">
+        <div id="capaseis" class="contenedorBackground capaSeis">
+          <div id="capaseisdos" class="contenedorBackground capaSeis_2">
+            <div id="capacinco" class="contenedorBackground capaCinco">
+              <div id="capacincodos" class="contenedorBackground capaCinco_2">
+                <div id="capacuatro" class="contenedorBackground capaCuatro">
+                  <div id="capatres" class="contenedorBackground capaTres">
+                    <div id="capados" class="contenedorBackground capaDos">
+                      <div
+                        id="capadosdos"
+                        class="contenedorBackground capaDos_2"
+                      >
+                        <div id="capauno" class="contenedorBackground capaUno">
+                          <div id="moneda" class=""></div>
+
+                          <div id="puntaje"></div>
+                          <div id="scoreContainer">
+                            <samp id="score"></samp>
+                          </div>
+                          <div id="avatar"></div>
+                          <div id="cuervo"></div>
+                          <div id="pinche"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-   
-
-
     <script src="./js/Personaje.js"></script>
     <script src="./js/Avatar.js"></script>
     <script src="./js/Crow.js"></script>
     <script src="./js/Moneda.js"></script>
     <script src="./js/Pinche.js"></script>
+    <script src="./js/Escenario.js"></script>
 
     <script src="./js/main.js"></script>
   </body>

@@ -5,8 +5,11 @@ class Avatar extends Personaje {
   
   
   init() {
-    this.div.classList.remove('die');
+   // this.div.style.background ='url("./images/correr.png")';
     this.div.classList.add('run');
+    this.div.classList.remove('die');
+    this.div.classList.remove('jump');
+
     this.div.style.display = 'block';
     this.div.style.left = '100px';
     this.div.style.bottom = '5px';
@@ -15,10 +18,16 @@ class Avatar extends Personaje {
   /*Metodo de salto
   Activo y dsactivo la clase en un lapso de tiempo */
   jump() {
+   
     this.div.classList.add('jump');
+  
+    //this.div.style.background ='url("./images/jump_ninja.png") left center no-repeat';
     setTimeout(() => {
       this.div.classList.remove('jump');
+     // this.div.style.background ='url("./images/correr.png")';
+      this.div.classList.add('run');
     }, 1200);
+  
   }
 
   move(key) {
@@ -62,22 +71,20 @@ class Avatar extends Personaje {
     stop() {
       this.div.style.left = '100px';
       this.div.style.bottom = '100px';
+      this.div.classList.remove('jump');
       this.div.classList.remove('run');
+      this.div.classList.remove('die');
+   
     }
 
     die() {
-      this.div.classList.add('die');
+     this.div.classList.remove('run');
+     this.div.classList.remove('jump');
+     this.div.classList.add('die');
+    // this.div.style.background ='url("./images/death_ninja.png")';
       setTimeout(() => {
         this.div.classList.remove('die');
-      }, 2500);
-    }
-
-    stopAnimation(){
-      this.div.style.animationPlayState = 'paused';
-    }
-
-    playAnimation(){
-      this.div.style.animationPlayState = 'running';
+      }, 1500);
     }
 
 
