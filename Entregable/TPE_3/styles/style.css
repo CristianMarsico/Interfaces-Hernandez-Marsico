@@ -16,7 +16,7 @@ body {
   z-index: 1;
   width: 93px;
   height: 140px; /*es la altura del muñeco*/
-  /* display: none; */
+  
 }
 
 /*animacion de correr*/
@@ -105,20 +105,20 @@ body {
 }
 .pdrop {
   /*transición con velocidad variable de principio a fin*/
-  animation: sdrop 10s cubic-bezier(0.2, 0.4, 0.6, 0.8) infinite;
+  animation: sdrop 10s cubic-bezier(0.2, 0.4, 0.4, 0.9) infinite;
 }
 @keyframes sdrop {
   0% {
-    bottom: 800px;
+    bottom: 500px;
   }
   30% {
     bottom: 5px;
   }
   60% {
-    bottom: 600px;
+    bottom: 500px;
   }
   100% {
-    bottom: 600px;
+    bottom: 500px;
   }
 }
 
