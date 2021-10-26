@@ -44,6 +44,7 @@ window.onload = function (event) {
     buttonPlayStop.classList.toggle("play");
   });
 
+  
   let j1 = document.getElementById("j1");
   j1.addEventListener("click", () => {
     hiceClickJ1 = true;
@@ -59,6 +60,9 @@ window.onload = function (event) {
     obtenerEscenario();
   });
   
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////// FUNCION PARA LA SELECCION DE ESCENARIO ////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   function obtenerEscenario(){
     if(j1 == 1 &&  hiceClickJ1 == true){
       hiceClickJ2 = false;
@@ -154,18 +158,19 @@ window.onload = function (event) {
   /////////////////////////////////////////////// INICIO EL JUEGO  ////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   function start() {
+    //seteamolos los valores en cero
+    menu.style.display = "none";
     scoreMtrs = 0;
     puntos = 0;
     puntaje.innerHTML = "Monedas: 0";
     distance();
-    menu.style.display = "none";
     /*Inicio los Objetos*/
     avatar.init();
     cuervo.init();
     moneda.init();
     pinche.init();
     loop = true;
-    requestAnimationFrame(gameLoop);
+    requestAnimationFrame(gameLoop);//llama a la actualización cuando el navegador este listo para dibujar nuevamente
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -174,7 +179,8 @@ window.onload = function (event) {
 
   function gameOver() {
     scoreMtrs = 0;
-    clearInterval(distanceMtrs);
+    clearInterval(distanceMtrs);//detenemos el tiempo
+    //detenemos los sprites
     cuervo.stop();
     pinche.stop();
     moneda.stop();

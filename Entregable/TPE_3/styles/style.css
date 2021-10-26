@@ -127,12 +127,13 @@ body {
 #cuervo {
   background-image: url(../images/cuervo.png);
   position: absolute;
-  transform: scaleX(-1);
+  transform: scaleX(-1); /*doy vuelta al cuervo*/
   width: 80px;
   height: 60px;
   bottom: 55px;
   right: -100px;
   background-size: 750px 240px;
+  
 }
 .crowMove {
   animation: crowMove 2.3s steps(9) infinite;
@@ -222,7 +223,7 @@ body {
 }
 
 .capaUno {
- 
+  overflow: hidden;
   background-size: 100%;
   z-index: -1; /*hago que la imagen quede atras del muñeco*/
   animation: parallax 5s linear infinite;
