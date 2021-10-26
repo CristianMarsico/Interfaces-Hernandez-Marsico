@@ -12,9 +12,9 @@ class Moneda extends Personaje {
       }
       
       
-      stop() { 
-        this.div.classList.remove('moneda');//Cuando el avatar pierde quito la clase
-      }
+    stop() { 
+      this.div.classList.remove('moneda');//Cuando el avatar pierde quito la clase
+    }
 
      
   

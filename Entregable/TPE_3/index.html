@@ -18,20 +18,47 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
       <link rel="stylesheet" />
       <link rel="stylesheet" href="./styles/style.css" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
       <title>Ninja Runner</title>
     </head>
 
     <div class="popup" id="menu">
-      <div class="popup-content">
+      <div id="contenidoMenu" class="popup-content">
         <h1>Ninja Runner</h1>
-        <p>Utilizá las flechas para evitar los obstaculos</p>
+        <p>Elegí el escenario</p>
         <div class="escena">
-          <a id="j2" class="buttone">Escenario 1</a>
-          <a id="j1" class="buttone">Escenario 2</a>
+          <div class="row justify-content-around">
+            <!-- <a id="j2"> -->
+              <div id="j2" class="col-sm-4 text-center escenarioEleccion">
+                <img src="images/vistaPreviaEsc1.png" class="img-fluid rounded" >
+                <p>Escenario 1</p>
+              </div>
+            <!-- </a>
+            <a id="j1"> -->
+              <div id="j1" class="col-sm-4 text-center escenarioEleccion">
+                <img src="images/vistaPreviaEsc2.png" class="img-fluid rounded">
+                <p>Escenario 2</p>
+              </div>
+            <!-- </a> -->
+          </div>
         </div>
 
-        <a id="empezar" class="button">Empezar</a>
+        <button id="botonTutorial" class="btn btn-primary">
+          Cómo jugar
+        </button>
+        
+        
+        <div class="mb-2 mt-2">
+          <div class="container mt-5">
+            <a id="empezar" class="button bloqueado">Empezar</a>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div id="divTutorial" class="divTutorial" hidden>
+      <button id="cerrarTutorial" class="btn btn-light float-end m-3"><strong><span style="font-family: sans-serif">X</span></strong></button>
     </div>
 
     <div class="menus">
@@ -54,7 +81,7 @@
                           <div id="avatar"></div>
                           <div id="cuervo"></div>
                           <div id="pinche"></div>
-                          <div id="moneda" class=""></div>
+                          <div id="moneda"></div>
 
                           <div id="puntaje"></div>
                           <div id="scoreContainer">

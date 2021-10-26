@@ -58,10 +58,10 @@ class Avatar extends Personaje {
   
           //element.position.left + 55; 
   
-      if (this.position.left  < element.position.left + element.width  &&
-        this.position.left + this.width > element.position.left &&
-        this.position.top < element.position.top + element.height &&
-        this.position.top + this.height > element.position.top) {
+      if (this.position.left+25 < element.position.left + element.width  &&
+        this.position.left-25 + this.width > element.position.left &&
+        this.position.top+25 < element.position.top + element.height &&
+        this.position.top-25 + this.height > element.position.top) {
         return true;
       }
       return false;
@@ -75,6 +75,10 @@ class Avatar extends Personaje {
       this.div.classList.remove('run');
       this.div.classList.remove('die');
    
+    }
+
+    isAlive() {
+      return !(this.div.classList.contains('die'));
     }
 
     die() {

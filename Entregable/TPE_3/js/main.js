@@ -26,13 +26,10 @@ window.onload = function (event) {
   /*Obtengo el boton de empezar*/
   const menu = document.getElementById("menu");
   const empezarButton = document.getElementById("empezar");
-  empezarButton.onclick = function () {
-    start();
-  };
-
-  let hiceClickJ1 = false;
-  let hiceClickJ2 = false;
-
+  
+  var hiceClickJ1 = false;
+  var hiceClickJ2 = false;
+  
   const buttonPlayStop = document.getElementById("buttonPlayStop"); //btm play-pausa
   buttonPlayStop.addEventListener("click", () => {
     /**Hago el control del boton que clase contiene */
@@ -44,21 +41,55 @@ window.onload = function (event) {
     buttonPlayStop.classList.toggle("play");
   });
 
-  
-  let j1 = document.getElementById("j1");
+  // Obtengo los botones de escenarios
+  var j1 = document.getElementById("j1");
   j1.addEventListener("click", () => {
+    desbloquearBotonEmpezar();
     hiceClickJ1 = true;
     hiceClickJ2 = false
     j1 = 1;
+    document.getElementById("j1").classList.add("seleccionado");
+    document.getElementById("j2").classList.remove("seleccionado");
     obtenerEscenario();
   });
-  let j2 = document.getElementById("j2");
+  var j2 = document.getElementById("j2");
+
   j2.addEventListener("click", () => {
+    desbloquearBotonEmpezar();
     hiceClickJ1 = false;
     hiceClickJ2 = true
     j2 = 2;
+    document.getElementById("j2").classList.add("seleccionado");
+    document.getElementById("j1").classList.remove("seleccionado");
     obtenerEscenario();
   });
+
+  // Desbloquea el botón de empezar a jugar cuando se haya elegido una escena
+  function desbloquearBotonEmpezar() {
+    empezarButton.classList.add("button");
+    empezarButton.classList.remove("bloqueado");
+  }
+
+  // Tutorial
+  let botonComoJugar = document.querySelector('#botonTutorial');
+  let divTutorial = document.querySelector('#divTutorial');
+  let btnCerrarTutorial = document.querySelector('#cerrarTutorial');
+  botonComoJugar.addEventListener("click", () => {
+    divTutorial.removeAttribute('hidden');
+    document.querySelector('#contenidoMenu').setAttribute('hidden', 'true');  
+  });
+  btnCerrarTutorial.addEventListener("click", () => {
+    divTutorial.setAttribute('hidden', 'true');
+    document.querySelector('#contenidoMenu').removeAttribute('hidden');
+  });
+  
+
+  empezarButton.onclick = function () {
+    // Sólo comenzar si ya se hizo clic en alguna escena
+    if(hiceClickJ1 || hiceClickJ2) {
+      start();
+    }
+  };
   
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////// FUNCION PARA LA SELECCION DE ESCENARIO ////////////////////////////////
@@ -96,36 +127,40 @@ window.onload = function (event) {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   function pushKey(event) {
+
     event.preventDefault();
 
     console.log(event.keyCode);
-    /*si preciono la tecla y la tecla es el 38(flecha arriba) el muñeco salta */
-    if (event.type == "keydown" && event.keyCode == 38) {
-      avatar.jump();
-    }
 
-    /*si preciono la tecla y la tecla es 37(flecha izq) o es la 39(fecla derecha)
-     el muñeco va hacia atras o adelante*/
-    if (
-      (event.type == "keydown" && event.keyCode == 37) ||
-      event.keyCode == 39
-    ) {
-      avatar.move(event.keyCode);
-    }
-    /*tecla P*/
-    if (
-      (event.type == "keydown" && event.keyCode == 80) ||
-      event.keyCode == 80
-    ) {
-      pauseGame();
-    }
+    if(avatar.isAlive() && loop == true) {
+      /*si preciono la tecla y la tecla es el 38(flecha arriba) el muñeco salta */
+      if (event.type == "keydown" && event.keyCode == 38) {
+        avatar.jump();
+      }
 
-    /*tecla ENTER*/
-    if (
-      (event.type == "keydown" && event.keyCode == 13) ||
-      event.keyCode == 13
-    ) {
-      resumeGame();
+      /*si preciono la tecla y la tecla es 37(flecha izq) o es la 39(fecla derecha)
+      el muñeco va hacia atras o adelante*/
+      if (
+        (event.type == "keydown" && event.keyCode == 37) ||
+        event.keyCode == 39
+      ) {
+        avatar.move(event.keyCode);
+      }
+      /*tecla P*/
+      if (
+        (event.type == "keydown" && event.keyCode == 80) ||
+        event.keyCode == 80
+      ) {
+        pauseGame();
+      }
+
+      /*tecla ENTER*/
+      if (
+        (event.type == "keydown" && event.keyCode == 13) ||
+        event.keyCode == 13
+      ) {
+        resumeGame();
+      }
     }
   }
 
@@ -136,7 +171,9 @@ window.onload = function (event) {
   /*Controlo la pos de avatar con la de los obtaculos 
   Es un buble constante*/
   function gameLoop() {
+    
     moneda.init();
+    
     if (avatar.checkCollision(moneda)) {
       //El avatar se encarga de saber si choca con alguna moneda
       moneda.stop();

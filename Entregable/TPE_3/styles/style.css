@@ -1,7 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  background: rgb(55, 50, 65);
+  background: rgb(55, 50, 65) !important;
+  font-family: serif !important;
 }
 
 
@@ -324,7 +325,7 @@ body {
 }
 .popup-content {
   position: relative;
-  width: 600px;
+  width: 60%;
   height: 500px;
   margin: 100px auto;
   border: 3px solid white;
@@ -332,10 +333,9 @@ body {
   text-align: center;
   color: white;
 }
-.popup-content p,
-h4 {
+.popup-content p,h4 {
   font-size: 18px;
-  margin-bottom: 50%;
+  margin-bottom: 2em;
   font-family: sans-serif;
 }
 .button {
@@ -344,13 +344,10 @@ h4 {
   color: white;
   border-radius: 10px;
 }
-
-.buttone {
-  border: 3px solid white;
-  padding: 10px;
-  color: white;
-  border-radius: 10px;
- 
+.bloqueado {
+  color: gray !important;
+  background-color:#333;
+  background-blend-mode: overlay;
 }
  
 
@@ -408,3 +405,39 @@ h4 {
 
 }
 
+.escenarioEleccion {
+  padding-top: 25px;
+  background: rgba(255, 201, 52, 0.05);
+  border-radius: 25px;
+}
+
+.escenarioEleccion:hover {
+  background: rgba(255, 201, 52, 0.75);  
+}
+
+.escenarioEleccion:active {
+  background: rgba(255, 223, 127, 0.75);  
+}
+
+.seleccionado {
+  background: rgba(255, 191, 127, 0.37) !important;  
+}
+
+.divTutorial {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 996px;
+  height: 560px;
+  background-color: rgba(0,0,0,0.95);
+  background-image: url('../images/tutorial.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
