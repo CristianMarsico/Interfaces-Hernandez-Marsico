@@ -130,7 +130,7 @@ window.onload = function (event) {
 
     event.preventDefault();
 
-    console.log(event.keyCode);
+    //console.log(event.keyCode);
 
     if(avatar.isAlive() && loop == true) {
       /*si preciono la tecla y la tecla es el 38(flecha arriba) el muñeco salta */
@@ -195,7 +195,7 @@ window.onload = function (event) {
   /////////////////////////////////////////////// INICIO EL JUEGO  ////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   function start() {
-    //seteamolos los valores en cero
+    //seteamos los los valores en cero
     menu.style.display = "none";
     scoreMtrs = 0;
     puntos = 0;
@@ -207,6 +207,9 @@ window.onload = function (event) {
     moneda.init();
     pinche.init();
     loop = true;
+
+    /*Cuando dibuje ejecuta ésta función
+     Se encarga el browser*/
     requestAnimationFrame(gameLoop);//llama a la actualización cuando el navegador este listo para dibujar nuevamente
   }
 
@@ -217,7 +220,7 @@ window.onload = function (event) {
   function gameOver() {
     scoreMtrs = 0;
     clearInterval(distanceMtrs);//detenemos el tiempo
-    //detenemos los sprites
+    //detenemos los objetos
     cuervo.stop();
     pinche.stop();
     moneda.stop();
@@ -231,7 +234,7 @@ window.onload = function (event) {
   /////////////////////////////////////////////// FUNCIONES PLAY-PAUSA ////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  function resumeGame() {
+  function resumeGame() {  
     avatar.playAnimation();
     cuervo.playAnimation();
     moneda.playAnimation();
@@ -251,7 +254,7 @@ window.onload = function (event) {
     document.getElementById("capadosdos").style.animationPlayState = "running";
   }
 
-  function pauseGame() {
+  function pauseGame() { //detenemos las animaciones 
     avatar.stopAnimation();
     cuervo.stopAnimation();
     moneda.stopAnimation();

@@ -300,6 +300,11 @@ body {
   animation: parallax 10s linear infinite;
 }
 
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////// PARALLAX  ///////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*Separamos las escenas en capas*/
 @keyframes parallax {
   100% {
     background-position-x: -1024px;
@@ -326,7 +331,7 @@ body {
 .popup-content {
   position: relative;
   width: 60%;
-  height: 500px;
+  height: auto;
   margin: 100px auto;
   border: 3px solid white;
   font-size: 24px;
@@ -343,6 +348,7 @@ body {
   padding: 10px;
   color: white;
   border-radius: 10px;
+  text-decoration: none;
 }
 .bloqueado {
   color: gray !important;
@@ -440,4 +446,21 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.btnTutorial{
+  border: 3px solid white;
+  background: transparent;
+  padding: 5px;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  margin-top: 15px;
+ 
+}
+
+.btnTutorial:hover {
+  border-color: transparent transparent transparent transparent;
+transition: 500ms all ease;
+background-color: blue;
 }
