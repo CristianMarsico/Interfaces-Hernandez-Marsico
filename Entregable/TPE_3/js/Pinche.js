@@ -17,11 +17,13 @@ class Pinche extends Personaje {
 
     drop() {
       const self = this;
+      // this.div.style.opacity = "100%";
       const timer = setInterval(function() {
         const randomLeft = Math.floor(Math.random() * (600 - 50 + 1) + 50);
         pinche.style.left = randomLeft + 'px';
         if (!self.dropping) clearInterval(timer);
-      }, 10000);
+      }, 15000);
+      // this.div.style.opacity = "0%";
     }
     
     stop() {
