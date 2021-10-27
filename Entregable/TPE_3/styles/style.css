@@ -5,8 +5,6 @@ body {
   font-family: serif !important;
 }
 
-
-
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////// PRINCIPAL AVATAR ////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -16,8 +14,7 @@ body {
   position: absolute;
   z-index: 1;
   width: 93px;
-  height: 140px; /*es la altura del muñeco*/
-  
+  height: 140px; /*es la altura del muñeco*/ 
 }
 
 /*animacion de correr*/
@@ -40,36 +37,36 @@ body {
 
 /*Animacion de salto*/
 .jump {
-  
-    background-size: 953px 143px !important; 
-    background: url(../images/jump_ninja.png)left center no-repeat ;
-    animation: jump 1.2s steps(10) forwards;
-   
+  background-size: 953px 143px !important; 
+  background: url(../images/jump_ninja.png)left center no-repeat ;
+  animation: jump 1.2s steps(10) forwards;
 }
 
 @keyframes jump {
-    /* El tamaño total de ancho del sprite. Es negativo para que no "camine" hacia atrás */
-    0% {
-      bottom: 0%;
-    }
-    25% {
-      bottom: 25%;
-    }
-    
-    50% {
-      bottom:50%;    
-    }
-    
-   75% {
-      bottom: 25%;  
-    }
+
+  /* El tamaño total de ancho del sprite. Es negativo para que no "camine" hacia atrás */
+  0% {
+    bottom: 0%;
+  }
+  25% {
+    bottom: 25%;
+  }
   
-    100% {
-      bottom: 0%;
-      background-position: -953px;
-    }
+  50% {
+    bottom:50%;    
+  }
+  
+  75% {
+    bottom: 25%;  
+  }
+
+  100% {
+    bottom: 0%;
+    background-position: -953px;
+  }
   
 }
+
 /*Animacion de explotar*/
 .die {
   background-size: 1152px 92px !important;
@@ -89,12 +86,10 @@ body {
   }
 }
 
-
-
-
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////// OBSTACULOS //////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
 #pinche {
   position: absolute;
   bottom: 600px;
@@ -329,10 +324,14 @@ body {
   display: block;
 }
 .popup-content {
-  position: relative;
+  position: fixed;
   width: 60%;
-  height: auto;
-  margin: 100px auto;
+  height: 87%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto auto; 
   border: 3px solid white;
   font-size: 24px;
   text-align: center;
@@ -340,16 +339,23 @@ body {
 }
 .popup-content p,h4 {
   font-size: 18px;
-  margin-bottom: 2em;
   font-family: sans-serif;
 }
-.button {
-  border: 3px solid white;
+.botonEmpezar {
+  border: 3px solid rgba(255,255,255,1);
   padding: 10px;
   color: white;
   border-radius: 10px;
   text-decoration: none;
+  background: none;
 }
+
+.botonEmpezar:not(.bloqueado):hover {
+  transition: 500ms all ease;
+  background-color: blue;
+  border-color: transparent;
+}
+
 .bloqueado {
   color: gray !important;
   background-color:#333;
@@ -389,10 +395,18 @@ body {
 
 .button2 {
   border: 0px;
-  background: transparent;
   box-sizing: border-box;
+  background: transparent;
   width: 0px;
   height: 32px;
+  z-index: 9;
+  position: absolute;
+  top: 10;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: visible;
   border-color: transparent transparent transparent white;
   transition: 1000ms all ease;
   cursor: pointer;
@@ -412,9 +426,9 @@ body {
 }
 
 .escenarioEleccion {
-  padding-top: 25px;
+  padding-top: 12px;
   background: rgba(255, 201, 52, 0.05);
-  border-radius: 25px;
+  border-radius: 12px;
 }
 
 .escenarioEleccion:hover {
@@ -445,7 +459,7 @@ body {
   background-image: url('../images/tutorial.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 .btnTutorial{
@@ -461,6 +475,6 @@ body {
 
 .btnTutorial:hover {
   border-color: transparent transparent transparent transparent;
-transition: 500ms all ease;
-background-color: blue;
+  transition: 500ms all ease;
+  background-color: blue;
 }

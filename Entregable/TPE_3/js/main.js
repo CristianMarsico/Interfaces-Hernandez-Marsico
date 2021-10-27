@@ -197,6 +197,7 @@ window.onload = function (event) {
   function start() {
     //seteamos los los valores en cero
     menu.style.display = "none";
+    document.querySelector('#buttonPlayStop').removeAttribute("hidden");
     scoreMtrs = 0;
     puntos = 0;
     puntaje.innerHTML = "Monedas: 0";
@@ -220,6 +221,7 @@ window.onload = function (event) {
   function gameOver() {
     scoreMtrs = 0;
     clearInterval(distanceMtrs);//detenemos el tiempo
+    document.querySelector('#buttonPlayStop').setAttribute("hidden", "true");
     //detenemos los objetos
     cuervo.stop();
     pinche.stop();
