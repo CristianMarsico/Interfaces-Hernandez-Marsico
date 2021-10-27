@@ -11,8 +11,11 @@ window.onload = function (event) {
   let recorrido = document.getElementById("score"); //puntaje
 
   recorrido.innerText = "Recorrido ";
-  puntaje.innerHTML = "Monedas: 0";
+  puntaje.innerHTML = "Monedas: 00";
   let loop = false;
+
+  let cantidadNecesariaMonedas = 10;
+  document.querySelector('#cantidadNecesariaMonedas').innerHTML = cantidadNecesariaMonedas;
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////// INSTANCIO LOS OBJETOS ///////////////////////////////////////
@@ -178,14 +181,26 @@ window.onload = function (event) {
       //El avatar se encarga de saber si choca con alguna moneda
       moneda.stop();
       puntos++;
-      puntaje.innerHTML = "Monedas: 0" + puntos;
+      if(puntos < 10) {
+        puntaje.innerHTML = "Monedas: 0" + puntos;
+      }
+      else {
+        puntaje.innerHTML = "Monedas: " + puntos;
+      }
     }
     //El avatar se encarga de saber si choca o colisiona con algun obstaculo
+
+    if (puntos >= cantidadNecesariaMonedas) {
+      loop = false;
+      winGame();
+    }
+
     if (avatar.checkCollision(cuervo) || avatar.checkCollision(pinche)) {
       loop = false;
       avatar.die();
       gameOver();
     }
+
     if (loop) {
       requestAnimationFrame(gameLoop);
     }
@@ -200,7 +215,7 @@ window.onload = function (event) {
     document.querySelector('#buttonPlayStop').removeAttribute("hidden");
     scoreMtrs = 0;
     puntos = 0;
-    puntaje.innerHTML = "Monedas: 0";
+    puntaje.innerHTML = "Monedas: 00";
     distance();
     /*Inicio los Objetos*/
     avatar.init();
@@ -218,18 +233,38 @@ window.onload = function (event) {
   /////////////////////////////////////////////// TERMINA EL JUEGO ////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  function winGame() {
+    stopObjects();
+    setTimeout(() => {
+      divGanador.removeAttribute("hidden");
+      document.querySelector('#monedasGanador').innerHTML = puntos;
+      document.querySelector('#metrosGanador').innerHTML = scoreMtrs;
+      document.querySelector('#empezarGanador').innerHTML = "Jugar de Nuevo";
+      document.querySelector('#empezarGanador').addEventListener("click", function () {
+        divGanador.setAttribute("hidden", "true");
+        menu.style.display = "block";
+        document.querySelector('#empezar').innerHTML = "Empezar";
+      });
+    }, 300);
+  }
+  
   function gameOver() {
     scoreMtrs = 0;
-    clearInterval(distanceMtrs);//detenemos el tiempo
-    document.querySelector('#buttonPlayStop').setAttribute("hidden", "true");
-    //detenemos los objetos
-    cuervo.stop();
-    pinche.stop();
-    moneda.stop();
+    stopObjects();
     setTimeout(() => {
       avatar.stop();
       menu.style.display = "block";
+      document.querySelector('#empezar').innerHTML = "Jugar de Nuevo";
     }, 1200);
+  }
+
+  function stopObjects() {
+    clearInterval(distanceMtrs);//detenemos el tiempo
+    //detenemos los objetos
+    document.querySelector('#buttonPlayStop').setAttribute("hidden", "true");
+    cuervo.stop();
+    pinche.stop();
+    moneda.stop();
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////

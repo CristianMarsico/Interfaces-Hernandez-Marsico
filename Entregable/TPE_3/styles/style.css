@@ -129,7 +129,7 @@ body {
   bottom: 55px;
   right: -100px;
   background-size: 750px 240px;
-  
+  filter:drop-shadow(1px 1px 2px rgba(255,255,255,0.5));
 }
 .crowMove {
   animation: crowMove 2.3s steps(9) infinite;
@@ -209,9 +209,12 @@ body {
 
 /*layer es el de los arboles*/
 .contenedorBackground {
-  position: relative;
-  margin: 0 auto; /*queda centrado*/
-  margin-top: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto auto; /*queda centrado*/
 
   /*ancho y alto de la imagen de los arboles*/
   width: 1024px;
@@ -477,4 +480,46 @@ body {
   border-color: transparent transparent transparent transparent;
   transition: 500ms all ease;
   background-color: blue;
+}
+
+.divGanador {
+  position: absolute;
+  width: 60%;
+  height: 87%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  padding: 5%;
+  line-height: 1.5em;
+  text-align: center;
+  text-shadow: 2px 2px 4px;
+  background-color: rgba(0,0,0,0.5);
+  border: solid 3px white;
+}
+
+.divGanador h1 {
+  color: red;
+}
+.divGanador h4 {
+  color: white;
+}
+
+.divGanador h2 {
+  background: yellow;
+  text-shadow: 1px 1px 2px;
+  width: fit-content;
+  min-width: 1em;
+  margin: 0 auto;
+  border-radius: 12px;
+  color: black;
+}
+
+.divGanador button {
+  font-size: larger;
 }

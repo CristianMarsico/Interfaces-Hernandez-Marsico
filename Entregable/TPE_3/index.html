@@ -26,31 +26,32 @@
     <div class="popup" id="menu">
       <div id="contenidoMenu" class="popup-content">
         <h1>Ninja Runner</h1>
-        <p>Elegí el escenario</p>
+        <p>Elegí el escenario<br>
+        ¡Juntá <span id="cantidadNecesariaMonedas"></span> monedas para ganar!</p>
         <div class="escena">
           <div class="row justify-content-around">
             <!-- <a id="j2"> -->
               <div id="j2" class="col-sm-4 text-center escenarioEleccion">
-                <img src="images/vistaPreviaEsc1.png" class="img-fluid rounded" width="200px" height="auto" >
+                <img src="images/vistaPreviaEsc1.png" class="img-fluid rounded" width="90%" height="auto" >
                 <p>Escenario 1</p>
               </div>
             <!-- </a>
             <a id="j1"> -->
               <div id="j1" class="col-sm-4 text-center escenarioEleccion">
-                <img src="images/vistaPreviaEsc2.png" class="img-fluid rounded" width="200px" height="auto">
+                <img src="images/vistaPreviaEsc2.png" class="img-fluid rounded" width="90%" height="auto">
                 <p>Escenario 2</p>
               </div>
             <!-- </a> -->
           </div>
         </div>
 
-        <button id="botonTutorial"  class="btnTutorial">
-          Cómo jugar
+        <button id="botonTutorial"  class="btnTutorial p-2">
+          Cómo Jugar
         </button>
 
-        <div class="mb-3 mt-4">
+        <div class="mb-3 mt-3">
           <div class="container">
-            <button id="empezar" class="botonEmpezar bloqueado">Empezar</button>
+            <button id="empezar" class="botonEmpezar bloqueado p-2">Empezar</button>
           </div>
         </div>
       </div>
@@ -94,6 +95,17 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="divGanador" class="divGanador" hidden>
+      <h1>JUNTASTE <span id="monedasGanador"></span> MONEDAS! GANASTE EL JUEGO!</h1>
+      <h4>Metros recorridos:</h4>
+      <h2 id="metrosGanador"></h2>
+      <div class="mb-3 mt-4">
+        <div class="container">
+          <button id="empezarGanador" class="botonEmpezar p-2"></button>
         </div>
       </div>
     </div>
