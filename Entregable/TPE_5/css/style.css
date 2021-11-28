@@ -1,0 +1,74 @@
+@import url('http://fonts.cdnfonts.com/css/roboto');
+
+:root {
+  --blanco: #f7f7f7;
+  --gris-claro: #dbdbdb;
+  --gris: #999;
+  --gris-oscuro: #555;
+  --negro: #070707;
+
+  --violeta: #c877ef;
+  --rojo-claro: #ed4756;
+  --rojo-fuerte: #ee2727;
+  --azul: #3898F3;
+  --azul-marino: #306197;
+}
+
+body {
+  font-family: 'Roboto', 'Arial', 'Helvetica', sans-serif !important;
+  background: var(--gris-claro) !important;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  background: var(--blanco);
+}
+
+/* ===== NAVBAR ===== */
+
+.portal-navbar {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.portal-navbar.logo {
+  margin: 0 1ch;
+}
+
+.portal-navbar.iconos.icono {
+  height: 50%;
+  width: auto;
+  margin: 0 2ch;
+}
+
+.portal-barra-busqueda {
+  border-radius: 10px;
+  background: rgba(0,0,0,0.05);
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.portal-barra-busqueda input {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.portal-barra-busqueda input:active {
+  border: none;
+  outline: none;
+}
+
+/* ===== GLOBAL ===== */
+
+.contenedor {
+  padding: 3ch;
+}
+
+.texto-publicacion {
+  font-size: 0.95rem;
+  color: var(--negro);
+}
