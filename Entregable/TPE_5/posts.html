@@ -17,7 +17,26 @@
             <img src="img/iconos/logo_dr_hibbert_pata.svg" alt="logo_dr_hibbert">
             <div class="cont-input">
                 <span><img src="img/iconos/buscar.svg" alt="buscar" class="lupa"></span>
-                <input type="text" placeholder="Buscar">
+                <input type="text" placeholder="Buscar" id="input_buscar">
+            </div>
+            <div class="busqueda-avanzada" id="busqueda_avanzada" hidden>
+                <div class="busqueda-avanzada-row">
+                    <input type="text" placeholder="Nombre">
+                    <select name="profesion" id="profesion">
+                        <option disabled selected>Profesión</option>
+                        <option value="duenio">Dueño</option>
+                        <option value="veterinario">Veterinario</option>
+                        <option value="entusiasta">Entusiasta</option>
+                    </select>
+                    <input type="text" placeholder="Ubicación">
+                    <input type="text" placeholder="Universidad o institución">
+                    <div>
+                        <a href="busqueda.html" style="display: flex; flex-direction: row; align-items: center;">
+                            <span><img src="img/iconos/buscar.svg" alt="buscar" class="lupa"></span>
+                            <p>Buscar</p>
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="iconos">
                 <img src="img/iconos/home.svg" alt="home">
@@ -143,6 +162,67 @@
                         <span id="post_2_puntuacion" class="puntuacion" megusta="false" nomegusta="false"></span>
                         <a href="#" id="post_2_nomegusta_boton">
                             <img src="img/iconos/patita_dislike.svg" alt="" id="post_2_nomegusta_img">
+                        </a>
+                    </div>
+                    <div><img src="img/iconos/comentar.svg" alt="">&nbsp;&nbsp;120</div>
+                    <div><img src="img/iconos/compartir.svg" alt="">&nbsp;&nbsp;120</div>
+                </div>
+
+                <div class="post-profile-icon">
+                    <img src="img/profile-pic.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="post-container">
+            <div class="post-row">
+                <div class="user-profile">
+                    <img src="img/member-4.jfif" alt="">
+                    <div>
+                        <p class="post-username">Dominga Benito</p>
+                        <span class="post-timestamp">Diciembre 7 2021, 17.30 pm</span>
+                    </div>
+                </div>
+                <!--ICONO DE MORE DE PUBLICACIONES-->
+                <div class="contenedor-menu-more">
+                    <a class="boton" id="boton-menu-more-3" href="#">
+                        <img src="img/iconos/more.svg" alt="">
+                    </a>
+                    <div class="post-menu-more invisible" id="menu-more-3">
+                        <ul>
+                            <li>Guardar</li>
+                            <li>Enviar mensaje a Dominga</li>
+                            <li>Denunciar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="post-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, consequatur?</p>
+            <div class="img-gallery">
+                <div class="img1">
+                    <img src="img/feed-image-1.png" class="post-img">
+                </div>
+                <div class="img2">
+                    <img src="img/feed-image-1.png" class="post-img">
+                </div>
+                <div class="img3">
+                    <img src="img/feed-image-1.png" class="post-img">
+                </div>
+                <div class="img4">
+                    <img src="img/feed-image-1.png" class="post-img">
+                </div>
+            </div>
+            
+            <div class="post-row">
+                <div class="activity-icons">
+                    <div>
+                        <a href="#" id="post_3_megusta_boton">
+                            <img src="img/iconos/patita_like.svg" alt="" id="post_3_megusta_img">
+                        </a>
+                        <span id="post_3_puntuacion" class="puntuacion" megusta="false" nomegusta="false"></span>
+                        <a href="#" id="post_3_nomegusta_boton">
+                            <img src="img/iconos/patita_dislike.svg" alt="" id="post_3_nomegusta_img">
                         </a>
                     </div>
                     <div><img src="img/iconos/comentar.svg" alt="">&nbsp;&nbsp;120</div>
