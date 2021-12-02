@@ -67,6 +67,18 @@ nav{
     Left: 12px;
 }
 
+nav *.iconos img {
+    filter: saturate(0) brightness(112%);
+}
+
+nav *.iconos img:not(.small-logo):hover {
+    filter: saturate(1.75) brightness(87%);
+}
+
+nav *.iconos img.small-logo:hover {
+    filter: saturate(1) brightness(100%);
+}
+
 .iconos {
     display: flex;
     flex-direction: row;
@@ -304,6 +316,11 @@ nav{
 .add-post-links a img{
     width: 20px;
     margin-right: 10px;
+    filter: saturate(0) brightness(125%);
+}
+
+.add-post-links a img:hover{
+    filter: saturate(1.75) brightness(87%);
 }
 
 .add-post-links a svg:hover{
@@ -323,10 +340,23 @@ nav{
     margin: 20px 0;
 }
 
-.post-container span{
-    font-size: 13px;
-    color: #9a9a9a;
-    z-index: -1;
+.post-username {
+    font-size: 12pt;
+    line-height: 1.5em;
+}
+
+.post-timestamp {
+    font-size: 10pt;
+    color: #999;
+}
+
+.puntuacion {
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 1ch;
+    color: #C877EF;
+    filter: brightness(87%);
+    font-weight: 999;
 }
 
 .post-row a img{
@@ -389,14 +419,34 @@ nav{
 }
 
 .activity-icons div img{
-    width: 18px;
-    margin-right: 10px;
+    height: 100%;
+    width: auto;
+    margin: auto 0;
+}
+
+.activity-icons div a {
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.activity-icons div a img {
+    display: flex;
+    flex-direction: column;
 }
 
 .activity-icons div{
     display: inline-flex;
     align-items: center;
     margin-right: 30px;
+}
+
+.activity-icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 24px;
 }
 
 .post-profile-icon{
