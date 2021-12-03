@@ -19,159 +19,11 @@
     --azul-marino: #306197;
 }
 
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto',sans-serif;
-    box-sizing: border-box;
-
-}
-
 body{
-    font-family: 'Roboto', 'Arial', 'Helvetica', sans-serif;
     background: #efefef;
     min-width: 1024px;
     max-width: 1400px;
 }
-
-
-/*
-----------------------------------------------------NAV
-*/
-
-nav{
-    min-width: 1024px;
-    max-width: 1400px;
-    width: 100%;
-    z-index: 10;
-    border-bottom: solid #dbdbdb 1px;
-    background: #fff;
-    position: sticky; 
-    top: 0;
-}
-.nav-cont{
-    
-    width: 82%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-}
-.cont-input{
-    position: relative;
-    height: 28px;
-    width: 328px;
-    border: solid 1px #dbdbdb;
-    display: flex;
-    align-items: center;
-    background: #fafafa;
-    padding: 5px;
-    border-radius: 10px;
-    overflow: visible;
-}
-.cont-input input{
-    border: 0;
-    outline: none;
-    padding-left: 1ch;
-    background: #fafafa;
-}
-
-.count-input input:focus {
-    width: 800px !important;
-}
-
-.cont-input .lupa{
-    height:20px; 
-    width:20px;
-    Left: 12px;
-}
-
-.busqueda-avanzada {
-    width: 60% !important;
-    position: absolute;
-    top: 3em;
-    background: rgba(127,127,127,0.12);
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.busqueda-avanzada-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.busqueda-avanzada-row * {
-    display: flex;
-    flex-direction: column;
-}
-
-.busqueda-avanzada input, select {
-    background: #fafafa;
-    border: var(--gris) 1px solid;
-    border-radius: 2px;
-}
-
-.busqueda-avanzada input {
-    padding: 0 1ch;
-}
-
-.busqueda-avanzada select {
-    text-align: center;
-}
-
-.busqueda-avanzada a {
-    text-decoration: none;
-    color: var(--violeta);
-}
-
-nav *.iconos img {
-    filter: saturate(0) brightness(112%);
-}
-
-nav *.iconos img:not(.small-logo):hover {
-    filter: saturate(1.75) brightness(87%);
-}
-
-nav *.iconos img.small-logo:hover {
-    filter: saturate(1) brightness(100%);
-}
-
-.iconos {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.iconos *  {
-    display: flex;
-    flex-direction: column;
-}
-
-.iconos img{
-    margin-left: 20px;
-    cursor: pointer;
-    fill:#262626;
-    height:22px; 
-    width:auto;
-}
-.iconos .small-logo{
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-
-
-
-
-
-
-
-
-
 
 /*-------------------------------------------------IZQUIERDA----------------------------------------------*/
 
@@ -196,7 +48,7 @@ nav *.iconos img.small-logo:hover {
 }
 
 .main-content{
-     flex-basis:75%;
+     flex-basis:65.5%;
      padding-right: 2%;
 }
 
@@ -468,41 +320,6 @@ nav *.iconos img.small-logo:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.contenedor-menu-more {
-    position: relative;
-}
-
-.post-menu-more ul {
-    position: absolute;
-    width:max-content;
-    z-index: 1;
-    top: 10;
-    padding: 1rem;
-    right: -224px;
-    background: #f7f7f7;
-    border-radius: 10px;
-    list-style: none;
-}
-
-.post-menu-more ul > li {
-    line-height: 2em;
-}
-
-.contenedor-menu-more a {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    z-index: 9;
-}
-
-.invisible {
-    z-index: -1;
-    display: none;
-}
-.visible {
-    z-index: 1;
 }
 
 .activity-icons div img{

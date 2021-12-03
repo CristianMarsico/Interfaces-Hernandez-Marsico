@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/mensajeria/mensajeria.css">
+
+    <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
+</head>
+<body>
+
+    <nav>
+        <div class="nav-cont">
+            <a href="posts.html">
+                <img src="img/iconos/logo_dr_hibbert_pata.svg" alt="logo_dr_hibbert">
+            </a>
+            <div class="cont-input">
+                <span><img src="img/iconos/buscar.svg" alt="buscar" class="lupa"></span>
+                <input type="text" placeholder="Buscar" id="input_buscar">
+            </div>
+            <div class="busqueda-avanzada" id="busqueda_avanzada" hidden>
+                <div class="busqueda-avanzada-row">
+                    <input type="text" placeholder="Nombre">
+                    <select name="profesion" id="profesion">
+                        <option disabled selected>Profesión</option>
+                        <option value="duenio">Dueño</option>
+                        <option value="veterinario">Veterinario</option>
+                        <option value="entusiasta">Entusiasta</option>
+                    </select>
+                    <input type="text" placeholder="Ubicación">
+                    <input type="text" placeholder="Universidad o institución">
+                    <div>
+                        <a href="busqueda.html" style="display: flex; flex-direction: row; align-items: center;">
+                            <span><img src="img/iconos/buscar.svg" alt="buscar" class="lupa"></span>
+                            <p>Buscar</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="iconos">
+                <a href="posts.html"><img src="img/iconos/home.svg" alt="home"></a>
+                <a href="mensajes.html"><img src="img/iconos/msj.svg" alt="mensajes"></a>
+                <img class="small-logo" src="img/iconos/logo-danicodex.jpg" alt="">
+                <img src="img/iconos/salir.svg" alt="salir">
+            </div>
+        </div>
+    </nav>
+
+    <section class="body-chat">
+        <div class="seccion-titulo">
+            <h3>
+               <!--<img src="img/img-mensajeria/msj.svg" alt="" class="msj">-->
+               Chat
+            </h3>
+        </div>
+
+
+         <!------------------------------- LADO IZQUIERDO------------------------------->
+        <div class="seccion-usuarios">
+
+            <div class="seccion-buscar">
+                <div class="input-buscar">
+                    <input type="search" placeholder="Buscar usuario">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+
+
+
+             <!---------------------------------CONTACTOS------------------------------>
+            <div class="seccion-lista-usuarios">
+
+                <!---------------------------------1ER CONTACTO------------------------------>
+                
+                    <div class="usuario">
+                        <div class="avatar">
+                            <img src="img/img-usuarios/member-1.png" alt="img">
+                            <span class="estado-usuario enlinea"></span>
+                        </div>
+                        <div class="cuerpo">
+                            <a href="#" id="boton_chat_usuario" style="text-decoration: none; color: var(--negro);">
+                                <span> Nombre apellido</span>
+                                <span>detalles de mensaje</span>
+                            </a>
+                        </div>
+                        <div style="display: flex; flex-direction: column">
+                            <div style="display: flex; flex-direction: row;  justify-content: center; font-size: 8pt;">
+                                17:45
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content: end;">
+                                <span class="notificacion" id="notificacion_usuario">
+                                    3
+                                </span>
+                            </div>
+                        </div>
+                        <span>
+                            <a class="boton" id="boton-menu-more-1" href="#">
+                                <img src="img/iconos/more.svg" alt="">
+                            </a>
+                        </span>
+                        <div class="contenedor-menu-more">
+                            <div class="post-menu-more invisible" id="menu-more-1">
+                                <ul style="top: -1rem !important; right: -12rem !important;">
+                                    <li>Marcar como no leído</li>
+                                    <li>Llamar</li>
+                                    <li>Eliminar</li>
+                                    <li>Archivar</li>
+                                    <li>Bloquear</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                <!---------------------------------2DO CONTACTO------------------------------>
+                <div class="usuario">
+                    <div class="avatar">
+                        <img src="img/img-usuarios/member-2.png" alt="img">
+                        <span class="estado-usuario enlinea"></span>
+                    </div>
+                    <div class="cuerpo">
+                        <span> Nombre apellido</span>
+                        <span>detalles de mensaje</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column">
+                        <div style="display: flex; flex-direction: row; justify-content: center; font-size: 8pt;">
+                            Ayer
+                        </div>
+                        <div style="display: flex; flex-direction: row; justify-content: end;">
+                            <span class="notificacion" id="notificacion_usuario">
+                                1
+                            </span>
+                        </div>
+                    </div>
+                    <span>
+                        <a class="boton" id="boton-menu-more-2" href="#">
+                            <img src="img/iconos/more.svg" alt="">
+                        </a>
+                    </span>
+                    <div class="contenedor-menu-more">
+                        <div class="post-menu-more invisible" id="menu-more-2">
+                            <ul style="top: -1rem !important; right: -12rem !important;">
+                                <li>Marcar como no leído</li>
+                                <li>Llamar</li>
+                                <li>Eliminar</li>
+                                <li>Archivar</li>
+                                <li>Bloquear</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!---------------------------------3ER CONTACTO------------------------------>
+                <div class="usuario">
+                    <div class="avatar">
+                        <img src="img/img-usuarios/member-9.png" alt="img">
+                        <span class="estado-usuario desconectado"></span>
+                    </div>
+                    <div class="cuerpo">
+                        <span> Nombre apellido</span>
+                        <span>detalles de mensaje</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <div style="display: flex; flex-direction: row; justify-content: center; font-size: 8pt;">
+                            Ayer
+                        </div>
+                        <div style="display: flex; flex-direction: row; justify-content: end;">
+                            <span class="notificacion" id="notificacion_usuario">
+                                1
+                            </span>
+                        </div>
+                    </div>
+                    <span>
+                        <a class="boton" id="boton-menu-more-3" href="#">
+                            <img src="img/iconos/more.svg" alt="">
+                        </a>
+                    </span>
+                    <div class="contenedor-menu-more">
+                        <div class="post-menu-more invisible" id="menu-more-3">
+                            <ul style="top: -1rem !important; right: -12rem !important;">
+                                <li>Marcar como no leído</li>
+                                <li>Llamar</li>
+                                <li>Eliminar</li>
+                                <li>Archivar</li>
+                                <li>Bloquear</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+   <!------------------------------- LADO DERECHO------------------------------->
+        <div class="seccion-chat bienvenida-mensajes" id="bienvenida_mensajes">
+            <h2>Bienvenido, Nombre!</h2>
+            <h3 id="tienes_msj_nuevos">Tienes 5 mensajes nuevos.</h3>
+            <img src="img/img-mensajeria/sobre_violeta_msjnuevos.svg" class="bienvenida-mensajes sobre-msj-nuevos" id="imagen_sobre">
+        </div>
+        <div class="seccion-chat" id="seccion_chat" hidden>
+            <div class="usuario-seleccionado">
+                <div class="avatar">
+                    <img src="img/img-usuarios/member-1.png" alt="img">
+                </div>
+                <div class="cuerpo">
+                    <span>Nombre de usuario</span>
+                    <span>Activo - Escribiendo...</span>
+                </div>
+                <div class="opciones">
+                    <ul>
+                        <li>
+                            <button type="button"><img src="img/img-mensajeria/llamada.svg" alt="llamada" ></button>
+                        </li>
+                        <li>
+                            <button type="button"><img src="img/img-mensajeria/video.svg" alt="video"></button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="panel-chat">
+                <div class="mensaje left">
+                    <div class="cuerpo">
+                        <!-- <img src="http://localhost/multimedia/png/user-foto-3.png" alt=""> -->
+                        <div class="texto">
+                            Hola, como estas ? <br>
+                            Disculpá que te moleste, 
+                            <span class="tiempo">
+                                <i class="far fa-clock"></i>
+                                Hace 6 min
+                            </span>
+                        </div>
+                    <ul class="opciones-msj">
+                            <li>
+                                <button type="button">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button">
+                                    <i class="fas fa-share-square"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="avatar">
+                        <img src="img/img-usuarios/status-1.png" alt="img" >
+                    </div>
+                </div>
+
+
+                <div class="mensaje">
+                    <div class="avatar">
+                        <img src="img/img-usuarios/member-1.png" alt="img" >
+                    </div>
+                    <div class="cuerpo">
+                    
+                        <div class="texto">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Dolor eligendi voluptatum dolore voluptas iure.
+                            <span class="tiempo">
+                                <i class="far fa-clock"></i>
+                                Hace 5 min
+                            </span>
+                        </div>
+                        <ul class="opciones-msj">
+                            <li>
+                                <button type="button">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button">
+                                    <i class="fas fa-share-square"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- derecha -->
+                <div class="mensaje left">
+                    <div class="cuerpo">
+                        <div class="texto">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Dolor eligendi voluptatum dolore voluptas iure.
+                            <span class="tiempo">
+                                <i class="far fa-clock"></i>
+                                Hace 4 min
+                            </span>
+                        </div>
+                        <ul class="opciones-msj">
+                            <li>
+                                <button type="button">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button">
+                                    <i class="fas fa-share-square"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="avatar">
+                        <img src="img/img-usuarios/status-1.png" alt="img">
+                    </div>
+                </div>
+            </div>
+            <div class="panel-escritura">
+                <form class="textarea">
+                    <div class="opcines">
+                        <button type="button">
+                            <img src="img/img-mensajeria/adjunto.svg" alt="">
+                            <label for="file"></label>
+                            <input type="file" id="file">
+                        </button>
+                        <button type="button">
+                            <img src="img/img-mensajeria/image.svg" alt="">
+                            <label for="img"></label>
+                            <input type="file" id="img">
+                        </button>
+                    </div>
+                    <textarea placeholder="Escribir mensaje" id="textarea_mensaje"></textarea>
+                    <button type="button" class="enviar" id="boton_enviar_mensaje">
+                        <img src="img/img-mensajeria/publicar.svg" alt="">
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/mensajes.js"></script>
+   
+</body>
+</html>
