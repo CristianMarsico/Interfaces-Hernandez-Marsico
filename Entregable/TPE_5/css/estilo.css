@@ -57,7 +57,7 @@ nav{
 }
 
 .busqueda-avanzada {
-  width: 60% !important;
+  width: 60% ;
   position: absolute;
   top: 3em;
   background: rgba(127,127,127,0.12);

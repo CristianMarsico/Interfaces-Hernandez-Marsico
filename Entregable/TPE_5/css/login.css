@@ -1,0 +1,421 @@
+/*VARIABLES DE COLORES*/
+:root {
+    --color-body: #EFEFEF;
+    --color-contenedor-form: #fff;
+    --bordes-color-contenedor-form: #dbdbdb;
+
+    /*BOTONES*/
+    --btn-login:#6BCA5A;
+    --btn-login-inactivo:#baf7af;
+    --btn-registrarse: #0095f6;/*boton de "Registrarse"*/
+    --btn-ingresarConOtraCuenta: #385185;
+    
+    /* COLORES DE TEXTOS*/
+    --txt-color: #262626;
+    --txtSecundarios-color: #8e8e8e;
+    --txt-btnIngresar-color: #fff;
+    --txt-olvidastePass: #00376b;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-body);
+    font-family: "Roboto", sans-serif;
+    color: var(--txt-color);
+}
+
+/*CONTENEDOR GENERAL*/
+.container {
+    margin: 30px;
+    display: flex;
+    flex-direction: column;  
+}
+/*-------------------------------------------------------------------------------------------------------
+---------------------------------  CONTENEDOR CELULARES Y FORMULARIO   ----------------------------------
+--------------------------------------------------------------------------------------------------------*/
+.main-content {
+    margin: 30px;
+    display: flex;
+    justify-content: center;/*centramos el contenido*/   
+}
+
+/*  CONTENEDOR DE CELULARES */
+.slide-container {
+    height: 618px;
+    flex-basis: 454px;
+    z-index: -9;
+    position: relative;
+}
+
+
+/*POSICION DE LAS SLIDES O FOTOS DE LOS CELULARES*/
+/*.contenedor-slides {
+    position: relative;
+}
+*/
+/*  SLIDES O IMAGENES */
+.contenedor-slides img {
+    
+    visibility: hidden;
+    margin: 99px 0 0 151px; /*centramos el div en el centro de la pantalla del celular*/
+    transition: all 0.5s ease-in-out;
+}
+
+.contenedor-slides img.active {
+    visibility: visible;
+}
+
+
+ 
+
+/*-------------------------------------------------------------------------------------------------------
+-------------------------------------------   FORMULARIO   ----------------------------------------------
+--------------------------------------------------------------------------------------------------------*/
+.form-container {
+    flex-grow: 1;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.boxForm {
+    background-color: var(--color-contenedor-form);
+    border: 1px solid var(--bordes-color-contenedor-form); /*REVISAR EL COLOR DE BORDES*/
+    border-radius: 3px;
+}
+
+.form-content {
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.form-content .logo {
+   
+    height: 51px;
+    width: 175px;
+    margin: 22px auto ;
+   
+}
+
+.form-content .logo img {
+    max-width: 100%;
+}
+
+.registro {
+    padding-top: 24px;
+    margin-bottom: 10px;
+}
+
+.input-form {
+    margin: 0 40px 6px ;
+}
+
+.input-animado {
+    height: 36px;
+    border: 1px solid var(--bordes-color-contenedor-form);/*REVISAR EL COLOR DE BORDES IMPUTS*/
+    border-radius: 3px;
+    position: relative;
+}
+
+.input-animado span {
+    position: absolute;
+    left: 8px;
+    font-size: 12px;
+    line-height: 36px;
+    color: var(--txtSecundarios-color);/*COLOR DEL TEXTO DEL INPUT*/
+
+    pointer-events: none;/*CASO CONTRARIO NO ME DEJA ESTABLECER PARA ESCRIBIR
+                        SI HAGO CLICK SOBRE LAS PALABRAS DEL INPUT*/
+}
+
+
+/*------------------------------------------------------------------------
+----------------------------TEXTO DE INPUT PEQUEÑO-------------------------
+------------------------------------------------------------------------*/
+/*hacemos que el texto del input se posicione por arriba de lo que 
+escribe el usuario*/
+.input-animado.active span {
+    transform-origin: left;
+    transition: transform 0.1s ease-in-out;
+    transform: scale(0.8) translateY(-10px);
+}
+
+.input-animado input {
+    background-color: var(--color-contenedor-form);
+    width: 100%;
+    height: 100%;
+    border: 0;
+    outline: 0;/*NO SE MARCA DONDE HAGO CLICK*/
+}
+
+
+.input-animado.active input {
+    padding: 14px 0 2px 8px;
+}
+
+
+/*------------------------------------------------------------------------
+--------------------------- BOTON MOSTRAR-OCULTAR ------------------------
+------------------------------------------------------------------------*/
+.input-animado button {
+    color: var(--txt-color);
+    outline: 0; /*SI PRESIONO AFUERA NO ME REMARQUE*/
+    border: 0;
+    font-weight: 600;
+    font-size: 14px;
+    background-color: transparent;
+    position: absolute;
+    right: 8px;
+    transform: translateY(50%);
+    cursor: pointer;
+    display: none;
+}
+
+
+.input-animado.active button {
+    display: inline;
+}
+
+
+/*------------------------------------------------------------------------
+---------------------------- BOTONES INGRESAR ------------------------------
+------------------------------------------------------------------------*/
+.botones-ingresar {
+    padding: 8px 40px;
+}
+
+/*LOGIN SIMPLE*/
+.btn-login {
+    width: 100%;
+    border: 1px solid transparent;
+    outline: 0;
+    background-color: var(--btn-login);
+    color: var(--txt-btnIngresar-color);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 5px 9px;
+    border-radius: 4px;
+}
+
+button:disabled {
+    background-color: var(--btn-login-inactivo);
+}
+
+
+
+
+/*------------------------------------------------------------------------
+-------------------------------- FILETE ----------------------------------
+------------------------------------------------------------------------*/
+/*SACAMOS DE INTERNET COMO HACER EL FILETE*/
+.filete {
+    padding: 10px 40px 18px;
+    display: flex;
+}
+
+.filete div:nth-child(2) {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 15px;
+    margin: 0 18px;
+    color: var(--txtSecundarios-color);
+}
+
+.filete div:nth-child(1),
+.filete div:nth-child(3) {
+    flex-grow: 1;
+    height: 1px;
+    background-color: var(--bordes-color-contenedor-form);
+    position: relative;
+    top: 0.45em;
+}
+
+/*INGRESAR CON OTRA CUENTA*/
+.btn-conOtraCuenta {
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.btn-conOtraCuenta img {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+}
+
+.btn-conOtraCuenta span {
+    color: var(--btn-ingresarConOtraCuenta);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+}
+
+/*OLVIDASTE CONTRASEÑA*/
+.ovidastePass {
+    display: block;
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 12px;
+    text-align: center;
+    color: var(--txt-olvidastePass);
+    text-decoration: none;
+}
+
+
+/*------------------------------------------------------------------------
+-------------------------------- NO TIENES CUENTA ------------------------
+------------------------------------------------------------------------*/
+.registrarse {
+    padding: 10px;
+}
+
+.registrarse p {
+    font-size: 14px;
+    margin: 15px;
+    text-align: center;
+}
+
+.registrarse a {
+    text-decoration: none;
+    color: var(--btn-registrarse);
+    font-size: inherit;
+    line-height: 18px;
+    font-weight: 600;
+}
+
+
+
+
+/*------------------------------------------------------------------------
+-------------------------------- FOOTER ----------------------------------
+------------------------------------------------------------------------*/
+
+.footer {
+    padding-bottom: 52px;
+    padding-top: 24px;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.links a {
+    text-decoration: none;
+    color: var(--txtSecundarios-color);
+    font-size: 13px;
+    line-height: 18px;
+    margin: 0 8px 12px 8px;
+}
+
+.copyright {
+    padding: 12px 0;
+    color: var(--txtSecundarios-color);
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+}
+
+/*-------------------------------------------------------------------------------------------------------
+--------------------------------------------- PARALLAX --------------------------------------------------
+--------------------------------------------------------------------------------------------------------*/
+.contenedorBackground{
+  position: relative;
+  margin: 99px 0 0 151px;
+  width: 240px;
+  height: 428px; 
+ 
+}
+
+.contenedorBackground2{
+    position: relative;
+    margin: 70px 0 0 54px;
+    width: 79px;
+    height: 447px; 
+  }
+
+.capa{
+    position: absolute;
+  
+    background-size: cover;
+    z-index: -9;
+    opacity: 0.9;
+    animation: parallax 65s linear infinite;
+ 
+  }
+  .capa2{
+    position: absolute;
+    background-size: cover;
+    z-index: -1;
+    animation: parallax 45s linear infinite;
+    border: salmon solid 1px;
+    
+  }
+
+  .capa3{
+    position: absolute;
+    background-size: cover;
+    z-index: -1;
+    width: 150px;
+    height: 150px;
+    background-color: salmon ;
+    opacity: 0.5;
+    left: 196px;
+    top: 230px;
+    margin: auto auto;
+    animation: parallax 0s linear infinite;
+  }
+
+  .capad{
+    position: absolute;
+    background-size: cover;
+     z-index: -1;
+    animation: parallax 15s linear infinite;
+  }
+
+@keyframes parallax {
+    100% {
+      background-position-x: -240px;
+     
+    }
+  }
+
+  
+  
+
+/*--------------------------------------------- RESPONSIVE -----------------------------------------------*/
+
+/*A LOS 800PX OCULTO LAS IMAGENES DE LOS CELULARES*/
+@media only screen and (max-width: 838px) {
+    .slide-container {
+        display: none;
+    }
+}
+
+
+/*A LOS 500PX SACO EL MARGIN-TOP Y LOS BORDES A LOS CONTENEDORES*/
+@media only screen and (max-width: 500px) {
+    .main-content {
+        margin-top: 0;
+    }
+
+    .boxForm {
+        border: 0;
+        
+    }
+}

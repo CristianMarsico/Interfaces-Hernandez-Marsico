@@ -18,12 +18,23 @@
     --azul: #3898F3;
     --azul-marino: #306197;
 }
-
-body{
-    background: #efefef;
-    min-width: 1024px;
-    max-width: 1400px;
+* {
+ 
+  padding: 0;
+  font-family: 'Roboto', 'Arial', 'Helvetica', sans-serif;
+    margin: 0;
+    box-sizing: border-box;
 }
+
+body {
+    color: #404040;
+    font-family: "Roboto";
+    background-color: #EAEAEA;
+}
+
+
+
+
 
 /*-------------------------------------------------IZQUIERDA----------------------------------------------*/
 

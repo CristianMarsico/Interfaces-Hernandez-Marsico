@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TPE-5</title>
+    <link rel="shortcut icon" href="./img/images_login/favicon.png" type="image/png">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/load.css">
+</head>
+
+<body>
+
+    <div class="container">
+         <!--USAMOS FLEX-->
+            <div class="main-content">
+
+                <!--IMG DEL CELULAR CON SUS SLIDES-->
+                <div class="slide-container" style="background-image: url(./img/images_login/phone-frame.png);">
+                    <div class="contenedor-slides">
+
+                        <!--PARALLAX-->
+                        <div id="capa" class="contenedorBackground capa">   </div>
+                        <div id="capa2" class="contenedorBackground capa2"></div>
+                        <div id="capa3" class="contenedorBackground capa3"> </div>
+                      
+                        <div id="capad" class="contenedorBackground2 capad"></div>
+                    </div>
+                </div>
+
+                 <!--FORMULARIO-->
+                <div class="form-container">
+                    <div class="form-content boxForm">
+                        <div class="logo">
+                            <img src="./img/images_login/logo.svg" alt="portal_dr">
+                        </div>
+                        <div class="registro" id="registro">
+                            <div class="input-form">
+                                <div class="input-animado">
+                                    <span>
+                                        Celular, usuario o email
+                                    </span>
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <div class="input-form">
+                                <div class="input-animado">
+                                    <span>
+                                        Password
+                                    </span>
+                                    <input type="password">
+                                    <button>Mostrar</button>
+                                </div>
+                            </div>
+                            <div class="botones-ingresar">
+                                <button class="btn-login" id="btn-login" href="perfil.html"  disabled>
+                                    Ingresar
+                                </button>
+                            </div>
+                            <div class="filete">
+                                <div></div>
+                                <div>O</div>
+                                <div></div>
+                            </div>
+                            <div class="botones-ingresar">
+                                <button class="btn-conOtraCuenta">
+                                    <img src="./img/images_login/descarga.png" alt="">
+                                    <span>Ingresa con cuenta de Google</span>
+                                </button>
+                            </div>
+                            <a href="#" class="ovidastePass">Se te olvidó tu contraseña?</a>
+                        </div>
+                    </div>
+                    <div class="boxForm registrarse">
+                        <p>
+                            No tienes cuenta?
+                            <a href="#">Registrate</a>
+                        </p>
+                    </div>
+                </div>
+          
+        </div>
+        <div class="footer">
+            <div class="links">
+                <a href="#">About</a>
+                <a href="#">Blog</a>
+                <a href="#">Jobs</a>
+                <a href="#">Help</a>
+                <a href="#">API</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Top Accounts</a>
+                <a href="#">Hashtags</a>
+                <a href="#">Locations</a>
+            </div>
+            <div class="copyright">
+                © 2021 TPE-5 Hernández-Marsico
+            </div>
+        </div>
+    </div>
+
+    <div class="load"></div>
+    
+    <script src="js/login.js"></script>
+
+</body>
+
+</html>
