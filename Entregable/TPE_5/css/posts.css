@@ -39,7 +39,7 @@ body {
 /*-------------------------------------------------IZQUIERDA----------------------------------------------*/
 
 .container{
-    width: 82%;
+    width: 83%;
     margin: auto auto;
     display: flex;
      justify-content: space-between;
@@ -47,7 +47,7 @@ body {
 }
 
 .right-sidebar{
-    flex-basis: 25%;
+    flex-basis: 30%;
     position: sticky;
     top: 63px;
     align-self: flex-start;
@@ -59,7 +59,7 @@ body {
 }
 
 .main-content{
-     flex-basis:65.5%;
+     flex-basis: 75%;
      padding-right: 2%;
 }
 
