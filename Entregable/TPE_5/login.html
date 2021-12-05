@@ -27,8 +27,11 @@
                     </div>
                 </div>
 
+
+
+
                  <!--FORMULARIO-->
-                <div class="form-container">
+                <div class="form-container" id="sectionL">
                     <div class="form-content boxForm">
                         <div class="logo">
                             <img src="./img/images_login/logo.svg" alt="portal_dr">
@@ -73,10 +76,89 @@
                     <div class="boxForm registrarse">
                         <p>
                             No tienes cuenta?
-                            <a href="#">Registrate</a>
+                            <a href="#" id="btnRegistrar">Registrate</a>
                         </p>
                     </div>
                 </div>
+
+
+                <div id="sectionR" class="sectionOculta">                           <!--REGISTRO-->
+                <div class="form-container"  >
+                    <div class="form-content boxForm" >
+                        <div class="logo">
+                            <img src="./img/images_login/logo.svg" alt="portal_dr">
+                        </div>
+                        <div class="botones-ingresar">
+                            <button class="btn-conOtraCuenta">
+                       
+                                <img src="./img/images_login/descarga.png" alt="">
+                                <span>Ingresa con cuenta de Google</span>
+                            </button>
+                        </div>
+                        <div class="filete">
+                            <div></div>
+                            <div>O</div>
+                            <div></div>
+                        </div>
+                        <div class="registro" id="registro">
+                            <div class="input-form" >
+                                <div class="input-animado">
+                                    <span >
+                                        Nombre completo
+                                    </span>
+                                    <input id="inputUsuario" >
+                                </div>
+                                <p class="parrafo_error" id="error_nombre" class="mensajeInputOculto" ></p>
+                            </div>
+                          
+                            <div class="input-form">
+                                <div class="input-animado">
+                                    <span>
+                                       Email
+                                    </span>
+                                    <input type="text" id="inputMail" >
+                                </div>
+                                <p class="parrafo_error" id="error_mail" class="mensajeInputOculto" ></p>
+                            </div>
+                            
+                           <div class="input-form">
+                                <div class="input-animado">
+                                    <span>
+                                        Password
+                                    </span>
+                                    <input type="password">
+                                    <button>Mostrar</button>
+                                </div>
+                            </div>
+                            <div class="input-form">
+                                <div class="input-animado">
+                                    <span>
+                                        Password
+                                    </span>
+                                    <input type="password">
+                                    <button>Mostrar</button>
+                                </div>
+                            </div>
+                            
+                            <div class="botones-ingresar">
+                                <button class="btn-login" id="btn-reg"  >
+                                    Registrarse
+                                </button>
+                            </div> 
+                           
+                            
+                        </div>
+                    </div>
+                    <div class="boxForm registrarse">
+                        <p>
+                            Ya tienes cuenta?
+                            <a href="#" id="iniSec">Iniciar Sesion</a>
+                        </p>
+                    </div>
+                </div>
+            </div>     
+          
+        </div>
           
         </div>
         <div class="footer">
@@ -105,6 +187,7 @@
     </div>
 
     <script src="js/login.js"></script>
+    <script src="js/camposFormRegistro.js"></script>
 
 </body>
 

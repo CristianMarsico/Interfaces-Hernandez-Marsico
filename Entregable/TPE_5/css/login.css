@@ -193,7 +193,7 @@ escribe el usuario*/
 }
 
 /*LOGIN SIMPLE*/
-.btn-login {
+.btn-login, .btn_reg{
     width: 100%;
     border: 1px solid transparent;
     outline: 0;
@@ -299,6 +299,22 @@ button:disabled {
 }
 
 
+.sectionOculta {
+    display: none;
+}
+
+.mensajeInputOculto {
+    display: none;
+}
+
+.error {
+    border: salmon solid 1px !important;
+}
+
+.parrafo_error{
+    font-size: 12px;
+    color: red;
+}
 
 
 /*------------------------------------------------------------------------
@@ -332,6 +348,12 @@ button:disabled {
     line-height: 18px;
     text-align: center;
 }
+
+
+
+
+
+
 
 /*-------------------------------------------------------------------------------------------------------
 --------------------------------------------- PARALLAX --------------------------------------------------
