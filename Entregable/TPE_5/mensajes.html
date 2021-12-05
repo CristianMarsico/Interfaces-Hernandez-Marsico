@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/posts.css">
     <link rel="stylesheet" href="css/mensajeria.css">
 
     <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
@@ -41,7 +42,7 @@
                     <input type="text" placeholder="Ubicación">
                     <input type="text" placeholder="Universidad o institución">
                     <div>
-                        <a href="busqueda.html" style="display: flex; flex-direction: row; align-items: center;">
+                        <a href="busqueda.html" style="display: flex; flex-direction: row; align-items: center; height: 2em;">
                             <span><img src="img/iconos/buscar.svg" alt="buscar" class="lupa"></span>
                             <p>Buscar</p>
                         </a>
@@ -50,7 +51,7 @@
             </div>
             <div class="iconos">
                 <a href="posts.html"><img src="img/iconos/home.svg" alt="home"></a>
-                <a href="mensajes.html"><img src="img/iconos/msj.svg" alt="mensajes"></a>
+                <a href="mensajes.html"><img src="img/iconos/msj.svg" alt="mensajes" class="boton-nav-resaltado"></a>
                 <img class="small-logo" src="img/iconos/logo-danicodex.jpg" alt="">
                 <img src="img/iconos/salir.svg" alt="salir">
             </div>
@@ -83,7 +84,7 @@
 
                 <!---------------------------------1ER CONTACTO------------------------------>
                 
-                    <div class="usuario">
+                    <div class="usuario" id="usuario-chat">
                         <div class="avatar">
                             <img src="img/img-usuarios/member-1.png" alt="img">
                             <span class="estado-usuario enlinea"></span>

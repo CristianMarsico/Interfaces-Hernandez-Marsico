@@ -1,3 +1,17 @@
+:root {
+  --blanco: #f7f7f7;
+  --gris-claro: #dbdbdb;
+  --gris: #999;
+  --gris-oscuro: #555;
+  --negro: #070707;
+
+  --violeta: #c877ef;
+  --rojo-claro: #ed4756;
+  --rojo-fuerte: #ee2727;
+  --azul: #3898F3;
+  --azul-marino: #306197;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -46,6 +60,10 @@ nav{
   background: #fafafa;
 }
 
+.cont-input, input * {
+  font-size: 10pt;
+}
+
 .count-input input:focus {
   width: 800px !important;
 }
@@ -57,27 +75,37 @@ nav{
 }
 
 .busqueda-avanzada {
-  width: 60% ;
+  width: 328px ;
   position: absolute;
   top: 3em;
-  background: rgba(127,127,127,0.12);
+  left: 24.5em;
+  background: #c877efdd;
   padding: 10px;
   border-radius: 10px;
 }
 
 .busqueda-avanzada-row {
+  text-align: center;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .busqueda-avanzada-row * {
+  margin: 1ch 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .busqueda-avanzada input, select {
+  text-align: center;
+  font-size: 10pt;
+  height: 2em;
+  /* height: */
   background: #fafafa;
+  color: var(--gris-oscuro);
+  font-weight: 500;
   border: var(--gris) 1px solid;
   border-radius: 2px;
 }
@@ -90,13 +118,22 @@ nav{
   text-align: center;
 }
 
+.busqueda-avanzada select * {
+  color: var(--gris-oscuro);
+}
+
 .busqueda-avanzada a {
   text-decoration: none;
-  color: var(--violeta);
+  color: var(--gris-oscuro);
+  font-weight: 800;
+  background: var(--blanco);
+  padding: 0.5em;
+  border-radius: 5px;
 }
 
 nav *.iconos img {
   filter: saturate(0) brightness(112%);
+  padding-bottom: 1pt;
 }
 
 nav *.iconos img:not(.small-logo):hover {
@@ -122,15 +159,25 @@ nav *.iconos img.small-logo:hover {
   margin-left: 20px;
   cursor: pointer;
   fill:#262626;
-  height:22px; 
+  height:25px; 
   width:auto;
 }
 .iconos .small-logo{
-  width: 22px;
-  height: 22px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   cursor: pointer;
 }
+
+.boton-nav-resaltado {
+  box-shadow: 0 2pt var(--gris-oscuro);
+  /* margin-bottom: 2pt; */
+  /* border-bottom: 2pt solid var(--gris-oscuro); */
+}
+
+/**
+--- MENÚ MORE ---
+*/
 
 .contenedor-menu-more {
   position: relative;

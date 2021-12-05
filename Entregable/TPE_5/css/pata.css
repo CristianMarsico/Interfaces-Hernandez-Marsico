@@ -1,0 +1,78 @@
+.a{
+    /* display: flex;
+    justify-content: center; */
+}
+
+.pos{
+    position: relative;
+    height: 57%;
+    /* width: 240px;
+  height: 428px;  */
+    margin: auto auto;
+}
+
+ .pos .ac{
+    width: 44.5%;
+    height: 57%;
+    /* border: salmon solid 1px; */
+    position: absolute;
+    top: 24%;
+    left: 27%;
+    transition: 1s;
+    /* top: 100px;
+    left: 80%; */
+    
+}
+
+.pos .ac img{
+    padding-top: 25%;
+    padding-left: 25%;
+    width: 75%;
+    height: auto;
+    transition: 1s;
+}
+
+.pos .ac:hover{
+    transform: rotate(360deg);
+   
+} 
+
+.pos .ab{
+    width: 200px;
+    height: 200px;
+    background-size: contain;
+    background-image: url(../img/images_login/a.png);
+    z-index: 0;
+    /* /* margin: auto auto; */
+    position: absolute;
+    top: 24%;
+    left: 27%;
+    border-radius: 80px;
+    animation: parallax 5s linear infinite;
+}
+
+
+
+
+
+@keyframes parallax {
+    0% {
+    background-position-x: 0px;
+    }
+    100% {
+      background-position-x: -224px;
+    }
+}
+    
+    
+
+    
+    
+    .circuloGradiente {
+        z-index:0;
+        position: absolute;
+        top: 0; right: 0; bottom: 0px; left: 0;
+        background: radial-gradient(circle at var(--x, 50%) var(--y, 30%), hsl(315, 80%, 73%) 20%, rgba(0,0,0,0) 30%);
+        
+      
+    }

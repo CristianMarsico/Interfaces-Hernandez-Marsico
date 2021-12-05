@@ -13,6 +13,7 @@ function abrirChatUsuario(event) {
     bienvenida_mensajes.setAttribute('hidden','true');
     notificacion_usuario.setAttribute('hidden','true');
     seccion_chat.removeAttribute('hidden');
+    document.querySelector('#usuario-chat').classList.add('chat-seleccionado');
   }
 }
 

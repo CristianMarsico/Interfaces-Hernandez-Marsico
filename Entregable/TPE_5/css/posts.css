@@ -5,18 +5,6 @@
     --color-body: #F0F0F0;
     --color-blanco: #FFFFFF;
     --color-linea: #DBDBDB;
-
-    --blanco: #f7f7f7;
-    --gris-claro: #dbdbdb;
-    --gris: #999;
-    --gris-oscuro: #555;
-    --negro: #070707;
-
-    --violeta: #c877ef;
-    --rojo-claro: #ed4756;
-    --rojo-fuerte: #ee2727;
-    --azul: #3898F3;
-    --azul-marino: #306197;
 }
 * {
  
@@ -114,7 +102,8 @@ body {
 .event a{
     font-size: 12px;
     text-decoration: none;
-    color: #1876f2;
+    color: var(--violeta);
+    filter: brightness(90%) saturate(110%);
 }
 
 .left-event span{
@@ -122,7 +111,7 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: #1876f2;
+    background: var(--violeta);
     color: #fff;
     font-size: 10px;
     padding: 4px 0;
@@ -173,6 +162,31 @@ body {
     right: 0;
 }
 
+.contenedor-publicidad {
+    text-align: center;
+    position: relative;
+    width: 250px;
+    margin: 0 auto;
+}
+
+.boton-seguir {
+    position: absolute;
+    left: 72%;
+    font-size: 16px;
+    background: var(--violeta);
+    color: var(--blanco);
+    padding: 1ch;
+    border-radius: 10px;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+.publicidad {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    margin: 1ch 0ch;
+}
 
 /*-----------------------------------------CENTRO--------------------------------------*/
 
@@ -270,7 +284,7 @@ body {
 
 .puntuacion {
     text-align: center;
-    margin: 0 auto;
+    margin: 0 1ch;
     padding: 0 1ch;
     color: #C877EF;
     filter: brightness(87%);
@@ -340,7 +354,6 @@ body {
 }
 
 .activity-icons div a {
-    box-sizing: content-box;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -354,7 +367,9 @@ body {
 .activity-icons div{
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     margin-right: 30px;
+    flex-basis: 33%;
 }
 
 .activity-icons {
@@ -362,6 +377,7 @@ body {
     flex-direction: row;
     align-items: center;
     height: 24px;
+    flex-basis: 100%;
 }
 
 .post-profile-icon{

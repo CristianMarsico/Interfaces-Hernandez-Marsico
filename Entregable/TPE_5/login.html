@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="./img/images_login/favicon.png" type="image/png">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/load.css">
+    <link rel="stylesheet" type="text/css" href="css/pata.css" />
 </head>
 
 <body>
@@ -17,16 +18,12 @@
          <!--USAMOS FLEX-->
             <div class="main-content">
 
-                <!--IMG DEL CELULAR CON SUS SLIDES-->
-                <div class="slide-container" style="background-image: url(./img/images_login/phone-frame.png);">
-                    <div class="contenedor-slides">
-
-                        <!--PARALLAX-->
-                        <div id="capa" class="contenedorBackground capa">   </div>
-                        <div id="capa2" class="contenedorBackground capa2"></div>
-                        <div id="capa3" class="contenedorBackground capa3"> </div>
-                      
-                        <div id="capad" class="contenedorBackground2 capad"></div>
+                <div class="slide-container">
+                    <div class="a circuloGradiente" >
+                        <div class="pos">
+                            <div class="ab"></div>
+                            <div class="ac"><img src="img/iconos/logo_dr_hibbert_pata.svg" ></div>
+                        </div>
                     </div>
                 </div>
 
@@ -101,8 +98,12 @@
         </div>
     </div>
 
-    <div class="load"></div>
-    
+    <div class="contenedor-load-flex" hidden>
+        <div class="contenedor-load">
+            <div class="load"></div>
+        </div>
+    </div>
+
     <script src="js/login.js"></script>
 
 </body>

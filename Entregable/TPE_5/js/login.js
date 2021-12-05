@@ -3,12 +3,12 @@ let formularios = document.querySelector('#registro');
 
 let btn_login = document.querySelector('#btn-login');
 
-document.getElementById("capa").style.background ='url("./img/images_login/a.png") ';
-document.getElementById("capa2").style.background ='url("./img/images_login/b.png") ';
-document.getElementById("capa3").style.background ='url("./img/images_login/images(2).jpg") ';
+// document.getElementById("capa").style.background ='url("./img/images_login/a.png") ';
+// document.getElementById("capa2").style.background ='url("./img/images_login/b.png") ';
+// document.getElementById("capa3").style.background ='url("./img/images_login/images(2).jpg") ';
 
 
-document.getElementById("capad").style.background ='url("./img/images_login/a.png") ';
+// document.getElementById("capad").style.background ='url("./img/images_login/a.png") ';
 
 btn_login.addEventListener("click", function(){
   redirigir("posts");
@@ -16,6 +16,8 @@ btn_login.addEventListener("click", function(){
 
 function redirigir(seccion){
   document.querySelector(".container").style.display = "none";
+  if(document.querySelector(".contenedor-load-flex").getAttribute('hidden'));
+      document.querySelector(".contenedor-load-flex").removeAttribute('hidden');
   document.querySelector(".load").style.display = "block";
   let direccion = seccion + ".html";
    setTimeout(function () {
