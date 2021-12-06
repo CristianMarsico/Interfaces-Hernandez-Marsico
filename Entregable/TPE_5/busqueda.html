@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal del Dr. Hibbert | Publicaciones</title>
+    <title>Portal del Dr. Hibbert | Buscar</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/posts.css">
     <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/busqueda.css">
     <link rel="stylesheet" href="css/load.css">
     <link rel="icon" type="image/x-icon" href="img/iconos/logo_dr_hibbert_pata.svg">
 </head>
@@ -20,71 +21,88 @@
                 <img src="img/iconos/logo_dr_hibbert_pata.svg" alt="logo_dr_hibbert">
             </a>
             <div class="cont-input">
-                <span><a href="busqueda.html" id="boton_lupa_busqueda"><img src="img/iconos/buscar.svg" alt="buscar" class="lupa"></a></span>
-                  <input type="text" placeholder="Buscar" id="input_buscar">
-                  <div class="busqueda-avanzada" id="busqueda_avanzada" hidden>
-                      <div class="busqueda-avanzada-row">
-                          <input type="text" placeholder="Nombre">
-                          <select name="profesion" id="profesion">
-                              <option disabled selected>Profesión</option>
-                              <option value="duenio">Dueño</option>
-                              <option value="veterinario">Veterinario</option>
-                              <option value="entusiasta">Entusiasta</option>
-                          </select>
-                          <input type="text" placeholder="Ubicación">
-                          <input type="text" placeholder="Universidad o institución">
-                          <div>
-                            <a href="busqueda.html" id="boton_lupa_busqueda_avanzada" style="display: flex; flex-direction: row; align-items: center; height: 2em;">
-                                  <span><img src="img/iconos/buscar.svg" alt="buscar" class="lupa"></span>
-                                  <p>Búsqueda avanzada</p>
-                              </a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-            <div class="iconos">
-                <a href="posts.html"><img src="img/iconos/home.svg" class="boton-nav-resaltado" alt="home"></a>
-                <a href="mensajes.html"><img src="img/iconos/msj.svg" alt="mensajes"></a>
-                <a href="perfil.html"><img class="small-logo" src="imgs/profile-pic.png" alt=""></a>
-                <a href="login.html" id="btn-logout"><img src="img/iconos/salir.svg" alt="salir"></a>
-            </div>
-        </div>
-    </nav>
-
-    
-  <div id="main" class="container">
-
-<!--------------------------------------IZQUIERDA Y CENTRO-------------------------------------->
-      <div class="main-content">
-
-        <!--ESCRIBIR UN COMENTARIO-->
-        <div class="write-post-container">
-            <div class="user-profile">
-                <img src="img/profile-pic.png" alt="">
-                <div style="line-height: 1.5rem">
-                    <p>Luciano Del Pozo</p>
-                    <div style="display: flex; flex-direction: row; align-items: center;">
-                        <small>Público</small>
-                        <div style="flex-direction: column; height: 1rem">
-                            <img src="img/iconos/publico.svg" style="height: 100%; width: auto; margin: 0 0.37rem;">
+              <span><a href="busqueda.html" id="boton_lupa_busqueda"><img src="img/iconos/buscar.svg" alt="buscar" class="lupa"></a></span>
+                <input type="text" placeholder="Buscar" id="input_buscar">
+                <div class="busqueda-avanzada" id="busqueda_avanzada" hidden>
+                    <div class="busqueda-avanzada-row">
+                        <input type="text" placeholder="Nombre">
+                        <select name="profesion" id="profesion">
+                            <option disabled selected>Profesión</option>
+                            <option value="duenio">Dueño</option>
+                            <option value="veterinario">Veterinario</option>
+                            <option value="entusiasta">Entusiasta</option>
+                        </select>
+                        <input type="text" placeholder="Ubicación">
+                        <input type="text" placeholder="Universidad o institución">
+                        <div>
+                          <a href="busqueda.html" id="boton_lupa_busqueda_avanzada" style="display: flex; flex-direction: row; align-items: center; height: 2em;">
+                                <span><img src="img/iconos/buscar.svg" alt="buscar" class="lupa"></span>
+                                <p>Búsqueda avanzada</p>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="post-input-container">
-                <textarea rows="3" placeholder="Que estás pensando?"></textarea>
-                <div class="add-post-links">
-                    <a href="#"><img src="img/iconos/adjunto.svg" alt="adjunto"></a>
-                    <a href="#"><img src="img/iconos/video.svg" alt="video"></a>
-                    <a href="#"><img src="img/iconos/image.svg" alt="image"></a>
-                    <a href="#"><img src="img/iconos/publicar.svg"></a>
-                </div>
+            <div class="iconos">
+                <a href="posts.html"><img src="img/iconos/home.svg" class="boton-nav-resaltado" alt="home"></a>
+                <a href="mensajes.html"><img src="img/iconos/msj.svg" alt="mensajes"></a>
+                <a href="perfil.html"><img class="small-logo" src="imgs/profile-pic.png" alt=""></a>
+                <a href="login.html"><img src="img/iconos/salir.svg" alt="salir"></a>
             </div>
         </div>
+    </nav>
 
-        <!--POST PUBLICACION-->
-        <div class="post-container">
+    <div id="main" class="container">
+
+      <!--------------------------------------IZQUIERDA Y CENTRO-------------------------------------->
+      <div class="main-content">
+
+        <h2>Resultados para la búsqueda: <span id="valorBusqueda"></span></h2>
+
+        <div class="filtrosBusquedaAvanzada" id="filtrosBusquedaAvanzada" hidden>
+          <span class="etiquetaBusqueda profesion veterinario">Veterinario</span>
+          <span class="etiquetaBusqueda universidad">UNICEN Lobería</span>
+        </div>
+
+        <!--USUARIOS ENCONTRADOS-->
+        <div class="search-container">
+
+          <div class="online-list">
+            <div class="online">
+                <img src="img/member-1.png" alt="" srcset="">
+            </div>
+            <p>Josefa Leyva<br>
+              <span style="font-size: 10pt">Veterinario</span>
+            </p>
+            
+            <a class="boton-seguir" href="#" onclick="event.preventDefault()">
+                Seguir
+            </a>
+          </div>
+          <div class="online-list">
+              <div class="online">
+                  <img src="img/member-2.png" alt="" srcset="">
+              </div>
+              <p>Lalo Landa<br>
+                <span style="font-size: 10pt">Veterinario</span>
+              </p>
+              <a class="boton-seguir" href="#" onclick="event.preventDefault()">
+                  Seguir
+              </a>
+          </div>
+          <div class="online-list">
+              <div class="online">
+                  <img src="img/member-3.png" alt="" srcset="">
+              </div>
+              <p>Ivette Machuca<br>
+                <span style="font-size: 10pt">Veterinario</span>
+              </p>
+              <a class="boton-seguir" href="#" onclick="event.preventDefault()">
+                  Seguir
+            </a>
+          </div>
+        </div>
+        <div class="search-container">
             <div class="post-row">
                 <div class="user-profile">
                     <img src="img/member-4.jfif" alt="">
@@ -127,9 +145,6 @@
                 </div>
             </div>
         </div>
-
-
-
 
         <div class="post-container">
             <div class="post-row">
@@ -270,7 +285,7 @@
       </div>
 
 
-    <!-----------------------------------------------DERECHA-------------------------------------->
+      <!-----------------------------------------------DERECHA-------------------------------------->
       <div class="right-sidebar">
 
         <div class="sidebar-title">
@@ -345,33 +360,32 @@
         </div>
 
       </div>
-  </div>
-
-  <div class="footer" id="footer">
-    <div class="links">
-        <a href="#">About</a>
-        <a href="#">Blog</a>
-        <a href="#">Jobs</a>
-        <a href="#">Help</a>
-        <a href="#">API</a>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Top Accounts</a>
-        <a href="#">Hashtags</a>
-        <a href="#">Locations</a>
     </div>
-    <div class="copyright">
-        © 2021 TPE-5 Hernández-Marsico
+
+    <div class="footer" id="footer">
+        <div class="links">
+            <a href="#">About</a>
+            <a href="#">Blog</a>
+            <a href="#">Jobs</a>
+            <a href="#">Help</a>
+            <a href="#">API</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Top Accounts</a>
+            <a href="#">Hashtags</a>
+            <a href="#">Locations</a>
+        </div>
+        <div class="copyright">
+            © 2021 TPE-5 Hernández-Marsico
+        </div>
     </div>
-</div>
-
-<div class="contenedor-load oculto" id="contenedor-load">
-    <div class="load"></div>
-</div>
-
-<script type="text/javascript" src="js/load.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="js/posts.js"></script>
-<script type="text/javascript" src="js/busqueda.js"></script>
-</body>
+    
+    <div class="contenedor-load oculto" id="contenedor-load">
+        <div class="load"></div>
+    </div>
+    
+    <script type="text/javascript" src="js/load.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/busqueda.js"></script>
+  </body>
 </html>

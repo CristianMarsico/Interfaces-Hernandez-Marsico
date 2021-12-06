@@ -171,7 +171,8 @@ body {
 
 .boton-seguir {
     position: absolute;
-    left: 72%;
+    left: auto;
+    right: 20px;
     font-size: 16px;
     background: var(--violeta);
     color: var(--blanco);
@@ -265,6 +266,16 @@ body {
 
 .post-container{
     width: 100%;
+    background: #fff;
+    border-radius: 6px;
+    padding: 20px;
+    color: #626262;
+    margin: 20px 0;
+}
+
+.search-container{
+    width: 100%;
+    position: relative;
     background: #fff;
     border-radius: 6px;
     padding: 20px;
@@ -389,37 +400,4 @@ body {
     width: 20px;
     border-radius: 50%;
     margin-right: 5px;
-}
-
-
-/*------------------------------------------------------------------------
--------------------------------- FOOTER ----------------------------------
-------------------------------------------------------------------------*/
-
-.footer {
-    padding-bottom: 52px;
-    padding-top: 24px;
-}
-
-.links {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.links a {
-    text-decoration: none;
-    color: var(--txtSecundarios-color);
-    font-size: 13px;
-    line-height: 18px;
-    margin: 0 8px 12px 8px;
-}
-
-.copyright {
-    padding: 12px 0;
-    color: var(--txtSecundarios-color);
-    font-size: 13px;
-    line-height: 18px;
-    text-align: center;
 }

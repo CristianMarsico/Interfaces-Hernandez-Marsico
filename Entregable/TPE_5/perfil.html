@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>perfil</title>
+   
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/perfil.css">
+</head>
+<body>
+    
+
+    <nav id="nav">
+        <div class="nav-cont">
+            <a href="posts.html">
+                <img src="img/iconos/logo_dr_hibbert_pata.svg" alt="logo_dr_hibbert">
+            </a>
+            <div class="cont-input">
+                <span><a href="busqueda.html" id="boton_lupa_busqueda"><img src="img/iconos/buscar.svg" alt="buscar" class="lupa"></a></span>
+                  <input type="text" placeholder="Buscar" id="input_buscar">
+                  <div class="busqueda-avanzada" id="busqueda_avanzada" hidden>
+                      <div class="busqueda-avanzada-row">
+                          <input type="text" placeholder="Nombre">
+                          <select name="profesion" id="profesion">
+                              <option disabled selected>Profesión</option>
+                              <option value="duenio">Dueño</option>
+                              <option value="veterinario">Veterinario</option>
+                              <option value="entusiasta">Entusiasta</option>
+                          </select>
+                          <input type="text" placeholder="Ubicación">
+                          <input type="text" placeholder="Universidad o institución">
+                          <div>
+                            <a href="busqueda.html" id="boton_lupa_busqueda_avanzada" style="display: flex; flex-direction: row; align-items: center; height: 2em;">
+                                  <span><img src="img/iconos/buscar.svg" alt="buscar" class="lupa"></span>
+                                  <p>Búsqueda avanzada</p>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            <div class="iconos">
+                <a href="posts.html"><img src="img/iconos/home.svg" alt="home"></a>
+                <a href="mensajes.html"><img src="img/iconos/msj.svg" alt="mensajes"></a>
+                <a href="perfil.html"><img class="small-logo boton-nav-resaltado" src="imgs/profile-pic.png" alt=""></span></a>
+                <a href="login.html"><img src="img/iconos/salir.svg" alt="salir"></a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+        <div class="perfil-container">
+            <img class="img-perfil" src="imgs/profile-pic.png" alt="logo-danicodex">
+            <div class="contenedor-cabezera">
+                <div class="cabezera1">
+                    <h1><span id="nombre_usuario">Luciano del Pozo</span></h1>
+                    <button>Editar perfil</button>
+                    <img src="imgs/Vector.svg" alt="img_config">
+                </div>
+                <div class="cabezera2">
+                    <p><b>16</b> publicaciones</p>
+                    <p><b>395</b> seguidores</p>
+                    <p><b>619</b> seguidos</p>
+                </div>
+                <div class="cabezera3">
+                    <h2>Nombre Usuario</h2>
+                    <p class="profesion">Profesión</p>
+                    <p class="p-creador">Agregar una descripcion</p>
+                    <p class="p-dev">Agregar algo mas</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="linea"></div>
+        <div class="main-nav">
+            <a href="#">
+               <img src="imgs/personal.svg" alt="">
+                PERSONAL
+            </a>
+            <a href="#">
+                <svg aria-label="Publicaciones" class="_8-yf5 " fill="#8e8e8e" height="12" viewBox="0 0 48 48" width="12"><path d="M41 10c-2.2-2.1-4.8-3.5-10.4-3.5h-3.3L30.5 3c.6-.6.5-1.6-.1-2.1-.6-.6-1.6-.5-2.1.1L24 5.6 19.7 1c-.6-.6-1.5-.6-2.1-.1-.6.6-.7 1.5-.1 2.1l3.2 3.5h-3.3C11.8 6.5 9.2 7.9 7 10c-2.1 2.2-3.5 4.8-3.5 10.4v13.1c0 5.7 1.4 8.3 3.5 10.5 2.2 2.1 4.8 3.5 10.4 3.5h13.1c5.7 0 8.3-1.4 10.5-3.5 2.1-2.2 3.5-4.8 3.5-10.4V20.5c0-5.7-1.4-8.3-3.5-10.5zm.5 23.6c0 5.2-1.3 7-2.6 8.3-1.4 1.3-3.2 2.6-8.4 2.6H17.4c-5.2 0-7-1.3-8.3-2.6-1.3-1.4-2.6-3.2-2.6-8.4v-13c0-5.2 1.3-7 2.6-8.3 1.4-1.3 3.2-2.6 8.4-2.6h13.1c5.2 0 7 1.3 8.3 2.6 1.3 1.4 2.6 3.2 2.6 8.4v13zM34.6 25l-9.1 2.8v-3.7c0-.5-.2-.9-.6-1.2-.4-.3-.9-.4-1.3-.2l-11.1 3.4c-.8.2-1.2 1.1-1 1.9.2.8 1.1 1.2 1.9 1l9.1-2.8v3.7c0 .5.2.9.6 1.2.3.2.6.3.9.3.1 0 .3 0 .4-.1l11.1-3.4c.8-.2 1.2-1.1 1-1.9s-1.1-1.2-1.9-1z"></path></svg>
+                INTERÉS
+            </a>
+            <a href="#" class="desmarcado">
+                <svg aria-label="Guardadas" class="_8-yf5 " fill="#8e8e8e" height="12" viewBox="0 0 48 48" width="12"><path d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 29 5.6 47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7 3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4 1.2-.9 1.4-.2.1-.4.1-.6.1zM24 26c.8 0 1.6.3 2.2.9l15.8 16V3H6v39.9l15.8-16c.6-.6 1.4-.9 2.2-.9z"></path></svg>
+                ETIQUETAS
+            </a>   
+        </div>
+    </main>
+
+       <div class="informacion">
+            <div class="menuEditar">
+                <h3 class="textoInformacion">Información</h3>
+                <p class="informacionGral">Información General</p>
+                <p class="intereses">Intereses</p>
+                <p class="grupos">Grupos</p>
+            </div>
+            <hr class="linea">
+            <div class="descr">
+                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores omnis cumque deleniti enim. Delectus explicabo, totam iusto culpa architecto, molestias cumque cum aut vel iure reprehenderit dolor minus sint cupiditate. Labore tenetur saepe laborum assumenda unde. Veritatis dolore, quam reiciendis corrupti adipisci distinctio explicabo accusamus assumenda laboriosam doloremque doloribus voluptates error, nihil animi earum minus vel eveniet sint, sunt illum sed fugiat in aspernatur rem. Nihil atque id assumenda cum officiis veniam asperiores optio commodi. Officiis sapiente porro dolorem perspiciatis, dicta voluptas aliquid consequatur vitae, asperiores, ipsa consectetur aliquam eos!</div>
+            </div>
+        </div>
+    
+
+</body>
+</html>

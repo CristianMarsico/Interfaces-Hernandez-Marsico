@@ -46,8 +46,8 @@ body {
 
 /*  CONTENEDOR DE CELULARES */
 .slide-container {
-    height: 618px;
-    flex-basis: 454px;
+    height: 31rem;
+    flex-basis: 37%;
     z-index: 0;
     position: relative;
 }
@@ -375,7 +375,6 @@ button:disabled {
 
 .capa{
     position: absolute;
-  
     background-size: cover;
     z-index: -9;
     opacity: 0.9;
@@ -425,7 +424,7 @@ button:disabled {
 /*--------------------------------------------- RESPONSIVE -----------------------------------------------*/
 
 /*A LOS 800PX OCULTO LAS IMAGENES DE LOS CELULARES*/
-@media only screen and (max-width: 838px) {
+@media only screen and (max-width: 1000px) {
     .slide-container {
         display: none;
     }

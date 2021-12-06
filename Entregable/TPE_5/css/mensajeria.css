@@ -1,6 +1,4 @@
-
     * {
-      
         padding: 0;
         font-family: 'Roboto', 'Arial', 'Helvetica', sans-serif;
         margin: 0;
@@ -252,6 +250,10 @@
         position: relative;
         width: 40%;
     }
+    .mensaje.left .cuerpo {
+        background-color: #c877ef55;
+    }
+    
     .mensaje .cuerpo::before {
         content: '';
         width: 0;

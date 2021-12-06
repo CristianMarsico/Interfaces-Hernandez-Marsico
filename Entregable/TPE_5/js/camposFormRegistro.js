@@ -18,11 +18,6 @@ document.getElementById("btn-reg").addEventListener("click", ()=> {
     let userName = document.getElementById("inputUsuario");
     let nombre_usuario = document.getElementById("error_nombre");
 
-   
-
-
-
-
     /*  EJEMPLO DE QUE EXISTA UN USUARIO CON EL MISMO NOMBRE  */
     if(userName.value == "c"){
         nombre_usuario.classList.remove("mensajeInputOculto");

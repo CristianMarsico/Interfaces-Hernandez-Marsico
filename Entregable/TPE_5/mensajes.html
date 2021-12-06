@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TPE-5</title>
-    
+    <title>Portal del Dr. Hibbert | Mensajes</title>    
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/estilo.css">
     <link rel="stylesheet" href="css/posts.css">
     <link rel="stylesheet" href="css/mensajeria.css">
@@ -17,48 +16,48 @@
     <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-
+    <link rel="icon" type="image/x-icon" href="img/iconos/logo_dr_hibbert_pata.svg">
 </head>
 <body>
 
-    <nav>
+    <nav id="nav">
         <div class="nav-cont">
             <a href="posts.html">
                 <img src="img/iconos/logo_dr_hibbert_pata.svg" alt="logo_dr_hibbert">
             </a>
             <div class="cont-input">
-                <span><img src="img/iconos/buscar.svg" alt="buscar" class="lupa"></span>
-                <input type="text" placeholder="Buscar" id="input_buscar">
-            </div>
-            <div class="busqueda-avanzada" id="busqueda_avanzada" hidden>
-                <div class="busqueda-avanzada-row">
-                    <input type="text" placeholder="Nombre">
-                    <select name="profesion" id="profesion">
-                        <option disabled selected>Profesión</option>
-                        <option value="duenio">Dueño</option>
-                        <option value="veterinario">Veterinario</option>
-                        <option value="entusiasta">Entusiasta</option>
-                    </select>
-                    <input type="text" placeholder="Ubicación">
-                    <input type="text" placeholder="Universidad o institución">
-                    <div>
-                        <a href="busqueda.html" style="display: flex; flex-direction: row; align-items: center; height: 2em;">
-                            <span><img src="img/iconos/buscar.svg" alt="buscar" class="lupa"></span>
-                            <p>Buscar</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
+                <span><a href="busqueda.html" id="boton_lupa_busqueda"><img src="img/iconos/buscar.svg" alt="buscar" class="lupa"></a></span>
+                  <input type="text" placeholder="Buscar" id="input_buscar">
+                  <div class="busqueda-avanzada" id="busqueda_avanzada" hidden>
+                      <div class="busqueda-avanzada-row">
+                          <input type="text" placeholder="Nombre">
+                          <select name="profesion" id="profesion">
+                              <option disabled selected>Profesión</option>
+                              <option value="duenio">Dueño</option>
+                              <option value="veterinario">Veterinario</option>
+                              <option value="entusiasta">Entusiasta</option>
+                          </select>
+                          <input type="text" placeholder="Ubicación">
+                          <input type="text" placeholder="Universidad o institución">
+                          <div>
+                            <a href="busqueda.html" id="boton_lupa_busqueda_avanzada" style="display: flex; flex-direction: row; align-items: center; height: 2em;">
+                                  <span><img src="img/iconos/buscar.svg" alt="buscar" class="lupa"></span>
+                                  <p>Búsqueda avanzada</p>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
             <div class="iconos">
                 <a href="posts.html"><img src="img/iconos/home.svg" alt="home"></a>
                 <a href="mensajes.html"><img src="img/iconos/msj.svg" alt="mensajes" class="boton-nav-resaltado"></a>
-                <img class="small-logo" src="img/iconos/logo-danicodex.jpg" alt="">
-                <img src="img/iconos/salir.svg" alt="salir">
+                <a href="perfil.html"><img class="small-logo" src="imgs/profile-pic.png" alt=""></a>
+                <a href="login.html"><img src="img/iconos/salir.svg" alt="salir"></a>
             </div>
         </div>
     </nav>
 
-    <section class="body-chat">
+    <section class="body-chat" id="body-chat">
         <div class="seccion-titulo">
             <h3>
                <!--<img src="img/img-mensajeria/msj.svg" alt="" class="msj">-->
@@ -91,8 +90,8 @@
                         </div>
                         <div class="cuerpo">
                             <a href="#" id="boton_chat_usuario" style="text-decoration: none; color: var(--negro);">
-                                <span> Nombre apellido</span>
-                                <span>detalles de mensaje</span>
+                                <span>Josefa Leyva</span>
+                                <span>Tú: Podés recomendarme...</span>
                             </a>
                         </div>
                         <div style="display: flex; flex-direction: column">
@@ -130,8 +129,8 @@
                         <span class="estado-usuario enlinea"></span>
                     </div>
                     <div class="cuerpo">
-                        <span> Nombre apellido</span>
-                        <span>detalles de mensaje</span>
+                        <span>Lalo Landa</span>
+                        <span>tengo una marca de repel...</span>
                     </div>
                     <div style="display: flex; flex-direction: column">
                         <div style="display: flex; flex-direction: row; justify-content: center; font-size: 8pt;">
@@ -169,8 +168,8 @@
                         <span class="estado-usuario desconectado"></span>
                     </div>
                     <div class="cuerpo">
-                        <span> Nombre apellido</span>
-                        <span>detalles de mensaje</span>
+                        <span>José Pérez</span>
+                        <span>ah bueno listo nos vemos!!</span>
                     </div>
                     <div style="display: flex; flex-direction: column;">
                         <div style="display: flex; flex-direction: row; justify-content: center; font-size: 8pt;">
@@ -206,7 +205,7 @@
 
    <!------------------------------- LADO DERECHO------------------------------->
         <div class="seccion-chat bienvenida-mensajes" id="bienvenida_mensajes">
-            <h2>Bienvenido, Nombre!</h2>
+            <h2>Bienvenido, Luciano!</h2>
             <h3 id="tienes_msj_nuevos">Tienes 5 mensajes nuevos.</h3>
             <img src="img/img-mensajeria/sobre_violeta_msjnuevos.svg" class="bienvenida-mensajes sobre-msj-nuevos" id="imagen_sobre">
         </div>
@@ -216,7 +215,7 @@
                     <img src="img/img-usuarios/member-1.png" alt="img">
                 </div>
                 <div class="cuerpo">
-                    <span>Nombre de usuario</span>
+                    <span>Josefa Leyva</span>
                     <span>Activo - Escribiendo...</span>
                 </div>
                 <div class="opciones">
@@ -268,8 +267,8 @@
                     </div>
                     <div class="cuerpo">
                     
-                        <div class="texto">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Dolor eligendi voluptatum dolore voluptas iure.
+                        <div class="texto rosa">
+                            Hola, no hay problema, capaz que respondo tarde pero decime
                             <span class="tiempo">
                                 <i class="far fa-clock"></i>
                                 Hace 5 min
@@ -293,7 +292,7 @@
                 <div class="mensaje left">
                     <div class="cuerpo">
                         <div class="texto">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Dolor eligendi voluptatum dolore voluptas iure.
+                            Podés recomendarme alguna marca de alimento para gatos más o menos económica pero buena?   
                             <span class="tiempo">
                                 <i class="far fa-clock"></i>
                                 Hace 4 min
@@ -339,9 +338,32 @@
             </div>
         </div>
     </section>
+
+    <div class="footer" id="footer">
+        <div class="links">
+            <a href="#">About</a>
+            <a href="#">Blog</a>
+            <a href="#">Jobs</a>
+            <a href="#">Help</a>
+            <a href="#">API</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Top Accounts</a>
+            <a href="#">Hashtags</a>
+            <a href="#">Locations</a>
+        </div>
+        <div class="copyright">
+            © 2021 TPE-5 Hernández-Marsico
+        </div>
+    </div>
     
+    <div class="contenedor-load oculto" id="contenedor-load">
+        <div class="load"></div>
+    </div>
+    
+    <script type="text/javascript" src="js/load.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/mensajes.js"></script>
-   
+    <script type="text/javascript" src="js/busqueda.js"></script>
 </body>
 </html>

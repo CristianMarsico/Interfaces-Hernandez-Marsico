@@ -1,0 +1,19 @@
+
+.etiquetaBusqueda {
+  border-radius: 5px;
+}
+
+/* Siempre se aprende algo nuevo con css :P */
+.etiquetaBusqueda.profesion.veterinario {
+  background-color: var(--violeta);
+}
+.etiquetaBusqueda.profesion.entusiasta {
+  background-color: var(--violeta);
+}
+.etiquetaBusqueda.profesion.duenio {
+  background-color: var(--violeta);
+}
+
+.etiquetaBusqueda.universidad {
+  background-color: var();
+}

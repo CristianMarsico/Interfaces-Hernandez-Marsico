@@ -1,22 +1,4 @@
 'use strict'
-/**
- * =============== BÚSQUEDA AVANZADA ===============
- */
-
-let input_buscar = document.querySelector('#input_buscar');
-let busqueda_avanzada = document.querySelector('#busqueda_avanzada');
-
-input_buscar.addEventListener("click", (event) => {
-  mostrarOcultarBusquedaAvanzada(event)
-});
-
-function mostrarOcultarBusquedaAvanzada(event) {
-  event.preventDefault();
-  if(busqueda_avanzada.hidden)
-    busqueda_avanzada.removeAttribute('hidden');
-  else  
-    busqueda_avanzada.setAttribute('hidden','true');
-}
 
 /**
  * ============= BOTONES MENÚ MORE ============
@@ -28,10 +10,13 @@ function mostrarOcultarBusquedaAvanzada(event) {
  let menu_more_2 = document.querySelector('#menu-more-2');
  let btn_menu_more_3 = document.querySelector('#boton-menu-more-3');
  let menu_more_3 = document.querySelector('#menu-more-3');
+ let btn_menu_more_anuncio = document.querySelector('#boton-menu-more-anuncio');
+ let menu_more_anuncio = document.querySelector('#menu-more-anuncio');
  let listaMenus = [];
 listaMenus[0] = menu_more_1;
 listaMenus[1] = menu_more_2;
 listaMenus[2] = menu_more_3;
+listaMenus[3] = menu_more_anuncio;
 
 /**
  * =============== MENÚ MORE ===============
@@ -46,6 +31,10 @@ btn_menu_more_2.addEventListener('click', function(event) {
 btn_menu_more_3.addEventListener('click', function(event) {
   abrirMenuMore(menu_more_3, event);
 });
+btn_menu_more_anuncio.addEventListener('click', function(event) {
+  abrirMenuMore(menu_more_anuncio, event);
+});
+
 
 function abrirMenuMore(menu_more, event) {
   event.preventDefault();

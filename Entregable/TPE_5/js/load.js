@@ -1,28 +1,44 @@
-
 let formularios = document.querySelector('#registro');
 
 let btn_login = document.querySelector('#btn-login');
+let btn_reg = document.querySelector('#btn-reg');
+let btn_logout = document.querySelector('#btn-logout');
 
-// document.getElementById("capa").style.background ='url("./img/images_login/a.png") ';
-// document.getElementById("capa2").style.background ='url("./img/images_login/b.png") ';
-// document.getElementById("capa3").style.background ='url("./img/images_login/images(2).jpg") ';
-
-
-// document.getElementById("capad").style.background ='url("./img/images_login/a.png") ';
-
-btn_login.addEventListener("click", function(){
-  redirigir("posts");
-});
+if(btn_login != null) {
+    btn_login.addEventListener("click", function(){
+    redirigir("posts");
+    });
+    btn_reg.addEventListener("click", function(){
+        redirigir("posts");
+    });
+}
+if(btn_logout != null) {
+    btn_logout.addEventListener("click", function() {
+        redirigir("login");
+    })
+}
 
 function redirigir(seccion){
-  document.querySelector(".container").style.display = "none";
-  if(document.querySelector(".contenedor-load-flex").getAttribute('hidden'));
-      document.querySelector(".contenedor-load-flex").removeAttribute('hidden');
-  document.querySelector(".load").style.display = "block";
+    // Ocultar todo
+  ocultarTodo();
+    
+  let contenedorLoad = document.querySelector("#contenedor-load")
+  if(contenedorLoad.classList.contains('oculto'))
+    contenedorLoad.classList.remove('oculto');
   let direccion = seccion + ".html";
    setTimeout(function () {
      window.location.href = direccion;
    }, 1300);
+}
+
+function ocultarTodo() {
+    document.querySelector(".container").style.display = "none";
+    document.querySelector('#footer').style.display = "none";
+    if(document.querySelector('#nav')) {
+        document.querySelector('#nav').style.display = "none";
+    }
+    if(document.querySelector('#body-chat'))
+      document.querySelector('#body-chat').style.display = "none";
 }
 
 // animate input

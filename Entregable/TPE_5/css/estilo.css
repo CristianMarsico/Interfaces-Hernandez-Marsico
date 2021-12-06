@@ -23,8 +23,8 @@
 */
 
 nav{
-  min-width: 1024px;
-  max-width: 1400px;
+  /* min-width: 1024px;
+  max-width: 1400px; */
   width: 100%;
   z-index: 10;
   border-bottom: solid #dbdbdb 1px;
@@ -75,10 +75,10 @@ nav{
 }
 
 .busqueda-avanzada {
-  width: 328px ;
+  width: 100%;
   position: absolute;
   top: 3em;
-  left: 24.5em;
+  left: -0.06rem;
   background: #c877efdd;
   padding: 10px;
   border-radius: 10px;
@@ -136,6 +136,10 @@ nav *.iconos img {
   padding-bottom: 1pt;
 }
 
+nav *.iconos img:hover {
+  filter: saturate(88%) brightness(112%);
+}
+
 nav *.iconos img:not(.small-logo):hover {
   filter: saturate(1.75) brightness(87%);
 }
@@ -163,10 +167,10 @@ nav *.iconos img.small-logo:hover {
   width:auto;
 }
 .iconos .small-logo{
-  width: 25px;
+  /* width: 25px;
   height: 25px;
   border-radius: 50%;
-  cursor: pointer;
+  cursor: pointer; */
 }
 
 .boton-nav-resaltado {
@@ -187,9 +191,9 @@ nav *.iconos img.small-logo:hover {
   position: absolute;
   width:max-content;
   z-index: 1;
-  top: 10;
+  top: 0px;
   padding: 1rem;
-  right: -224px;
+  right: -240px;
   background: #f7f7f7;
   border-radius: 10px;
   list-style: none;
@@ -197,6 +201,12 @@ nav *.iconos img.small-logo:hover {
 
 .post-menu-more ul > li {
   line-height: 2em;
+  padding: 0 1ch;
+}
+
+.post-menu-more ul > li:hover {
+  background: rgb(0,0,0,0.03);
+  border-radius: 5px;
 }
 
 .contenedor-menu-more a {
@@ -212,4 +222,36 @@ nav *.iconos img.small-logo:hover {
 }
 .visible {
   z-index: 1;
+}
+
+/*------------------------------------------------------------------------
+-------------------------------- FOOTER ----------------------------------
+------------------------------------------------------------------------*/
+
+.footer {
+  padding-bottom: 52px;
+  padding-top: 24px;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.links a {
+  text-decoration: none;
+  color: var(--txtSecundarios-color);
+  font-size: 13px;
+  line-height: 18px;
+  margin: 0 8px 12px 8px;
+}
+
+.copyright {
+  padding: 12px 0;
+  color: var(--txtSecundarios-color);
+  font-size: 13px;
+  line-height: 18px;
+  text-align: center;
 }
