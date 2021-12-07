@@ -11,24 +11,26 @@ if(btn_login != null) {
 }
 if(btn_logout != null) {
     btn_logout.addEventListener("click", function() {
-        redirigir("login");
+        redirigirReg("login");
     })
 }
 
-function redirigir(seccion){
+function redirigirReg(seccion){
     
     let existe_nombre = document.getElementById('error_nombre').getAttribute('existe-nombre');
-    if(existe_nombre == 'true') {
-        // Ocultar todo
-        ocultarTodo();
-        let contenedorLoad = document.querySelector("#contenedor-load")
-        if(contenedorLoad.classList.contains('oculto'))
-            contenedorLoad.classList.remove('oculto');
-        let direccion = seccion + ".html";
-        setTimeout(function () {
-            window.location.href = direccion;
-        }, 1300);
-    }
+    if(existe_nombre == 'true')
+        redirigir(seccion);
+}
+
+function redirigir(seccion) {
+    ocultarTodo();
+    let contenedorLoad = document.querySelector("#contenedor-load")
+    if(contenedorLoad.classList.contains('oculto'))
+        contenedorLoad.classList.remove('oculto');
+    let direccion = seccion + ".html";
+    setTimeout(function () {
+        window.location.href = direccion;
+    }, 1300);
 }
 
 function ocultarTodo() {
