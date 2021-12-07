@@ -6,7 +6,6 @@
 
     /*BOTONES*/
     --btn-login:#6BCA5A;
-    --btn-login-inactivo:#baf7af;
     --btn-registrarse: #0095f6;/*boton de "Registrarse"*/
     --btn-ingresarConOtraCuenta: #385185;
     
@@ -197,7 +196,7 @@ escribe el usuario*/
     width: 100%;
     border: 1px solid transparent;
     outline: 0;
-    background-color: var(--btn-login);
+    background-color: var(--verde);
     color: var(--txt-btnIngresar-color);
     cursor: pointer;
     font-weight: 600;
@@ -208,7 +207,7 @@ escribe el usuario*/
 }
 
 button:disabled {
-    background-color: var(--btn-login-inactivo);
+    background-color: var(--btn-login);
 }
 
 
