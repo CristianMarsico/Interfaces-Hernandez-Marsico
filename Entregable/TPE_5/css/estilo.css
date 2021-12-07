@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
+
 :root {
   --blanco: #f7f7f7;
   --gris-claro: #dbdbdb;
@@ -10,12 +12,18 @@
   --rojo-fuerte: #ee2727;
   --azul: #3898F3;
   --azul-marino: #306197;
+
+  --borde-redondeado: 10px;
 }
 
 * {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', 'Arial', 'Helvetica', sans-serif;
+}
+
+input, textarea, select, a, button {
+  border-radius: var(--borde-redondeado);
 }
 
 /*
@@ -50,7 +58,7 @@ nav{
   align-items: center;
   background: #fafafa;
   padding: 5px;
-  border-radius: 10px;
+  border-radius: var(--borde-redondeado);
   overflow: visible;
 }
 .cont-input input{
@@ -77,11 +85,11 @@ nav{
 .busqueda-avanzada {
   width: 100%;
   position: absolute;
-  top: 3em;
+  top: 2.8em;
   left: -0.06rem;
-  background: #c877efdd;
+  background: #ddd;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: var(--borde-redondeado);
 }
 
 .busqueda-avanzada-row {
@@ -107,7 +115,6 @@ nav{
   color: var(--gris-oscuro);
   font-weight: 500;
   border: var(--gris) 1px solid;
-  border-radius: 2px;
 }
 
 .busqueda-avanzada input {
@@ -124,15 +131,23 @@ nav{
 
 .busqueda-avanzada a {
   text-decoration: none;
-  color: var(--gris-oscuro);
+  color: var(--blanco);
   font-weight: 800;
-  background: var(--blanco);
+  background: var(--violeta);
   padding: 0.5em;
-  border-radius: 5px;
+}
+
+.busqueda-avanzada img {
+  filter: invert() brightness(90%);
 }
 
 nav *.iconos img {
   filter: saturate(0) brightness(112%);
+  padding-bottom: 1pt;
+}
+
+nav *.iconos img.small-logo {
+  filter: saturate(88%) brightness(112%);
   padding-bottom: 1pt;
 }
 
@@ -166,12 +181,6 @@ nav *.iconos img.small-logo:hover {
   height:25px; 
   width:auto;
 }
-.iconos .small-logo{
-  /* width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  cursor: pointer; */
-}
 
 .boton-nav-resaltado {
   box-shadow: 0 2pt var(--gris-oscuro);
@@ -185,6 +194,7 @@ nav *.iconos img.small-logo:hover {
 
 .contenedor-menu-more {
   position: relative;
+  align-self: flex-start;
 }
 
 .post-menu-more ul {
@@ -195,7 +205,7 @@ nav *.iconos img.small-logo:hover {
   padding: 1rem;
   right: -240px;
   background: #f7f7f7;
-  border-radius: 10px;
+  border-radius: var(--borde-redondeado);
   list-style: none;
 }
 
@@ -206,7 +216,7 @@ nav *.iconos img.small-logo:hover {
 
 .post-menu-more ul > li:hover {
   background: rgb(0,0,0,0.03);
-  border-radius: 5px;
+  border-radius: var(--borde-redondeado);
 }
 
 .contenedor-menu-more a {

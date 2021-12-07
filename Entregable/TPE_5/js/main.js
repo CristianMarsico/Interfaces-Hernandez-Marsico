@@ -31,10 +31,11 @@ btn_menu_more_2.addEventListener('click', function(event) {
 btn_menu_more_3.addEventListener('click', function(event) {
   abrirMenuMore(menu_more_3, event);
 });
-btn_menu_more_anuncio.addEventListener('click', function(event) {
-  abrirMenuMore(menu_more_anuncio, event);
-});
-
+if(btn_menu_more_anuncio != null) {
+  btn_menu_more_anuncio.addEventListener('click', function(event) {
+    abrirMenuMore(menu_more_anuncio, event);
+  });
+}
 
 function abrirMenuMore(menu_more, event) {
   event.preventDefault();

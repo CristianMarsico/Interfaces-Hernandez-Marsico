@@ -1,6 +1,6 @@
 
 .etiquetaBusqueda {
-  border-radius: 5px;
+  border-radius: var(--borde-redondeado);
 }
 
 /* Siempre se aprende algo nuevo con css :P */
@@ -16,4 +16,23 @@
 
 .etiquetaBusqueda.universidad {
   background-color: var();
+}
+
+.resultados-busqueda {
+  display: flex;
+}
+.resultados-busqueda.fila {
+  flex-direction: row;
+  justify-content: space-between;
+}
+.resultados-busqueda.columna {
+  position: relative;
+  flex-direction: column;
+  flex-basis: 47%;
+}
+.resultados-busqueda.columna .boton-seguir {
+  display: flex;
+  position: absolute;
+  right: 0em;
+  flex-direction: column;
 }

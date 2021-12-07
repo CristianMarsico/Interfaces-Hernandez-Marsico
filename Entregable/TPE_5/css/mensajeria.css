@@ -121,6 +121,10 @@
     .usuario .cuerpo span {
         display: block;
     }
+
+    .usuario .cuerpo span strong {
+        font-weight: 900;
+    }
     .usuario-seleccionado .cuerpo span:nth-child(2),
     .usuario .cuerpo span:nth-child(2) {
         font-size: .8em;
@@ -330,10 +334,17 @@
         flex-wrap: wrap;
         border-top: 1px solid #E7E7E7;
         padding-top: 1rem;
+        align-items: center;
     }
     .panel-escritura .textarea textarea,
     .panel-escritura .opcines {
         margin-right: .5rem;
+    }
+
+    .panel-escritura .textarea textarea:focus,
+    .panel-escritura .textarea textarea:active {
+        border: none;
+        outline: none;
     }
     .panel-escritura button {
         border: 0;

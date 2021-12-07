@@ -1,0 +1,17 @@
+
+main{
+    width: 70%;
+    margin: auto;
+    margin-top: 60px;
+}
+.mainCont__grid{
+    display: grid;
+    grid-template-columns: repeat(3,32%);
+    grid-template-rows: repeat(5,auto);
+    gap: 2%;
+    height: auto;
+}
+.mainCont__grid div > img{
+    width: 100%;
+    cursor: pointer;
+}
