@@ -12,11 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // mostrar u ocultar filtros aplicados
   let filtrosBusquedaAvanzada = document.querySelector('#filtrosBusquedaAvanzada');
-  if (localStorage.getItem('busquedaAvanzada') == 'true')
-    filtrosBusquedaAvanzada.removeAttribute('hidden');
-  else
-    if(!filtrosBusquedaAvanzada.hidden)
-      filtrosBusquedaAvanzada.setAttribute('hidden', 'true');
+  if(filtrosBusquedaAvanzada != null) {
+    if (localStorage.getItem('busquedaAvanzada') == 'true')
+      filtrosBusquedaAvanzada.removeAttribute('hidden');
+    else
+      if(!filtrosBusquedaAvanzada.hidden)
+        filtrosBusquedaAvanzada.setAttribute('hidden', 'true');
+  }
 
   let botones_buscar = document.querySelectorAll('.boton_lupa_busqueda');
   let input_buscar = document.querySelector('#input_buscar');

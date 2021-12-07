@@ -1,17 +1,33 @@
 
-main{
+/* main{
     width: 70%;
     margin: auto;
     margin-top: 60px;
-}
+} */
 .mainCont__grid{
     display: grid;
-    grid-template-columns: repeat(3,32%);
-    grid-template-rows: repeat(5,auto);
-    gap: 2%;
-    height: auto;
+    grid-template-columns: repeat(3,2.5fr);
+    grid-template-rows: repeat(3,20em);
+    grid-gap: 1em;
+    height: 60em;
+    justify-content: center;
 }
-.mainCont__grid div > img{
+.mainCont__grid div {
+    text-align: center;
+    position: relative;
+    object-fit: cover;
     width: 100%;
-    cursor: pointer;
+    height: 100%;
+}
+.mainCont__grid div > img {
+    border-radius: var(--borde-redondeado);
+    width: 95%;
+    height: 95%;
+    object-fit: cover;
+    transition: all .2s ease-in-out;
+    cursor: pointer !important;
+}
+
+.mainCont__grid div img:hover {
+    transform: scale(1.05);
 }

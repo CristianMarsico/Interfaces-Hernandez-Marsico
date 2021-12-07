@@ -172,17 +172,29 @@ body {
     margin: 0 auto;
 }
 
-.boton-seguir {
+.boton-seguir, .boton-siguiendo {
     position: absolute;
     left: auto;
     right: 20px;
     font-size: 16px;
-    background: var(--violeta);
-    color: var(--blanco);
     padding: 1ch;
     border-radius: 10px;
     font-weight: normal;
     text-decoration: none;
+    color: var(--blanco);
+    transition: all 0.1s linear;
+}
+.boton-seguir:hover, .boton-siguiendo:hover {
+    transform: scale(1.05);
+}
+.boton-seguir {   
+    background: var(--violeta);
+}
+.boton-siguiendo {
+    background: var(--verde);
+}
+.boton-siguiendo:hover {
+    background: var(--rojo-claro);
 }
 
 .publicidad {

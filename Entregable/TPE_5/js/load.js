@@ -8,9 +8,6 @@ if(btn_login != null) {
     btn_login.addEventListener("click", function(){
     redirigir("posts");
     });
-    btn_reg.addEventListener("click", function(){
-        redirigir("posts");
-    });
 }
 if(btn_logout != null) {
     btn_logout.addEventListener("click", function() {
@@ -19,16 +16,19 @@ if(btn_logout != null) {
 }
 
 function redirigir(seccion){
-    // Ocultar todo
-  ocultarTodo();
     
-  let contenedorLoad = document.querySelector("#contenedor-load")
-  if(contenedorLoad.classList.contains('oculto'))
-    contenedorLoad.classList.remove('oculto');
-  let direccion = seccion + ".html";
-   setTimeout(function () {
-     window.location.href = direccion;
-   }, 1300);
+    let existe_nombre = document.getElementById('error_nombre').getAttribute('existe-nombre');
+    if(existe_nombre == 'true') {
+        // Ocultar todo
+        ocultarTodo();
+        let contenedorLoad = document.querySelector("#contenedor-load")
+        if(contenedorLoad.classList.contains('oculto'))
+            contenedorLoad.classList.remove('oculto');
+        let direccion = seccion + ".html";
+        setTimeout(function () {
+            window.location.href = direccion;
+        }, 1300);
+    }
 }
 
 function ocultarTodo() {
@@ -81,4 +81,3 @@ checkSigninInput = () => {
         return input.value.trim().length >= 6
     })
 }
-

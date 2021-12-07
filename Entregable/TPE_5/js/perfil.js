@@ -33,3 +33,5 @@ function mostrarSeccion(div_a_mostrar) {
   if(div_a_mostrar.classList.contains('oculto'))
     div_a_mostrar.classList.remove('oculto');
 }
+
+let galeria = document.querySelectorAll('.imagen-galeria');

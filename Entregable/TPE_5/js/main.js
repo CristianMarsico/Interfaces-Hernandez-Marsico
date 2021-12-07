@@ -16,7 +16,9 @@
 listaMenus[0] = menu_more_1;
 listaMenus[1] = menu_more_2;
 listaMenus[2] = menu_more_3;
-listaMenus[3] = menu_more_anuncio;
+if(menu_more_anuncio != null) {
+  listaMenus[3] = menu_more_anuncio;
+}
 
 /**
  * =============== MENÚ MORE ===============
