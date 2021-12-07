@@ -199,11 +199,20 @@ main{
 }
 
 .menuEditar p{
+    cursor: pointer;
+    border-radius: var(--borde-redondeado);
+    margin: 0 1rem;
+    padding: 3ch 2ch;
     color: var(--color-p);
+}
+.menuEditar p:hover {
+    background-color: rgb(0,0,0,0.05);
 }
 
 .menuEditar p.informacionGral{
-    color: var(--color-info-gral);
+    background-color: var(--violeta);
+    color: var(--blanco);
+    font-weight: bold;
 }
 
 .oculto {
